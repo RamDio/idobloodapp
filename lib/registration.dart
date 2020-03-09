@@ -138,32 +138,34 @@ class _RegistrationState extends State<Registration> {
            },
       );
 
-      return Scaffold(
-             backgroundColor: Colors.white,
-             body: Center(
-               child:ListView(shrinkWrap: true,
-               padding: EdgeInsets.only(left:24.0,right:24.0),
-               children: <Widget>[
-                 Center(child: text),
-                 SizedBox(height: 50.0,),
-                 firstname,
-                 SizedBox(height: 20.0,),
-                 lastname,
-                 SizedBox(height: 20.0,),
-                 address,
-                 SizedBox(height: 20.0,),
-                 cpnumber,
-                 SizedBox(height: 20.0,),
-                 bloodtype,
-                 
-                 SizedBox(height: 20.0,),
-                 username,
-                 SizedBox(height: 20.0,),
-                 password,
-                 SizedBox(height: 50.0,),
-                 signupButton,signin
-               ],
-               )
+      return Center(
+        child: Container(
+
+               
+                 child:ListView(shrinkWrap: true,
+                 padding: EdgeInsets.only(left:24.0,right:24.0),
+                 children: <Widget>[
+                   Center(child: text),
+                   SizedBox(height: 50.0,),
+                   firstname,
+                   SizedBox(height: 20.0,),
+                   lastname,
+                   SizedBox(height: 20.0,),
+                   address,
+                   SizedBox(height: 20.0,),
+                   cpnumber,
+                   SizedBox(height: 20.0,),
+                   bloodtype,
+                   
+                   SizedBox(height: 20.0,),
+                   username,
+                   SizedBox(height: 20.0,),
+                   password,
+                   SizedBox(height: 50.0,),
+                   signupButton,signin
+                 ],
+                 )
+               
              ),
-           );
+      );
   }}

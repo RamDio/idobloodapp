@@ -1,23 +1,47 @@
+
 import 'package:flutter/material.dart';
 import 'login.dart';
-void main() => runApp(MyApp());
+import 'dart:async';
 
-class MyApp extends StatelessWidget {
-  // const MyApp({Key key}) : super(key: key);
-  final routes=<String,WidgetBuilder>{
-    Login.tag: (context)=>Login(),
-  };
+
+void main() {
+  runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home:MyApp(),
+  ));
+}
+
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  @override
+  void initState(){
+    super.initState();
+    Future.delayed(
+      Duration(seconds: 4),
+      (){
+        Navigator.push(
+          context, MaterialPageRoute(
+            builder: (context) => Login(),
+            ));
+      }
+    );
+  }
+
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Coding Cafe',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch:Colors.lightBlue,
-      ),
-      home: Login(),
-      routes: routes,
+    return Scaffold(
+      body:Center(
+        child: Container(
+          child: Image.asset("asset/blood.png",height: 200,width: 200),
+        ),
+      )
+
     );
-    
   }
 }
