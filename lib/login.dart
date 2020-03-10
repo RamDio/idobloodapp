@@ -16,7 +16,7 @@ enum LoginStatus { notSignIn, signIn }
 
 class _LoginState extends State<Login> {
   LoginStatus _loginStatus = LoginStatus.notSignIn;
-  String email, password;
+  String username, password;
   final _key = new GlobalKey<FormState>();
 
   bool _secureText = true;
@@ -39,7 +39,7 @@ class _LoginState extends State<Login> {
     final response = await http
         .post("http://website/flutter_app/api_verification.php", body: {
       "flag": 1.toString(),
-      "email": email,
+      "username": username,
       "password": password,
       "fcm_token": "test_fcm_token"
     });
@@ -47,14 +47,14 @@ class _LoginState extends State<Login> {
     final data = jsonDecode(response.body);
     int value = data['value'];
     String message = data['message'];
-    String emailAPI = data['email'];
-    String nameAPI = data['name'];
+    String usernameAPI = data['username'];
+    String firstnameAPI = data['firstname'];
     String id = data['id'];
 
     if (value == 1) {
       setState(() {
         _loginStatus = LoginStatus.signIn;
-        savePref(value, emailAPI, nameAPI, id);
+        savePref(value, usernameAPI, firstnameAPI, id);
       });
       print(message);
       loginToast(message);
@@ -75,12 +75,12 @@ class _LoginState extends State<Login> {
         textColor: Colors.white);
   }
 
-  savePref(int value, String email, String name, String id) async {
+  savePref(int value, String username, String firstname, String id) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
       preferences.setInt("value", value);
-      preferences.setString("name", name);
-      preferences.setString("email", email);
+      preferences.setString("name", firstname);
+      preferences.setString("email",username);
       preferences.setString("id", id);
       preferences.commit();
     });
@@ -101,8 +101,8 @@ class _LoginState extends State<Login> {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
       preferences.setInt("value", null);
-      preferences.setString("name", null);
-      preferences.setString("email", null);
+      preferences.setString("firstname", null);
+      preferences.setString("username", null);
       preferences.setString("id", null);
 
       preferences.commit();
@@ -161,10 +161,10 @@ class _LoginState extends State<Login> {
                             child: TextFormField(
                               validator: (e) {
                                 if (e.isEmpty) {
-                                  return "Please Insert Email";
+                                  return "Please Insert Username";
                                 }
                               },
-                              onSaved: (e) => email = e,
+                              onSaved: (e) => username = e,
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 16,
@@ -178,7 +178,7 @@ class _LoginState extends State<Login> {
                                         Icon(Icons.person, color: Colors.black),
                                   ),
                                   contentPadding: EdgeInsets.all(18),
-                                  labelText: "Email"),
+                                  labelText: "Username"),
                             ),
                           ),
 
@@ -300,7 +300,7 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
-  String name, email, mobile, password;
+  String firstname,lastname, username,bloodtype,address, mobile, password;
   final _key = new GlobalKey<FormState>();
 
   bool _secureText = true;
@@ -323,8 +323,11 @@ class _RegisterState extends State<Register> {
     final response = await http
         .post("http://website/flutter_app/api_verification.php", body: {
       "flag": 2.toString(),
-      "name": name,
-      "email": email,
+      "firstname": firstname,
+      "lastname": lastname,
+      "username": username,
+      "bloodtype":bloodtype,
+      "address":address,
       "mobile": mobile,
       "password": password,
       "fcm_token": "test_fcm_token"
@@ -392,16 +395,16 @@ class _RegisterState extends State<Register> {
                         height: 25,
                       ),
 
-                      //card for Fullname TextFormField
+                      //card for firstname and lastname TextFormField
                       Card(
                         elevation: 6.0,
                         child: TextFormField(
                           validator: (e) {
                             if (e.isEmpty) {
-                              return "Please insert Full Name";
+                              return "Please insert first Name";
                             }
                           },
-                          onSaved: (e) => name = e,
+                          onSaved: (e) => firstname = e,
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 16,
@@ -413,20 +416,18 @@ class _RegisterState extends State<Register> {
                                 child: Icon(Icons.person, color: Colors.black),
                               ),
                               contentPadding: EdgeInsets.all(18),
-                              labelText: "Fullname"),
+                              labelText: "Firstname"),
                         ),
                       ),
-
-                      //card for Email TextFormField
                       Card(
                         elevation: 6.0,
                         child: TextFormField(
                           validator: (e) {
                             if (e.isEmpty) {
-                              return "Please insert Email";
+                              return "Please insert last Name";
                             }
                           },
-                          onSaved: (e) => email = e,
+                          onSaved: (e) => lastname = e,
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 16,
@@ -435,12 +436,85 @@ class _RegisterState extends State<Register> {
                           decoration: InputDecoration(
                               prefixIcon: Padding(
                                 padding: EdgeInsets.only(left: 20, right: 15),
-                                child: Icon(Icons.email, color: Colors.black),
+                                child: Icon(Icons.person, color: Colors.black),
                               ),
                               contentPadding: EdgeInsets.all(18),
-                              labelText: "Email"),
+                              labelText: "Lastname"),
                         ),
                       ),
+                      //card for username TextFormField
+                      Card(
+                        elevation: 6.0,
+                        child: TextFormField(
+                          validator: (e) {
+                            if (e.isEmpty) {
+                              return "Please insert Username";
+                            }
+                          },
+                          onSaved: (e) => username = e,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                          ),
+                          decoration: InputDecoration(
+                              prefixIcon: Padding(
+                                padding: EdgeInsets.only(left: 20, right: 15),
+                                child: Icon(Icons.supervised_user_circle, color: Colors.black),
+                              ),
+                              contentPadding: EdgeInsets.all(18),
+                              labelText: "Username"),
+                        ),
+                      ),
+                      Card(
+                        elevation: 6.0,
+                        child: TextFormField(
+                          validator: (e) {
+                            if (e.isEmpty) {
+                              return "Please insert Address";
+                            }
+                          },
+                          onSaved: (e) => address = e,
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                          ),
+                          decoration: InputDecoration(
+                              prefixIcon: Padding(
+                                padding: EdgeInsets.only(left: 20, right: 15),
+                                child: Icon(Icons.location_city, color: Colors.black),
+                              ),
+                              contentPadding: EdgeInsets.all(18),
+                              labelText: "address"),
+                        ),
+                      ),
+
+
+                       
+                       Card(
+                      child: new DropdownButton<String>(
+                      items: <String>['A', 'B', 'O', 'AB','A+', 'B+', 'O+', 'AB+','A-', 'B-', 'O-', 'AB-',].map((String value) {
+                      return new DropdownMenuItem<String>(
+                      value: value,
+                      child: new Text(value),
+                            );
+                          }).toList(),
+                           onChanged: (_) {},
+                                  ),
+                       )
+                      ,
+
+                    
+
+
+
+
+
+
+
+
+
 
                       //card for Mobile TextFormField
                       Card(
@@ -571,19 +645,19 @@ class _MainMenuState extends State<MainMenu> {
   int currentIndex = 0;
   String selectedIndex = 'TAB: 0';
 
-  String email = "", name = "", id = "";
+  String username = "", firstname = "", id = "";
   TabController tabController;
 
   getPref() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     setState(() {
       id = preferences.getString("id");
-      email = preferences.getString("email");
-      name = preferences.getString("name");
+      username = preferences.getString("username");
+      firstname = preferences.getString("firstname");
     });
     print("id" + id);
-    print("user" + email);
-    print("name" + name);
+    print("user" + username);
+    print("firstname" + firstname);
   }
 
   @override
