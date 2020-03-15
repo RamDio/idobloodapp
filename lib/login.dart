@@ -37,7 +37,7 @@ class _LoginState extends State<Login> {
 
   login() async {
     final response = await http
-        .post("http://website/flutter_app/api_verification.php", body: {
+        .post("https://idobloodadmin.000webhostapp.com/api_verification.php", body: {
       "flag": 1.toString(),
       "username": username,
       "password": password,
@@ -321,7 +321,7 @@ class _RegisterState extends State<Register> {
 
   save() async {
     final response = await http
-        .post("http://website/flutter_app/api_verification.php", body: {
+        .post("https://idobloodadmin.000webhostapp.com/api_verification.php", body: {
       "flag": 2.toString(),
       "firstname": firstname,
       "lastname": lastname,

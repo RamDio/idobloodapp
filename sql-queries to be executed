@@ -1,0 +1,13 @@
+CREATE TABLE `tbluser` (
+  `id` int(11) NOT NULL,
+  `Firstname` varchar(150) NOT NULL,
+  `Lastname` varchar(150) NOT NULL,
+  `Username` varchar(150) NOT NULL,
+  `Address` varchar(150) NOT NULL,
+  `Mobile` int(20) NOT NULL,
+  `Password` varchar(150) NOT NULL,
+  `fcm_token` varchar(200) NOT NULL,
+  `status` int(10) NOT NULL
+)
+
+ ENGINE=MyISAM DEFAULT CHARSET=latin1;
