@@ -30,6 +30,7 @@ dependencies:
   avatar_glow: ^0.1.0
   bottom_navy_bar: ^3.0.0
   shared_preferences: ^0.5.2
+  font_awesome_flutter: ^8.7.0
 
 dev_dependencies:
   flutter_test:

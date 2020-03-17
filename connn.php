@@ -1,10 +1,11 @@
-<!-- <?php
 
-$connect = new mysqli("localhost","root","password","db_name");
+<?php
+
+$connect = new mysqli("localhost","root","","idoblood");
 
 if($connect){
 	 
 }else{
 	echo "Connection Failed";
 	exit();
-} -->
+}
