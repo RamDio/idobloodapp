@@ -10,21 +10,13 @@ class Profile extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        backgroundColor: Colors.blue[200],
+        backgroundColor: Colors.red,
         title: Text(
-          "OVERVIEW",
+          "MY PROFILE",
           style: TextStyle(color: Colors.black),
         ),
         elevation: 0.0,
-        actions: <Widget>[
-          FlatButton.icon(
-            icon: Icon(FontAwesomeIcons.signOutAlt),
-            label: Text('LOGOUT'),
-            onPressed: () async {
-              // await _auth.signOut();
-            },
-          )
-        ], //remove drop shadow
+    
       ),
 
         drawer:MainDrawer(),

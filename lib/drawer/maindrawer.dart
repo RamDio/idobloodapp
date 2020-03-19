@@ -20,7 +20,7 @@ class MainDrawer extends StatelessWidget {
                 fit: BoxFit.fill,
                 image: AssetImage('assets/diomar.png'),
               ),
-              // color: Colors.blue,
+               color: Colors.red,
             ),
           ),
           ListTile(
@@ -41,7 +41,7 @@ class MainDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(
-              FontAwesomeIcons.moneyBill,
+              FontAwesomeIcons.user,
               color: Colors.green,
             ),
             title: Text("Profile",
@@ -56,7 +56,7 @@ class MainDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(
-              FontAwesomeIcons.coins,
+              FontAwesomeIcons.calendarWeek,
               color: Colors.red,
             ),
             title: Text("Updates and Events",
@@ -70,7 +70,7 @@ class MainDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(FontAwesomeIcons.clock, color: Colors.blue),
+            leading: Icon(FontAwesomeIcons.trophy, color: Colors.blue),
             title: Text("Rewards",
                 style: TextStyle(
                   fontSize: 18,

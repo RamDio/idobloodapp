@@ -10,7 +10,7 @@ class Home extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        backgroundColor: Colors.blue[200],
+        backgroundColor: Colors.red,
         title: Text(
           "OVERVIEW",
           style: TextStyle(color: Colors.black),
