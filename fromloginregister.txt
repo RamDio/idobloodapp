@@ -753,3 +753,19 @@ class _MainMenuState extends State<MainMenu> {
         fontSize: 16.0);
   }
 }
+
+
+
+
+
+
+
+
+
+ body:
+        backgroundColor: Colors.red,
+        title: Text(
+      
+          "MY PROFILE",
+          style: TextStyle(color: Colors.black),
+        ),

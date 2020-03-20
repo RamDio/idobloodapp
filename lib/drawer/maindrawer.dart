@@ -5,7 +5,6 @@ import 'package:idobloodapp/home/home.dart';
 import 'package:idobloodapp/home/profile.dart';
 import 'package:idobloodapp/home/rewards.dart';
 
-
 class MainDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -14,13 +13,26 @@ class MainDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           DrawerHeader(
-            child: Text(''),
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.fill,
-                image: AssetImage('assets/diomar.png'),
-              ),
-               color: Colors.red,
+            decoration: BoxDecoration(color: Colors.red),
+            child: Stack(
+              children: <Widget>[
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: CircleAvatar(
+                    radius: 50,
+                    backgroundImage: 
+                    AssetImage('asset/kitty.jpeg'),
+                  ),
+                ),
+                Align(
+                    alignment: Alignment.centerRight,
+                    child: Text('HIGH BLOOD',
+                        style: TextStyle(color: Colors.white, fontSize: 20.0))),
+                Align(
+                    alignment: Alignment.centerRight + Alignment(0, .4),
+                    child: Text('hb123',
+                        style: TextStyle(color: Colors.white, fontSize: 18.0))),
+              ],
             ),
           ),
           ListTile(
