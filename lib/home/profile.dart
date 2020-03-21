@@ -12,11 +12,13 @@ class Profile extends StatelessWidget {
       backgroundColor: Colors.red,
       appBar: AppBar(
         backgroundColor: Colors.red,
-        title: Text(
+        // title: Center(
+        //   child: Text(
       
-          "MY PROFILE",
-          style: TextStyle(color: Colors.black),
-        ),
+        //     "MY PROFILE",
+        //     style: TextStyle(color: Colors.black),
+        //   ),
+        // ),
 
       ),
 
@@ -29,7 +31,7 @@ class Profile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.only(left:5.0,top:10),
+                  padding: const EdgeInsets.only(left:5.0,top:40),
                   child: CircleAvatar(
                     radius: 50,
                     backgroundImage: 
@@ -37,7 +39,7 @@ class Profile extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left:20.0),
+                  padding: const EdgeInsets.only(left:20.0,top: 60),
                   child: Column(
                     crossAxisAlignment:CrossAxisAlignment.start,
                     children:<Widget>[
@@ -85,7 +87,7 @@ class Profile extends StatelessWidget {
            decoration: BoxDecoration(
              color: Colors.white,
              borderRadius: BorderRadius.vertical(
-               top:Radius.circular(34))),
+              )),
                child: Column(
                  mainAxisAlignment:MainAxisAlignment.start,
                  crossAxisAlignment:CrossAxisAlignment.start,
