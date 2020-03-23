@@ -2,18 +2,19 @@
 
 include 'conn.php';
 
-$username = $_POST['username'];
-$password = $_POST['password'];
+// $username = $_POST['username'];
+// $password = $_POST['password'];
+ $name = isset($_POST['name']) ? $_POST['name'] : '';
+ $password = isset($_POST['password']) ? $_POST['password'] : '';
 
-$queryResult=$connect->query("SELECT * FROM tbluser WHERE username'".$username."' and password='".$password."'");
+$query="SELECT * FROM registereduser WHERE username'".$username."' and password='".$password."'";
 
-
-$result=array();
-
-while ($fetchData=$queryResult->fetch_assoc()){
-    $result[]=$fetchData;
+$result=$connect->query($query);
+$row = $result->fetch_assoc();
+if($row)
+{
+ echo $row['content'];
 }
-
-echo json_encode($result);
+echo "no results founded";
 
 ?>

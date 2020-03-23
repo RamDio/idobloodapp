@@ -43,9 +43,9 @@ class _LoginState extends State<Login> {
             builder: (context) => Home(),
             ));
 
-      setState(() {
-        username = datauser[0]['username'];
-      });
+      // setState(() {
+      //   username = datauser[0]['username'];
+      // });
     }
     return datauser;
   }
@@ -167,7 +167,7 @@ class _LoginState extends State<Login> {
                                 color: Color(0xFFf7d426),
                                 onPressed: () {
                                   login();
-                                    Navigator.pop(context);
+                                    // Navigator.pop(context);
                                 }),
                           ),
                           SizedBox(
