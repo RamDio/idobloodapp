@@ -1,15 +1,14 @@
 <?php
+$username="id12357317_root";//change username 
+$password="00000"; //change password
+$host="localhost";
+$db_name="id12357317_idoblood"; //change databasename
 
-$dns='mysql:host=https://idobloodadmin.000webhostapp.com;dbname=id12357317_idoblood';
-$user='root';
-$pass='00000';
+$connect=mysqli_connect($host,$username,$password,$db_name);
 
-try{
-	$db= new PDO($dns,$user,$pass);
-	echo 'connected succesfully';
-}catch(PDOException $e){
-	$error=$e->getMessage();
-	echo $error;
+if(!$connect)
+{
+	echo json_encode("Connection Failed");
 }
 
-}
+?>

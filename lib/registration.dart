@@ -1,171 +1,75 @@
-// import 'package:flutter/material.dart';
-// import 'login.dart';
+import 'dart:async';
+import 'dart:convert';
 
-// class Registration extends StatefulWidget {
-//   Registration({Key key}) : super(key: key);
-//   static String tag='signup';
-//   @override
-//   _RegistrationState createState() => _RegistrationState();
-// }
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
-// String dropdownStr='A';
 
-// class _RegistrationState extends State<Registration> {
-//   @override
-//   Widget build(BuildContext context) {
-//     final text=Text(
-//       'Sign Up',
-//       style: TextStyle(
-//         color:Colors.red,fontSize:70.0,
-//       ),
-//     );
-//     final firstname = TextFormField(
-//         keyboardType:TextInputType.emailAddress,
-//         autofocus:false,
-//         decoration: InputDecoration(
-//           hintText:'firstname',
-//           contentPadding:EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
-//           border: OutlineInputBorder(
-    
-//           ),
-//         ),
-//       );
-//       final lastname = TextFormField(
-//         keyboardType:TextInputType.text,
-//         autofocus:false,
-//         decoration: InputDecoration(
-//           hintText:'lastname',
-//           contentPadding:EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
-//           border: OutlineInputBorder(
-      
-//           ),
-//         ),
-//       );
-//       final username = TextFormField(
-//         keyboardType:TextInputType.text,
-//         autofocus:false,
-//         decoration: InputDecoration(
-//           hintText:'username',
-//           contentPadding:EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
-//           border: OutlineInputBorder(
- 
-//           ),
-//         ),
-//       );
-//       final address = TextFormField(
-//         autofocus:false,
-//         decoration: InputDecoration(
-//           hintText:'address',
-//           contentPadding:EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
-//           border: OutlineInputBorder(
-   
-//           ),
-//         ),
-//       );
+String username='';
 
-//         final bloodtype=DropdownButton<String>(
-//   items: <String>['A', 'B', 'C', 'D'].map((String value) {
-//     return new DropdownMenuItem<String>(
-//       value: value,
-//       child: new Text(value),
-//     );
-//   }).toList(),
-//   onChanged: (_) {},
-// );
 
-//       // final bloodtype = TextFormField(
-//       //   keyboardType:TextInputType.text,
-//       //   autofocus:false,
-//       //   decoration: InputDecoration(
-//       //     hintText:'bloodtype',
-//       //     contentPadding:EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
-//       //     border: OutlineInputBorder(
-         
-//       //     ),
-//       //   ),
-//       // );
-//       final cpnumber = TextFormField(
-//         keyboardType:TextInputType.phone,
-//         autofocus:false,
-//         decoration: InputDecoration(
-//           hintText:'cell phone number',
-//           contentPadding:EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
-//           border: OutlineInputBorder(
-           
-//           ),
-//         ),
-//       );
-//       final password = TextFormField(
-//         autofocus:false,
-//         decoration: InputDecoration(
-//           hintText:'password',
-//           contentPadding:EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 0.0),
-//           border: OutlineInputBorder(
-         
-//           ),
-//         ),
-//       );
-//        final signupButton=Padding(
-//         padding: EdgeInsets.symmetric(vertical: 10.0),
-//          child: RaisedButton(
-           
-//            onPressed: (){
-//              Navigator.of(context).pushNamed(Login.tag);
-//            },
-//            padding: EdgeInsets.all(12),
-//            color:Colors.green,
-//            child: Text("Log In",style:TextStyle(
-//              color: Colors.white,fontSize: 17.0)),
-           
-//            ),
-         
-         
-//          );
-//       final signin = FlatButton(
-//            child:Text(
-//              'Have an account? Signin',
-//              style: TextStyle(
-//                color:Colors.purple,fontSize: 15),
-//            ),
-           
-//            onPressed: (){
-//              Navigator.push(
-//                context, 
-//                MaterialPageRoute(builder: (context){
-//                  return new Login();
-//                })  
-//            );
-//            },
-//       );
+class Registration extends StatefulWidget {
+  @override
+  _RegistrationState createState() =>  _RegistrationState();
+}
 
-//       return Center(
-//         child: Container(
+class _RegistrationState extends State<Registration> {
 
-               
-//                  child:ListView(shrinkWrap: true,
-//                  padding: EdgeInsets.only(left:24.0,right:24.0),
-//                  children: <Widget>[
-//                    Center(child: text),
-//                    SizedBox(height: 50.0,),
-//                    firstname,
-//                    SizedBox(height: 20.0,),
-//                    lastname,
-//                    SizedBox(height: 20.0,),
-//                    address,
-//                    SizedBox(height: 20.0,),
-//                    cpnumber,
-//                    SizedBox(height: 20.0,),
-//                    bloodtype,
-                   
-//                    SizedBox(height: 20.0,),
-//                    username,
-//                    SizedBox(height: 20.0,),
-//                    password,
-//                    SizedBox(height: 50.0,),
-//                    signupButton,signin
-//                  ],
-//                  )
-               
-//              ),
-//       );
-//   }}
+TextEditingController name=new TextEditingController();
+TextEditingController email=new TextEditingController();
+TextEditingController mobile=new TextEditingController();
+
+Future<List> senddata() async {
+  final response = await http.post("https://idobloodadmin.000webhostapp.com/insertdata.php", body: {
+    "name": name.text,
+    "email": email.text,
+    "mobile":mobile.text,
+  });
+}
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Register"),),
+      body: Container(
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              Text("Username",style: TextStyle(fontSize: 18.0),),
+              TextField(   
+                controller: name,                
+                decoration: InputDecoration(
+                  hintText: 'name'
+                ),           
+                ),
+              Text("Email",style: TextStyle(fontSize: 18.0),),
+              TextField(  
+                controller: email,      
+                 decoration: InputDecoration(
+                  hintText: 'Email'
+                ),                
+                ),
+                Text("Mobile",style: TextStyle(fontSize: 18.0),),
+              TextField(  
+                controller: mobile,        
+                 decoration: InputDecoration(
+                  hintText: 'Mobile'
+                ),                
+                ),
+              
+              RaisedButton(
+                child: Text("Register"),
+                onPressed: (){
+                  senddata;
+                },
+              ),
+
+             
+
+            ],
+          ),
+        ),
+      ),
+    );
+}
+}

@@ -1,24 +1,16 @@
 import 'dart:convert';
 
-import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:idobloodapp/home/home.dart';
+import 'package:idobloodapp/registration.dart';
 
 class Login extends StatefulWidget {
-  static String tag='login';
   @override
   _LoginState createState() => _LoginState();
 }
 
-enum LoginStatus { notSignIn, signIn }
-
 class _LoginState extends State<Login> {
-  LoginStatus _loginStatus = LoginStatus.notSignIn;
-  String username, password;
-  final _key = new GlobalKey<FormState>();
-
   bool _secureText = true;
 
   showHide() {
@@ -27,338 +19,38 @@ class _LoginState extends State<Login> {
     });
   }
 
-  check() {
-    final form = _key.currentState;
-    if (form.validate()) {
-      form.save();
-      login();
-    }
-  }
+  TextEditingController controllerUser = new TextEditingController();
+  TextEditingController controllerPass = new TextEditingController();
 
-  login() async {
-    final response = await http
-        .post("https://idobloodadmin.000webhostapp.com/api_verification.php", body: {
-      "username": username,
-      "password": password,
+  String message = '';
+  String username = '';
 
+  Future<List> login() async {
+    final response =
+        await http.post("https://idobloodadmin.000webhostapp.com/login.php", body: {
+      "username": controllerUser.text,
+      "password": controllerPass.text,
     });
 
-    final data = jsonDecode(response.body);
-    int value = data['value'];
-    String message = data['message'];
-    String usernameAPI = data['username'];
-    String firstnameAPI = data['firstname'];
-    String id = data['id'];
-
-    if (value == 1) {
+    var datauser = json.decode(response.body);
+    if (datauser.length == 0) {
       setState(() {
-        _loginStatus = LoginStatus.signIn;
-        savePref(value, usernameAPI, firstnameAPI, id);
+        message = "Username or password is incorrect";
       });
-      print(message);
-      loginToast(message);
     } else {
-      print("fail");
-      print(message);
-      loginToast(message);
-    }
-  }
+      Navigator.push(
+          context, MaterialPageRoute(
+            builder: (context) => Home(),
+            ));
 
-  loginToast(String toast) {
-    return Fluttertoast.showToast(
-        msg: toast,
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIos: 1,
-        backgroundColor: Colors.red,
-        textColor: Colors.white);
-  }
-
-  savePref(int value, String username, String firstname, String id) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    setState(() {
-      preferences.setInt("value", value);
-      preferences.setString("firstname", firstname);
-      preferences.setString("username",username);
-      preferences.setString("id", id);
-      preferences.commit();
-    });
-  }
-
-  var value;
-
-  getPref() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    setState(() {
-      value = preferences.getInt("value");
-
-      _loginStatus = value == 1 ? LoginStatus.signIn : LoginStatus.notSignIn;
-    });
-  }
-
-  signOut() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    setState(() {
-      preferences.setInt("value", null);
-      preferences.setString("firstname", null);
-      preferences.setString("username", null);
-      preferences.setString("id", null);
-
-      preferences.commit();
-      _loginStatus = LoginStatus.notSignIn;
-    });
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getPref();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    switch (_loginStatus) {
-      case LoginStatus.notSignIn:
-        return Scaffold(
-          backgroundColor: Colors.red,
-          body: Center(
-            child: ListView(
-              shrinkWrap: true,
-              padding: EdgeInsets.all(15.0),
-              children: <Widget>[
-                Center(
-                  child: Container(
-                    padding: const EdgeInsets.all(8.0),
-//            color: Colors.grey.withAlpha(20),
-                    color: Colors.red,
-                    child: Form(
-                      key: _key,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Image.network(
-                              "https://www.logogenie.net/download/preview/medium/3589659"),
-                          SizedBox(
-                            height: 40,
-                          ),
-                          SizedBox(
-                            height: 50,
-                            child: Text(
-                              "Login",
-                              style: TextStyle(
-                                  color: Colors.white, fontSize: 30.0),
-                            ),
-                          ),
-                          SizedBox(
-                            height: 25,
-                          ),
-
-                          //card for Email TextFormField
-                          Card(
-                            elevation: 6.0,
-                            child: TextFormField(
-                              validator: (e) {
-                                if (e.isEmpty) {
-                                  return "Please Insert Username";
-                                }
-                              },
-                              onSaved: (e) => username = e,
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w300,
-                              ),
-                              decoration: InputDecoration(
-                                  prefixIcon: Padding(
-                                    padding:
-                                        EdgeInsets.only(left: 20, right: 15),
-                                    child:
-                                        Icon(Icons.person, color: Colors.black),
-                                  ),
-                                  contentPadding: EdgeInsets.all(18),
-                                  labelText: "Username"),
-                            ),
-                          ),
-
-                          // Card for password TextFormField
-                          Card(
-                            elevation: 6.0,
-                            child: TextFormField(
-                              validator: (e) {
-                                if (e.isEmpty) {
-                                  return "Password Can't be Empty";
-                                }
-                              },
-                              obscureText: _secureText,
-                              onSaved: (e) => password = e,
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w300,
-                              ),
-                              decoration: InputDecoration(
-                                labelText: "Password",
-                                prefixIcon: Padding(
-                                  padding: EdgeInsets.only(left: 20, right: 15),
-                                  child: Icon(Icons.phonelink_lock,
-                                      color: Colors.black),
-                                ),
-                                suffixIcon: IconButton(
-                                  onPressed: showHide,
-                                  icon: Icon(_secureText
-                                      ? Icons.visibility_off
-                                      : Icons.visibility),
-                                ),
-                                contentPadding: EdgeInsets.all(18),
-                              ),
-                            ),
-                          ),
-
-                          SizedBox(
-                            height: 12,
-                          ),
-
-                          FlatButton(
-                            onPressed: null,
-                            child: Text(
-                              "Forgot Password?",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ),
-
-                          Padding(
-                            padding: EdgeInsets.all(14.0),
-                          ),
-
-                          new Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              SizedBox(
-                                height: 44.0,
-                                child: RaisedButton(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(15.0)),
-                                    child: Text(
-                                      "Login",
-                                      style: TextStyle(fontSize: 18.0),
-                                    ),
-                                    textColor: Colors.white,
-                                    color: Color(0xFFf7d426),
-                                    onPressed: () {
-                                      check();
-                                    }),
-                              ),
-                              SizedBox(
-                                height: 44.0,
-                                child: RaisedButton(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(15.0)),
-                                    child: Text(
-                                      "GoTo Register",
-                                      style: TextStyle(fontSize: 18.0),
-                                    ),
-                                    textColor: Colors.white,
-                                    color: Color(0xFFf7d426),
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) => Register()),
-                                      );
-                                    }),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        );
-        break;
-
-      case LoginStatus.signIn:
-        return MainMenu(signOut);
-//        return ProfilePage(signOut);
-        break;
-    }
-  }
-}
-
-class Register extends StatefulWidget {
-  @override
-  _RegisterState createState() => _RegisterState();
-}
-
-class _RegisterState extends State<Register> {
-  String firstname,lastname, username,bloodtype,address, mobile, password;
-  final _key = new GlobalKey<FormState>();
-
-  bool _secureText = true;
-
-  showHide() {
-    setState(() {
-      _secureText = !_secureText;
-    });
-  }
-
-  check() {
-    final form = _key.currentState;
-    if (form.validate()) {
-      form.save();
-      save();
-    }
-  }
-
-  save() async {
-    final response = await http
-        .post("https://idobloodadmin.000webhostapp.com/api_verification.php", body: {
-      "flag": 2.toString(),
-      "firstname": firstname,
-      "lastname": lastname,
-      "username": username,
-      "bloodtype":bloodtype,
-      "address":address,
-      "mobile": mobile,
-      "password": password,
-      "fcm_token": "test_fcm_token"
-    });
-
-    final data = jsonDecode(response.body);
-    int value = data['value'];
-    String message = data['message'];
-    if (value == 1) {
       setState(() {
-        Navigator.pop(context);
+        username = datauser[0]['username'];
       });
-      print(message);
-      registerToast(message);
-    } else if (value == 2) {
-      print(message);
-      registerToast(message);
-    } else {
-      print(message);
-      registerToast(message);
     }
+    return datauser;
   }
 
-  registerToast(String toast) {
-    return Fluttertoast.showToast(
-        msg: toast,
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIos: 1,
-        backgroundColor: Colors.red,
-        textColor: Colors.white);
-  }
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -372,21 +64,28 @@ class _RegisterState extends State<Register> {
             Center(
               child: Container(
                 padding: const EdgeInsets.all(8.0),
+//            color: Colors.grey.withAlpha(20),
                 color: Colors.red,
                 child: Form(
-                  key: _key,
+                  key: _formKey,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Image.network(
-                          "https://www.logogenie.net/download/preview/medium/3589659"),
+                      new CircleAvatar(
+                        backgroundColor: Colors.black,
+                        child: new Image(
+                          width: 135,
+                          height: 135,
+                          image: new AssetImage(''),
+                        ),
+                      ),
                       SizedBox(
                         height: 40,
                       ),
                       SizedBox(
                         height: 50,
                         child: Text(
-                          "Register",
+                          "Login",
                           style: TextStyle(color: Colors.white, fontSize: 30.0),
                         ),
                       ),
@@ -394,184 +93,62 @@ class _RegisterState extends State<Register> {
                         height: 25,
                       ),
 
-                      //card for firstname and lastname TextFormField
+                      //card for Email TextFormField
                       Card(
                         elevation: 6.0,
                         child: TextFormField(
-                          validator: (e) {
-                            if (e.isEmpty) {
-                              return "Please insert first Name";
-                            }
-                          },
-                          onSaved: (e) => firstname = e,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w300,
-                          ),
+                          controller: controllerUser,
                           decoration: InputDecoration(
-                              prefixIcon: Padding(
-                                padding: EdgeInsets.only(left: 20, right: 15),
-                                child: Icon(Icons.person, color: Colors.black),
-                              ),
-                              contentPadding: EdgeInsets.all(18),
-                              labelText: "Firstname"),
+                              icon: Icon(
+                            Icons.person,
+                            color: Colors.black,
+                          )),
                         ),
                       ),
-                      Card(
-                        elevation: 6.0,
-                        child: TextFormField(
-                          validator: (e) {
-                            if (e.isEmpty) {
-                              return "Please insert last Name";
-                            }
-                          },
-                          onSaved: (e) => lastname = e,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w300,
-                          ),
-                          decoration: InputDecoration(
-                              prefixIcon: Padding(
-                                padding: EdgeInsets.only(left: 20, right: 15),
-                                child: Icon(Icons.person, color: Colors.black),
-                              ),
-                              contentPadding: EdgeInsets.all(18),
-                              labelText: "Lastname"),
-                        ),
-                      ),
-                      //card for username TextFormField
-                      Card(
-                        elevation: 6.0,
-                        child: TextFormField(
-                          validator: (e) {
-                            if (e.isEmpty) {
-                              return "Please insert Username";
-                            }
-                          },
-                          onSaved: (e) => username = e,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w300,
-                          ),
-                          decoration: InputDecoration(
-                              prefixIcon: Padding(
-                                padding: EdgeInsets.only(left: 20, right: 15),
-                                child: Icon(Icons.supervised_user_circle, color: Colors.black),
-                              ),
-                              contentPadding: EdgeInsets.all(18),
-                              labelText: "Username"),
-                        ),
-                      ),
-                      Card(
-                        elevation: 6.0,
-                        child: TextFormField(
-                          validator: (e) {
-                            if (e.isEmpty) {
-                              return "Please insert Address";
-                            }
-                          },
-                          onSaved: (e) => address = e,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w300,
-                          ),
-                          decoration: InputDecoration(
-                              prefixIcon: Padding(
-                                padding: EdgeInsets.only(left: 20, right: 15),
-                                child: Icon(Icons.location_city, color: Colors.black),
-                              ),
-                              contentPadding: EdgeInsets.all(18),
-                              labelText: "address"),
-                        ),
+                      SizedBox(
+                        height: 12,
                       ),
 
-
-                       
-                       Card(
-                      child: new DropdownButton<String>(
-                      items: <String>['A', 'B', 'O', 'AB','A+', 'B+', 'O+', 'AB+','A-', 'B-', 'O-', 'AB-',].map((String value) {
-                      return new DropdownMenuItem<String>(
-                      value: value,
-                      child: new Text(value),
-                            );
-                          }).toList(),
-                           onChanged: (_) {},
-                                  ),
-                       )
-                      ,
-
-                    
-
-
-
-
-
-
-
-
-
-
-                      //card for Mobile TextFormField
+                      // Card for password TextFormField
                       Card(
                         elevation: 6.0,
                         child: TextFormField(
-                          validator: (e) {
-                            if (e.isEmpty) {
-                              return "Please insert Mobile Number";
-                            }
-                          },
-                          onSaved: (e) => mobile = e,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w300,
-                          ),
+                          controller: controllerPass,
+                          obscureText: true,
                           decoration: InputDecoration(
+                  
+                            hintText: 'Password',
                             prefixIcon: Padding(
                               padding: EdgeInsets.only(left: 20, right: 15),
-                              child: Icon(Icons.phone, color: Colors.black),
+                              child: Icon(Icons.phonelink_lock,
+                                  color: Colors.black),
+                            ),
+                            suffixIcon: IconButton(
+                              onPressed: showHide,
+                              icon: Icon(_secureText
+                                  ? Icons.visibility_off
+                                  : Icons.visibility),
                             ),
                             contentPadding: EdgeInsets.all(18),
-                            labelText: "Mobile",
                           ),
-                          keyboardType: TextInputType.number,
                         ),
                       ),
 
-                      //card for Password TextFormField
-                      Card(
-                        elevation: 6.0,
-                        child: TextFormField(
-                          obscureText: _secureText,
-                          onSaved: (e) => password = e,
+                      SizedBox(
+                        height: 12,
+                      ),
+
+                      FlatButton(
+                        onPressed: null,
+                        child: Text(
+                          "Forgot Password?",
                           style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w300,
-                          ),
-                          decoration: InputDecoration(
-                              suffixIcon: IconButton(
-                                onPressed: showHide,
-                                icon: Icon(_secureText
-                                    ? Icons.visibility_off
-                                    : Icons.visibility),
-                              ),
-                              prefixIcon: Padding(
-                                padding: EdgeInsets.only(left: 20, right: 15),
-                                child: Icon(Icons.phonelink_lock,
-                                    color: Colors.black),
-                              ),
-                              contentPadding: EdgeInsets.all(18),
-                              labelText: "Password"),
+                              color: Colors.white, fontWeight: FontWeight.bold),
                         ),
                       ),
 
                       Padding(
-                        padding: EdgeInsets.all(12.0),
+                        padding: EdgeInsets.all(14.0),
                       ),
 
                       new Row(
@@ -583,13 +160,14 @@ class _RegisterState extends State<Register> {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15.0)),
                                 child: Text(
-                                  "Register",
+                                  "Login",
                                   style: TextStyle(fontSize: 18.0),
                                 ),
                                 textColor: Colors.white,
                                 color: Color(0xFFf7d426),
                                 onPressed: () {
-                                  check();
+                                  login();
+                                    Navigator.pop(context);
                                 }),
                           ),
                           SizedBox(
@@ -598,7 +176,7 @@ class _RegisterState extends State<Register> {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15.0)),
                                 child: Text(
-                                  "GoTo Login",
+                                  "GoTo Register",
                                   style: TextStyle(fontSize: 18.0),
                                 ),
                                 textColor: Colors.white,
@@ -607,7 +185,7 @@ class _RegisterState extends State<Register> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => Login()),
+                                        builder: (context) => Registration()),
                                   );
                                 }),
                           ),
@@ -622,134 +200,5 @@ class _RegisterState extends State<Register> {
         ),
       ),
     );
-  }
-}
-
-class MainMenu extends StatefulWidget {
-  final VoidCallback signOut;
-
-  MainMenu(this.signOut);
-
-  @override
-  _MainMenuState createState() => _MainMenuState();
-}
-
-class _MainMenuState extends State<MainMenu> {
-  signOut() {
-    setState(() {
-      widget.signOut();
-    });
-  }
-
-  int currentIndex = 0;
-  String selectedIndex = 'TAB: 0';
-
-  String username = "", firstname = "", id = "";
-  TabController tabController;
-
-  getPref() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    setState(() {
-      id = preferences.getString("id");
-      username = preferences.getString("username");
-      firstname = preferences.getString("firstname");
-    });
-    print("id" + id);
-    print("user" + username);
-    print("firstname" + firstname);
-  }
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getPref();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        actions: <Widget>[
-          IconButton(
-            onPressed: () {
-              signOut();
-            },
-            icon: Icon(Icons.lock_open),
-          )
-        ],
-      ),
-      body: Center(
-        child: Text(
-          "WelCome",
-          style: TextStyle(fontSize: 30.0, color: Colors.blue),
-        ),
-      ),
-      bottomNavigationBar: BottomNavyBar(
-        backgroundColor: Colors.black,
-        iconSize: 30.0,
-//        iconSize: MediaQuery.of(context).size.height * .60,
-        currentIndex: currentIndex,
-        onItemSelected: (index) {
-          setState(() {
-            currentIndex = index;
-          });
-          selectedIndex = 'TAB: $currentIndex';
-//            print(selectedIndex);
-          reds(selectedIndex);
-        },
-
-        items: [
-          BottomNavyBarItem(
-              icon: Icon(Icons.home),
-              title: Text('Home'),
-              activeColor: Color(0xFFf7d426)),
-          BottomNavyBarItem(
-              icon: Icon(Icons.view_list),
-              title: Text('List'),
-              activeColor: Color(0xFFf7d426)),
-          BottomNavyBarItem(
-              icon: Icon(Icons.person),
-              title: Text('Profile'),
-              activeColor: Color(0xFFf7d426)),
-        ],
-      ),
-    );
-  }
-
-  //  Action on Bottom Bar Press
-  void reds(selectedIndex) {
-//    print(selectedIndex);
-
-    switch (selectedIndex) {
-      case "TAB: 0":
-        {
-          callToast("Tab 0");
-        }
-        break;
-
-      case "TAB: 1":
-        {
-          callToast("Tab 1");
-        }
-        break;
-
-      case "TAB: 2":
-        {
-          callToast("Tab 2");
-        }
-        break;
-    }
-  }
-
-  callToast(String msg) {
-    Fluttertoast.showToast(
-        msg: "$msg",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIos: 1,
-        backgroundColor: Colors.red,
-        textColor: Colors.white,
-        fontSize: 16.0);
   }
 }
