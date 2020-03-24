@@ -18,7 +18,7 @@ class _RegisterState extends State<Register> {
 
   getMethod()async{
     String url="https://idobloodadmin.000webhostapp.com/getdata.php";
-    var res = await http.get(Uri.encodeFull(url),headers:{"Accept:":"application/json"});
+    var res = await http.get(Uri.encodeFull(url),headers:{"Accept":"application/json"});
     var responsebody=json.decode(res.body);
 
 
