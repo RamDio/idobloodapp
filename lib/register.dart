@@ -17,12 +17,13 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
 
   getMethod()async{
-    String url="https://idobloodadmin.000webhostapp.com/getdata.php";
-    var res = await http.get(Uri.encodeFull(url),headers:{"Accept":"application/json"});
-    var responsebody=json.decode(res.body);
+    String theUrl = "https://idobloodadmin.000webhostapp.com/getdata.php";
+    var res = await http.get(Uri.encodeFull(theUrl),headers: {"Accept":"application/json"});
+    var responsBody = json.decode(res.body);
 
+    print(responsBody);
 
-    return responsebody;
+    return responsBody;
   }
 
 
@@ -35,7 +36,7 @@ class _RegisterState extends State<Register> {
      body: FutureBuilder(
        future: getMethod(),
        builder: (BuildContext context, AsyncSnapshot snapshot){
-         List snap=snapshot.data;
+         List snap = snapshot.data;
 
          if(snapshot.connectionState == ConnectionState.waiting){
            return Center(
@@ -52,12 +53,12 @@ class _RegisterState extends State<Register> {
              itemCount: snap.length,
              itemBuilder: (context,index){
                return ListTile(
-                 title: Text("data"),
-                 subtitle: Text("data"),
+                 title: Text("name: ${snap[index]['name']}"),
+                 subtitle: Text("email: ${snap[index]['email']}"),
                );
-             }
+             },
              );
-       }
+       },
        ),
 
    );
