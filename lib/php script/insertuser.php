@@ -17,9 +17,9 @@ VALUES ('$firstname','$lastname','$gender','$contact','$address','$bloodtype','$
 $exeQuery = mysqli_query($con,$query);
 
 if($exeQuery){
-    echo(json_encode(array('code'=> 1, 'message'=>'User Modified')));
+    echo(json_encode(array('code'=> 1, 'message'=>'User added')));
 }else{
-    echo(json_encode(array('code'=> 2, 'message'=>'modification failed')));
+    echo(json_encode(array('code'=> 2, 'message'=>'add failed')));
 }
 
 
