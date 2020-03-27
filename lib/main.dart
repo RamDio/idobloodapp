@@ -28,7 +28,7 @@ class _MyAppState extends State<MyApp> {
       (){
         Navigator.push(
           context, MaterialPageRoute(
-            builder: (context) =>Register(),
+            builder: (context) =>Login(),
             ));
       }
     );
