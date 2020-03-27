@@ -3,6 +3,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idobloodapp/drawer/maindrawer.dart';
 
 class Home extends StatelessWidget {
+  
+  var idUser,username,firstname,lastname;
+  Home({Key key, this.idUser,this.firstname,this.lastname,this.username}) : super(key: key);
 
 
   @override

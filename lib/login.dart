@@ -11,193 +11,185 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  bool _secureText = true;
+  
+  TextEditingController _pseudoController = new TextEditingController();
+  TextEditingController _passwordController = new TextEditingController();
+  var data;
+   var _isSecured = true;
 
-  showHide() {
-    setState(() {
-      _secureText = !_secureText;
-    });
-  }
-
-  TextEditingController controllerUser = new TextEditingController();
-  TextEditingController controllerPass = new TextEditingController();
-
-  String message = '';
-  String username = '';
-
-  Future<List> login() async {
-    final response =
-        await http.post("https://idobloodadmin.000webhostapp.com/login.php", body: {
-      "username": controllerUser.text,
-      "password": controllerPass.text,
-    });
-
-    var datauser = json.decode(response.body);
-    if (datauser.length == 0) {
-      setState(() {
-        message = "Username or password is incorrect";
-      });
-    } else {
-      Navigator.push(
-          context, MaterialPageRoute(
-            builder: (context) => Home(),
-            ));
-
-      // setState(() {
-      //   username = datauser[0]['username'];
-      // });
-    }
-    return datauser;
-  }
-
-  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    
+    /**************** Get Login Connection && Data ************************/
+    Future<String> getLogin(String pseudo) async {
+      var response = await http.get(
+          Uri.encodeFull(
+              "https://192.168.18.7/idobloodapp/lib/php/login.php?PSEUDO=${pseudo}"),
+          headers: {"Accept": "application/json"});
+
+      print(response.body);
+      setState(() {
+        var convertDataToJson = json.decode(response.body);
+        data = convertDataToJson['result'];
+      });
+    }
+
+    /*********************Alert Dialog Pseudo******************************/
+    void onSignedInErrorPassword() {
+      var alert = new AlertDialog(
+        title: new Text("Pseudo Error"),
+        content: new Text(
+            "There was an Password error signing in. Please try again."),
+      );
+      showDialog(context: context, child: alert);
+    }
+    /*********************Alert Dialog Pseudo******************************/
+    void onSignedInErrorPseudo() {
+      var alert = new AlertDialog(
+        title: new Text("Pseudo Error"),
+        content:
+            new Text("There was an Pseudo error signing in. Please try again."),
+      );
+      showDialog(context: context, child: alert);
+    }
+
+    /******************* Check Data ****************************/
+    VerifData(String pseudo, String password, var datadb) {
+      if (data[0]['username'] == pseudo) {
+        if (data[0]['password'] == password) {
+          // Navigator.of(context).pushNamed("/seconds");
+
+          var route = new MaterialPageRoute(
+            builder: (BuildContext context) =>
+                new Home(idUser: data[0]['userid'],firstname: data[0]['firstname'],lastname: data[0]['lastname'],username: data[0]['username'],),
+          );
+          Navigator.of(context).push(route);
+        } else {
+          onSignedInErrorPassword();
+        }
+      } else {
+        onSignedInErrorPseudo();
+      }
+    }
+
+
+    /****************** TextField Pseudo*******************************/
+    var pseudo = new ListTile(
+      leading: const Icon(Icons.person),
+      title: TextFormField(
+        decoration: InputDecoration(
+            labelText: "Username",
+            filled: true,
+            hintText: "Write your Username please",
+            border: InputBorder.none),
+        controller: _pseudoController,
+      ),
+    );
+
+    /************************************************************/
+
+    /******************** TextField Password ******************************/
+    var password = new ListTile(
+      leading: const Icon(Icons.remove_red_eye),
+      title: TextField(
+        decoration: InputDecoration(
+            icon: new IconButton(
+                icon: Icon(
+                  Icons.remove_red_eye,
+                ),
+                onPressed: () {
+                  setState(() {
+                    _isSecured = !_isSecured;
+                  });
+                }),
+            labelText: "your Password",
+            hintText: "Write your Password please",
+            border: InputBorder.none),
+        obscureText: _isSecured,
+        controller: _passwordController,
+      ),
+    );
+
+    /****************************************************/
+    /********************* Button Login****************************************/
+    var createaccount = new Container(
+      child: FlatButton(
+        child: const Text('Register'),
+
+        onPressed: () {
+          var route = new MaterialPageRoute(
+            builder: (BuildContext context) => new Registration(),
+          );
+          Navigator.of(context).push(route);
+        },
+      ),
+    );
+/*************************************************/
+
+    /********************* Button Login****************************************/
+    var loginButton = new Container(
+      child: RaisedButton(
+        child: const Text('LogIn'),
+        color: Theme.of(context).accentColor,
+        elevation: 8.0,
+        splashColor: Colors.blueGrey,
+        onPressed: () {
+          // Perform some action
+          //SnackBar(content: Text("TEST SNACK BAR"),backgroundColor: Colors.deepOrange,);
+          getLogin(_pseudoController.text);
+          VerifData(_pseudoController.text, _passwordController.text, data);
+        },
+      ),
+    );
+/*************************************************/
+
+    /********************Button Cancel ***********************/
+    var cancelButton = new Container(
+      child: FlatButton(
+        child: const Text('Cancel'),
+        onPressed: () {
+          _passwordController.clear();
+          _pseudoController.clear();
+        },
+      ),
+    );
+
     return Scaffold(
-      backgroundColor: Colors.red,
-      body: Center(
-        child: ListView(
-          shrinkWrap: true,
-          padding: EdgeInsets.all(15.0),
-          children: <Widget>[
-            Center(
-              child: Container(
-                padding: const EdgeInsets.all(8.0),
-//            color: Colors.grey.withAlpha(20),
-                color: Colors.red,
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      new CircleAvatar(
-                        backgroundColor: Colors.black,
-                        child: new Image(
-                          width: 135,
-                          height: 135,
-                          image: new AssetImage(''),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 40,
-                      ),
-                      SizedBox(
-                        height: 50,
-                        child: Text(
-                          "Login",
-                          style: TextStyle(color: Colors.white, fontSize: 30.0),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 25,
-                      ),
-
-                      //card for Email TextFormField
-                      Card(
-                        elevation: 6.0,
-                        child: TextFormField(
-                          controller: controllerUser,
-                          decoration: InputDecoration(
-                              icon: Icon(
-                            Icons.person,
-                            color: Colors.black,
-                          )),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 12,
-                      ),
-
-                      // Card for password TextFormField
-                      Card(
-                        elevation: 6.0,
-                        child: TextFormField(
-                          controller: controllerPass,
-                          obscureText: true,
-                          decoration: InputDecoration(
-                  
-                            hintText: 'Password',
-                            prefixIcon: Padding(
-                              padding: EdgeInsets.only(left: 20, right: 15),
-                              child: Icon(Icons.phonelink_lock,
-                                  color: Colors.black),
-                            ),
-                            suffixIcon: IconButton(
-                              onPressed: showHide,
-                              icon: Icon(_secureText
-                                  ? Icons.visibility_off
-                                  : Icons.visibility),
-                            ),
-                            contentPadding: EdgeInsets.all(18),
-                          ),
-                        ),
-                      ),
-
-                      SizedBox(
-                        height: 12,
-                      ),
-
-                      FlatButton(
-                        onPressed: null,
-                        child: Text(
-                          "Forgot Password?",
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-
-                      Padding(
-                        padding: EdgeInsets.all(14.0),
-                      ),
-
-                      new Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          SizedBox(
-                            height: 44.0,
-                            child: RaisedButton(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15.0)),
-                                child: Text(
-                                  "Login",
-                                  style: TextStyle(fontSize: 18.0),
-                                ),
-                                textColor: Colors.white,
-                                color: Color(0xFFf7d426),
-                                onPressed: () {
-                                  login();
-                                    // Navigator.pop(context);
-                                }),
-                          ),
-                          SizedBox(
-                            height: 44.0,
-                            child: RaisedButton(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15.0)),
-                                child: Text(
-                                  "GoTo Register",
-                                  style: TextStyle(fontSize: 18.0),
-                                ),
-                                textColor: Colors.white,
-                                color: Color(0xFFf7d426),
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Registration()),
-                                  );
-                                }),
-                          ),
-                        ],
-                      ),
-                    ],
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      body: new ListView(
+        children: <Widget>[
+          SizedBox(
+            height: 50.0,
+          ),
+          // logo,
+          // SizedBox(
+          //   height: 50.0,
+          // ),
+          new Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: new Card(
+              elevation: 8.0,
+              color: Colors.white,
+              child: new Padding(
+                padding: const EdgeInsets.all(18.0),
+                child: Column(
+                  children: <Widget>[pseudo, password,
+                  SizedBox(
+                    height: 20.0,
                   ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[cancelButton, loginButton],
+                  ),
+                  ],
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+          SizedBox(height: 5.0,),
+          createaccount
+        ],
       ),
     );
   }
