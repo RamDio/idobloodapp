@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:idobloodapp/home/home.dart';
+import 'package:idobloodapp/register.dart';
+import 'package:idobloodapp/register.dart';
 import 'package:idobloodapp/registration.dart';
 
 class Login extends StatefulWidget {
@@ -119,7 +121,7 @@ class _LoginState extends State<Login> {
 
         onPressed: () {
           var route = new MaterialPageRoute(
-            builder: (BuildContext context) => new Registration(),
+            builder: (BuildContext context) => new Register(),
           );
           Navigator.of(context).push(route);
         },
