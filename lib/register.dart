@@ -77,14 +77,7 @@ class _RegisterState extends State<Register> {
             left: 16.0, top: 30.0, right: 16.0, bottom: 16.0),
         child: ListView(
           children: <Widget>[
-            new ListTile(
-              leading: const Icon(Icons.person),
-              title: TextField(
-                decoration: InputDecoration(
-                    labelText: "UserName : ", hintText: " User Name "),
-                controller: _usernameController,
-              ),
-            ),
+           
             new ListTile(
               leading: const Icon(Icons.person),
               title: TextField(
@@ -131,6 +124,14 @@ class _RegisterState extends State<Register> {
                 decoration: InputDecoration(
                     labelText: "Bloodtype : ", hintText: " Bloodtype "),
                 controller: _bloodtypeController,
+              ),
+            ),
+             new ListTile(
+              leading: const Icon(Icons.person),
+              title: TextField(
+                decoration: InputDecoration(
+                    labelText: "UserName : ", hintText: " User Name "),
+                controller: _usernameController,
               ),
             ),
             new ListTile(
