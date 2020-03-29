@@ -78,14 +78,18 @@ class _LoginState extends State<Login> {
 
     /****************** TextField Pseudo*******************************/
     var pseudo = new ListTile(
-      leading: const Icon(Icons.person),
-      title: TextFormField(
-        decoration: InputDecoration(
-            labelText: "Username",
-            filled: true,
-            hintText: "Write your Username please",
-            border: InputBorder.none),
-        controller: _pseudoController,
+      title: Card(
+              child: TextFormField(
+          decoration: InputDecoration(
+                    icon: Icon(
+                      Icons.person,
+                    ),
+              labelText: "Username",
+              hintText: "Write your Username please",
+              border: InputBorder.none
+              ),
+          controller: _pseudoController,
+        ),
       ),
     );
 
@@ -93,23 +97,25 @@ class _LoginState extends State<Login> {
 
     /******************** TextField Password ******************************/
     var password = new ListTile(
-      leading: const Icon(Icons.remove_red_eye),
-      title: TextField(
-        decoration: InputDecoration(
-            icon: new IconButton(
-                icon: Icon(
-                  Icons.remove_red_eye,
-                ),
-                onPressed: () {
-                  setState(() {
-                    _isSecured = !_isSecured;
-                  });
-                }),
-            labelText: "your Password",
-            hintText: "Write your Password please",
-            border: InputBorder.none),
-        obscureText: _isSecured,
-        controller: _passwordController,
+     
+      title: Card(
+              child: TextFormField(
+          decoration: InputDecoration(
+              icon: new IconButton(
+                  icon: Icon(
+                    Icons.remove_red_eye,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _isSecured = !_isSecured;
+                    });
+                  }),
+              labelText: "your Password",
+              hintText: "Write your Password please",
+              border: InputBorder.none),
+          obscureText: _isSecured,
+          controller: _passwordController,
+        ),
       ),
     );
 
@@ -164,30 +170,21 @@ class _LoginState extends State<Login> {
           SizedBox(
             height: 50.0,
           ),
-          // logo,
-          // SizedBox(
-          //   height: 50.0,
-          // ),
           new Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: new Card(
-              elevation: 8.0,
-              color: Colors.white,
-              child: new Padding(
-                padding: const EdgeInsets.all(18.0),
+            padding: const EdgeInsets.all(20.0),  
                 child: Column(
                   children: <Widget>[pseudo, password,
                   SizedBox(
                     height: 20.0,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[cancelButton, loginButton],
+                  Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: <Widget>[Center(child: cancelButton), Center(child: loginButton)],
+                    ),
                   ),
                   ],
                 ),
-              ),
-            ),
           ),
           SizedBox(height: 5.0,),
           createaccount

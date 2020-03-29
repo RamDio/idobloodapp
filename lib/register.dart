@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -8,15 +7,14 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'package:flutter/cupertino.dart';
 
-
 class Register extends StatefulWidget {
   @override
   _RegisterState createState() => _RegisterState();
 }
 
 class _RegisterState extends State<Register> {
-
- void onCreatedAccount() {
+  var _isSecured = true;
+  void onCreatedAccount() {
     var alert = new AlertDialog(
       title: new Text('Info'),
       content: new SingleChildScrollView(
@@ -38,27 +36,24 @@ class _RegisterState extends State<Register> {
     showDialog(context: context, child: alert);
   }
 
-  
   var _firstnameController = new TextEditingController();
   var _lastnameController = new TextEditingController();
   var _genderController = new TextEditingController();
   var _contactController = new TextEditingController();
   var _addressController = new TextEditingController();
   var _bloodtypeController = new TextEditingController();
-   var _usernameController = new TextEditingController();
+  var _usernameController = new TextEditingController();
   var _passwordController = new TextEditingController();
   void _addData() {
-    var url =
-        "https://idobloodadmin.000webhostapp.com/insertuser.php";
+    var url = "https://idobloodadmin.000webhostapp.com/insertuser.php";
 
     http.post(url, body: {
-      
       "firstname": _firstnameController.text,
       "lastname": _lastnameController.text,
       "gender": _genderController.text,
-      "contact":_contactController.text,
-      "address":_addressController.text,
-      "bloodtype":_bloodtypeController.text,
+      "contact": _contactController.text,
+      "address": _addressController.text,
+      "bloodtype": _bloodtypeController.text,
       "username": _usernameController.text,
       "password": _passwordController.text
     });
@@ -66,98 +61,132 @@ class _RegisterState extends State<Register> {
     //print(_adresseController.text);
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-   return new Scaffold(
-      appBar: AppBar(),
+    return new Scaffold(
       body: new Padding(
         padding: const EdgeInsets.only(
             left: 16.0, top: 30.0, right: 16.0, bottom: 16.0),
         child: ListView(
           children: <Widget>[
-           
+            Text("data"),
             new ListTile(
-              leading: const Icon(Icons.person),
-              title: TextField(
-                decoration: InputDecoration(
-                    labelText: "First Name : ", hintText: " First Name "),
-                controller: _firstnameController,
+              title: Card(
+                child: TextFormField(
+                  decoration: InputDecoration(
+                      icon: Icon(
+                        Icons.person,
+                      ),
+                      labelText: "First Name : ",
+                      hintText: " First Name ",
+                      border: InputBorder.none),
+                  controller: _firstnameController,
+                ),
               ),
             ),
-             new ListTile(
-              leading: const Icon(Icons.person),
+            new ListTile(
               title: TextField(
                 decoration: InputDecoration(
-                    labelText: "Last Name : ", hintText: " Last Name "),
+                    icon: Icon(
+                      Icons.person,
+                    ),
+                    labelText: "Last Name : ",
+                    hintText: " Last Name ",
+                    border: InputBorder.none),
                 controller: _lastnameController,
               ),
             ),
             new ListTile(
-              leading: const Icon(Icons.person),
               title: TextField(
                 decoration: InputDecoration(
-                    labelText: "Gender : ", hintText: " Gender "),
+                    icon: Icon(
+                      Icons.person,
+                    ),
+                    labelText: "Gender : ",
+                    hintText: " Gender ",
+                    border: InputBorder.none),
                 controller: _genderController,
               ),
             ),
-             new ListTile(
-              leading: const Icon(Icons.person),
+            new ListTile(
               title: TextField(
                 decoration: InputDecoration(
-                    labelText: "Contact Number : ", hintText: " Contact Number "),
+                    icon: Icon(
+                      Icons.phone,
+                    ),
+                    labelText: "Contact Number : ",
+                    hintText: " Contact Number ",
+                    border: InputBorder.none),
                 controller: _contactController,
               ),
             ),
-             new ListTile(
-              leading: const Icon(Icons.person),
+            new ListTile(
               title: TextField(
                 decoration: InputDecoration(
-                    labelText: "Address : ", hintText: " Address "),
+                    icon: Icon(
+                      Icons.home,
+                    ),
+                    labelText: "Address : ",
+                    hintText: " Address ",border: InputBorder.none),
                 controller: _addressController,
               ),
             ),
-             new ListTile(
-              leading: const Icon(Icons.person),
+            new ListTile(
               title: TextField(
                 decoration: InputDecoration(
-                    labelText: "Bloodtype : ", hintText: " Bloodtype "),
+                    icon: Icon(
+                      Icons.pin_drop,
+                    ),
+                    labelText: "Bloodtype : ",
+                    hintText: " Bloodtype ",border: InputBorder.none),
                 controller: _bloodtypeController,
               ),
             ),
-             new ListTile(
-              leading: const Icon(Icons.person),
+            new ListTile(
               title: TextField(
                 decoration: InputDecoration(
-                    labelText: "UserName : ", hintText: " User Name "),
+                    icon: Icon(
+                      Icons.person,
+                    ),
+                    labelText: "UserName : ",
+                    hintText: " User Name ",border: InputBorder.none),
                 controller: _usernameController,
               ),
             ),
             new ListTile(
-              leading: const Icon(Icons.remove_red_eye),
-              title: TextField(
+              title: TextFormField(
                 obscureText: true,
                 decoration: InputDecoration(
-                    labelText: "Password : ", hintText: "Password "),
+                    icon: new IconButton(
+                        icon: Icon(
+                          Icons.remove_red_eye,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _isSecured = !_isSecured;
+                          });
+                        }),
+                    labelText: "Password : ",
+                    hintText: "Password ",border: InputBorder.none),
                 controller: _passwordController,
               ),
             ),
             SizedBox(
               height: 25.0,
             ),
-
             new RaisedButton(
               child: Text("Cancel"),
-               onPressed: () {
-                      Navigator.of(context).pop();
-                      //_UpdateData(widget.idUser, _nom.text, _pseudo.text, _prenom.text, _numTel.text);
-                    },),
-                    new RaisedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                //_UpdateData(widget.idUser, _nom.text, _pseudo.text, _prenom.text, _numTel.text);
+              },
+            ),
+            new RaisedButton(
               child: Text("Register"),
-                onPressed: () {
-                      _addData();
-                    },),
+              onPressed: () {
+                _addData();
+              },
+            ),
           ],
         ),
       ),
