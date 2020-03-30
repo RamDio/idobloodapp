@@ -16,11 +16,12 @@ class _RegisterState extends State<Register> {
   var _isSecured = true;
   void onCreatedAccount() {
     var alert = new AlertDialog(
-      title: new Text('Info'),
+      title: Center(child: new Text('Registered')),
       content: new SingleChildScrollView(
         child: new ListBody(
           children: <Widget>[
-            new Text('You have created a new Account.'),
+            Center
+            (child: new Text('Thanks For Signing Up Hero, Please Proceed to login Page ')),
           ],
         ),
       ),
@@ -69,7 +70,8 @@ class _RegisterState extends State<Register> {
             left: 16.0, top: 30.0, right: 16.0, bottom: 16.0),
         child: ListView(
           children: <Widget>[
-            Text("data"),
+            Center(child: Text("SIGN UP",
+            style: TextStyle(fontSize: 30),)),
             new ListTile(
               title: Card(
                 child: TextFormField(
@@ -85,97 +87,116 @@ class _RegisterState extends State<Register> {
               ),
             ),
             new ListTile(
-              title: TextField(
-                decoration: InputDecoration(
-                    icon: Icon(
-                      Icons.person,
-                    ),
-                    labelText: "Last Name : ",
-                    hintText: " Last Name ",
-                    border: InputBorder.none),
-                controller: _lastnameController,
+              title: Card(
+                child: TextField(
+                  decoration: InputDecoration(
+                      icon: Icon(
+                        Icons.person,
+                      ),
+                      labelText: "Last Name : ",
+                      hintText: " Last Name ",
+                      border: InputBorder.none),
+                  controller: _lastnameController,
+                ),
               ),
             ),
             new ListTile(
-              title: TextField(
-                decoration: InputDecoration(
-                    icon: Icon(
-                      Icons.person,
-                    ),
-                    labelText: "Gender : ",
-                    hintText: " Gender ",
-                    border: InputBorder.none),
-                controller: _genderController,
+              title: Card(
+                child: TextField(
+                  decoration: InputDecoration(
+                      icon: Icon(
+                        Icons.person,
+                      ),
+                      labelText: "Gender : ",
+                      hintText: " Gender ",
+                      border: InputBorder.none),
+                  controller: _genderController,
+                ),
               ),
             ),
             new ListTile(
-              title: TextField(
-                decoration: InputDecoration(
-                    icon: Icon(
-                      Icons.phone,
-                    ),
-                    labelText: "Contact Number : ",
-                    hintText: " Contact Number ",
-                    border: InputBorder.none),
-                controller: _contactController,
+              title: Card(
+                child: TextField(
+                  decoration: InputDecoration(
+                      icon: Icon(
+                        Icons.phone,
+                      ),
+                      labelText: "Contact Number : ",
+                      hintText: " Contact Number ",
+                      border: InputBorder.none),
+                  controller: _contactController,
+                ),
               ),
             ),
             new ListTile(
-              title: TextField(
-                decoration: InputDecoration(
-                    icon: Icon(
-                      Icons.home,
-                    ),
-                    labelText: "Address : ",
-                    hintText: " Address ",border: InputBorder.none),
-                controller: _addressController,
+              title: Card(
+                child: TextField(
+                  decoration: InputDecoration(
+                      icon: Icon(
+                        Icons.home,
+                      ),
+                      labelText: "Address : ",
+                      hintText: " Address ",
+                      border: InputBorder.none),
+                  controller: _addressController,
+                ),
               ),
             ),
             new ListTile(
-              title: TextField(
-                decoration: InputDecoration(
-                    icon: Icon(
-                      Icons.pin_drop,
-                    ),
-                    labelText: "Bloodtype : ",
-                    hintText: " Bloodtype ",border: InputBorder.none),
-                controller: _bloodtypeController,
+              title: Card(
+                child: TextField(
+                  decoration: InputDecoration(
+                      icon: Icon(
+                        Icons.pin_drop,
+                      ),
+                      labelText: "Bloodtype : ",
+                      hintText: " Bloodtype ",
+                      border: InputBorder.none),
+                  controller: _bloodtypeController,
+                ),
               ),
             ),
             new ListTile(
-              title: TextField(
-                decoration: InputDecoration(
-                    icon: Icon(
-                      Icons.person,
-                    ),
-                    labelText: "UserName : ",
-                    hintText: " User Name ",border: InputBorder.none),
-                controller: _usernameController,
+              title: Card(
+                child: TextField(
+                  decoration: InputDecoration(
+                      icon: Icon(
+                        Icons.person,
+                      ),
+                      labelText: "UserName : ",
+                      hintText: " User Name ",
+                      border: InputBorder.none),
+                  controller: _usernameController,
+                ),
               ),
             ),
             new ListTile(
-              title: TextFormField(
-                obscureText: true,
-                decoration: InputDecoration(
-                    icon: new IconButton(
-                        icon: Icon(
-                          Icons.remove_red_eye,
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _isSecured = !_isSecured;
-                          });
-                        }),
-                    labelText: "Password : ",
-                    hintText: "Password ",border: InputBorder.none),
-                controller: _passwordController,
+              title: Card(
+                
+                child: TextFormField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                      icon: new IconButton(
+                          icon: Icon(
+                            Icons.remove_red_eye,
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              _isSecured = !_isSecured;
+                            });
+                          }),
+                      labelText: "Password : ",
+                      hintText: "Password ",
+                      border: InputBorder.none),
+                  controller: _passwordController,
+                ),
               ),
             ),
             SizedBox(
               height: 25.0,
             ),
             new RaisedButton(
-              child: Text("Cancel"),
+              child: Text("Back"),
               onPressed: () {
                 Navigator.of(context).pop();
                 //_UpdateData(widget.idUser, _nom.text, _pseudo.text, _prenom.text, _numTel.text);

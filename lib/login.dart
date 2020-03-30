@@ -123,7 +123,7 @@ class _LoginState extends State<Login> {
     /********************* Button Login****************************************/
     var createaccount = new Container(
       child: FlatButton(
-        child: const Text('Register'),
+        child: const Text('No Account? Tap to Register'),
 
         onPressed: () {
           var route = new MaterialPageRoute(
@@ -170,8 +170,17 @@ class _LoginState extends State<Login> {
           SizedBox(
             height: 50.0,
           ),
+          Center(child: Padding(
+            padding: const EdgeInsets.all(7.0),
+            child: Column(
+              children: <Widget>[
+                Image.asset("asset/login.png",height: 150,width: 150,),
+                new Text("LOGIN",style:TextStyle(fontSize: 30)),
+              ],
+            ),
+          )),
           new Padding(
-            padding: const EdgeInsets.all(20.0),  
+            padding: const EdgeInsets.all(10.0),  
                 child: Column(
                   children: <Widget>[pseudo, password,
                   SizedBox(

@@ -32,6 +32,7 @@ dependencies:
   shared_preferences: ^0.5.2
   font_awesome_flutter: ^8.7.0
   webview_flutter: ^0.3.19+9
+  flutter_launcher_icons: ^0.7.4
 
 
 dev_dependencies:
@@ -50,6 +51,14 @@ flutter:
   - asset/blood.jpg
   - asset/blood.png
   - asset/kitty.jpeg
+  - asset/rlogo.png
+  - asset/llogo.png
+  - asset/login.png
+
+
+flutter_icons:
+  android: true
+  image_path: "asset/llogo.png"
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

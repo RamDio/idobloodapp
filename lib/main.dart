@@ -40,7 +40,7 @@ class _MyAppState extends State<MyApp> {
     return Scaffold(
       body:Center(
         child: Container(
-          child: Image.asset("asset/blood.png",height: 200,width: 200),
+          child: Image.asset("asset/rlogo.png",height: 400,width: 400),
         ),
       )
 
