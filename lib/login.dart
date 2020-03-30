@@ -79,6 +79,7 @@ class _LoginState extends State<Login> {
     /****************** TextField Pseudo*******************************/
     var pseudo = new ListTile(
       title: Card(
+        
               child: TextFormField(
           decoration: InputDecoration(
                     icon: Icon(

@@ -79,7 +79,7 @@ class _RegisterState extends State<Register> {
                       icon: Icon(
                         Icons.person,
                       ),
-                      labelText: "First Name : ",
+                      labelText: "First Name  ",
                       hintText: " First Name ",
                       border: InputBorder.none),
                   controller: _firstnameController,
@@ -93,7 +93,7 @@ class _RegisterState extends State<Register> {
                       icon: Icon(
                         Icons.person,
                       ),
-                      labelText: "Last Name : ",
+                      labelText: "Last Name ",
                       hintText: " Last Name ",
                       border: InputBorder.none),
                   controller: _lastnameController,
@@ -107,7 +107,7 @@ class _RegisterState extends State<Register> {
                       icon: Icon(
                         Icons.person,
                       ),
-                      labelText: "Gender : ",
+                      labelText: "Gender  ",
                       hintText: " Gender ",
                       border: InputBorder.none),
                   controller: _genderController,
@@ -121,7 +121,7 @@ class _RegisterState extends State<Register> {
                       icon: Icon(
                         Icons.phone,
                       ),
-                      labelText: "Contact Number : ",
+                      labelText: "Contact Number ",
                       hintText: " Contact Number ",
                       border: InputBorder.none),
                   controller: _contactController,
@@ -135,7 +135,7 @@ class _RegisterState extends State<Register> {
                       icon: Icon(
                         Icons.home,
                       ),
-                      labelText: "Address : ",
+                      labelText: "Address  ",
                       hintText: " Address ",
                       border: InputBorder.none),
                   controller: _addressController,
@@ -149,7 +149,7 @@ class _RegisterState extends State<Register> {
                       icon: Icon(
                         Icons.pin_drop,
                       ),
-                      labelText: "Bloodtype : ",
+                      labelText: "Bloodtype  ",
                       hintText: " Bloodtype ",
                       border: InputBorder.none),
                   controller: _bloodtypeController,
@@ -163,7 +163,7 @@ class _RegisterState extends State<Register> {
                       icon: Icon(
                         Icons.person,
                       ),
-                      labelText: "UserName : ",
+                      labelText: "UserName  ",
                       hintText: " User Name ",
                       border: InputBorder.none),
                   controller: _usernameController,
@@ -185,7 +185,7 @@ class _RegisterState extends State<Register> {
                               _isSecured = !_isSecured;
                             });
                           }),
-                      labelText: "Password : ",
+                      labelText: "Password  ",
                       hintText: "Password ",
                       border: InputBorder.none),
                   controller: _passwordController,
