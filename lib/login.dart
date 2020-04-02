@@ -64,7 +64,17 @@ class _LoginState extends State<Login> {
 
           var route = new MaterialPageRoute(
             builder: (BuildContext context) =>
-                new Home(idUser: data[0]['userid'],firstname: data[0]['firstname'],lastname: data[0]['lastname'],username: data[0]['username'],),
+                new Home(
+                idUser: data[0]['userid'],
+                 firstname : data[0]['firstname'],
+        lastname:data[0]['lastname'],
+        gender:data[0]['gender'],
+        contact:data[0]['contact'],
+        address:data[0]['address'],
+        bloodtype:data[0]['bloodtype'],
+        username:data[0]['username'],
+                
+                ),
           );
           Navigator.of(context).push(route);
         } else {
@@ -172,7 +182,7 @@ class _LoginState extends State<Login> {
             height: 50.0,
           ),
           Center(child: Padding(
-            padding: const EdgeInsets.all(7.0),
+            padding: const EdgeInsets.all(0.0),
             child: Column(
               children: <Widget>[
                 Image.asset("asset/login.png",height: 150,width: 150,),
@@ -181,7 +191,7 @@ class _LoginState extends State<Login> {
             ),
           )),
           new Padding(
-            padding: const EdgeInsets.all(10.0),  
+            padding: const EdgeInsets.all(9.0),  
                 child: Column(
                   children: <Widget>[pseudo, password,
                   SizedBox(

@@ -4,8 +4,8 @@ import 'package:idobloodapp/drawer/maindrawer.dart';
 
 class Home extends StatelessWidget {
   
-  var idUser,username,firstname,lastname;
-  Home({Key key, this.idUser,this.firstname,this.lastname,this.username}) : super(key: key);
+  var idUser,username,firstname,lastname,gender,contact,address,bloodtype;
+  Home({Key key, this.idUser,this.firstname,this.lastname,this.username,this.gender,this.contact,this.address,this.bloodtype}) : super(key: key);
 
 
   @override
@@ -31,6 +31,18 @@ class Home extends StatelessWidget {
       ),
 
         drawer:MainDrawer(),
+        body: Column(
+          children:<Widget>[
+            Text("firstname $firstname"),
+             Text("lastname $lastname"),
+              Text("username $username"),
+               Text("gender $gender"),
+                Text("contact $contact"),
+                 Text("address $address"),
+                  Text("bloodtype $bloodtype"),
+
+          ]
+        ),
     );
   }
 

@@ -17,16 +17,19 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   List data;
   var _isLoading = false;
-  String user_name = "userName ",
-      first_name = "FirstName ",
-      last_name = "LastName ",
-      gender = "Gender ";
+  String firstname = "FirstName ",
+      lastname = "LastName ",
+      gender = "Gender ",
+      address="address",
+      bloodtype="bloodtype",
+      username = "userName ";
+  int contact;
 
   /**************** Get Login Connection && Data ************************/
   Future<String> getLogin(String id) async {
     var response = await http.get(
         Uri.encodeFull(
-            "https://astringent-dents.000webhostapp.com/EConstat/FlutterTraining/ConsultProfile.php?ID=" +
+            "https://idobloodadmin.000webhostapp.com/consultprofile.php?ID=" +
                 id +
                 ""),
         headers: {"Accept": "application/json"});
@@ -36,10 +39,14 @@ class _ProfileState extends State<Profile> {
       var convertDataToJson = json.decode(response.body);
       data = convertDataToJson['result'];
       if (data != null) {
-        user_name = data[0]['username'];
-        first_name = data[0]['first_name'];
-        last_name = data[0]['last_name'];
+       
+        firstname = data[0]['firstname'];
+        lastname = data[0]['lastname'];
         gender = data[0]['gender'];
+        contact=data[0]['contact'];
+        address=data[0]['address'];
+        bloodtype=data[0]['bloodtype'];
+        username = data[0]['username'];
       }
     });
     print(data);
@@ -105,7 +112,7 @@ class _ProfileState extends State<Profile> {
                               width: 5.0,
                             ),
                             Text(
-                              user_name,
+                              username,
                               style: TextStyle(fontSize: 20.0),
                             )
                           ],
@@ -127,7 +134,7 @@ class _ProfileState extends State<Profile> {
                                     width: 5.0,
                                   ),
                                   Text(
-                                    user_name,
+                                    username,
                                     style: TextStyle(fontSize: 20.0),
                                   )
                                 ],
@@ -142,7 +149,7 @@ class _ProfileState extends State<Profile> {
                                     width: 5.0,
                                   ),
                                   Text(
-                                    last_name,
+                                    lastname,
                                     style: TextStyle(fontSize: 20.0),
                                   )
                                 ],
@@ -157,7 +164,7 @@ class _ProfileState extends State<Profile> {
                                     width: 5.0,
                                   ),
                                   Text(
-                                    first_name,
+                                    firstname,
                                     style: TextStyle(fontSize: 20.0),
                                   )
                                 ],

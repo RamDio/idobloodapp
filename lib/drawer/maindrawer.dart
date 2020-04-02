@@ -6,6 +6,8 @@ import 'package:idobloodapp/home/profile.dart';
 import 'package:idobloodapp/home/rewards.dart';
 
 class MainDrawer extends StatelessWidget {
+  var idUser,username,firstname,lastname;
+  MainDrawer({Key key, this.idUser,this.firstname,this.lastname,this.username}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -61,9 +63,13 @@ class MainDrawer extends StatelessWidget {
                   fontSize: 18,
                 )),
             onTap: () {
-              Navigator.of(context).pop();
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => Profile()));
+              var route = new MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        new Profile(idUser: this.idUser));
+                         Navigator.of(context).push(route);
+              // Navigator.of(context).pop();
+              // Navigator.of(context).push(MaterialPageRoute(
+              //     builder: (BuildContext context) => Profile()));
             },
           ),
           ListTile(
