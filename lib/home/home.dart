@@ -11,14 +11,15 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[100],
+      backgroundColor: Color.fromRGBO(244, 13, 48, 1),
       appBar: AppBar(
-        backgroundColor: Colors.red,
+        elevation:0.0,
+         backgroundColor: Color.fromRGBO(244, 13, 48, 1),
         title: Text(
-          "OVERVIEW",
+          "",
           style: TextStyle(color: Colors.black),
         ),
-        elevation: 0.0,
+    
         actions: <Widget>[
           FlatButton.icon(
             icon: Icon(FontAwesomeIcons.signOutAlt),
@@ -32,15 +33,119 @@ class Home extends StatelessWidget {
 
         drawer:MainDrawer(),
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+        
           children:<Widget>[
-            Text("firstname $firstname"),
-             Text("lastname $lastname"),
-              Text("username $username"),
-               Text("gender $gender"),
-                Text("contact $contact"),
-                 Text("address $address"),
-                  Text("bloodtype $bloodtype"),
 
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(left: 100.0,top:7.0),
+                  child: Row(
+                    children: <Widget>[
+                      CircleAvatar(
+                        radius:50,
+                        backgroundImage:AssetImage("asset/kitty.jpeg"),
+                      ),
+                         Padding(
+                           padding: const EdgeInsets.only(left:28.0),
+                           child: Row(
+                             children: <Widget>[
+                               Text("$bloodtype",
+                               style:TextStyle(fontWeight: FontWeight.bold,
+                                fontSize: 28.0, color: Colors.white
+                                
+                                )
+                               
+                               ),
+                             ],
+                           ),
+                         ),
+                    ],
+                  ),
+                ),
+           
+              ],
+            ),
+                 Padding(
+                   padding: const EdgeInsets.only(left:100.0),
+                   child: Row(
+                    // crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Column(
+                        children: <Widget>[
+
+                          Text("$firstname $lastname",
+                          style:TextStyle(fontWeight: FontWeight.bold,
+                          fontSize: 28.0, color: Colors.white
+                          
+                          )
+                          ),
+                        ],
+                      ),
+                    ],
+                ),
+                 ),
+            
+              Padding(
+                padding: const EdgeInsets.only(left:100.0),
+                child: Row(
+                  children: <Widget>[
+                    Text("@ $username",
+                     style:TextStyle(fontWeight: FontWeight.bold,
+                          fontSize: 28.0, color: Colors.white,
+                    ),
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Container(
+                  width:double.infinity,
+                  margin:EdgeInsets.only(top:15),
+                  decoration:BoxDecoration(
+                    color:Colors.white,
+                  ) ,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top:18.0),
+                    child: Column(
+                      mainAxisAlignment:MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                         Row(
+                           children: <Widget>[
+                             Icon(Icons.person,size: 40,color: Color.fromRGBO(244, 13, 48, 1),),
+                             Text("$gender",style:TextStyle(
+                               fontSize:40
+                             )),
+                           ],
+                         ),
+                            Row(
+                              children: <Widget>[
+                                Icon(Icons.contact_phone,size: 40,color: Color.fromRGBO(244, 13, 48, 1),),
+                                Text("$contact",style:TextStyle(
+                               fontSize:40
+                             )),
+                              ],
+                            ),
+                            Row(
+                              children: <Widget>[
+                                Icon(Icons.location_city,size: 40,color: Color.fromRGBO(244, 13, 48, 1),),
+                                Text("$address",style:TextStyle(
+                               fontSize:40
+                             )),
+                              ],
+                            ),
+              
+                      ],
+                    ),
+                  ),
+                ),
+                ),
+
+                   
           ]
         ),
     );
