@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:idobloodapp/drawer/mainmenu.dart';
 import 'package:idobloodapp/home/home.dart';
 import 'package:idobloodapp/register.dart';
 import 'package:idobloodapp/register.dart';
@@ -64,7 +65,7 @@ class _LoginState extends State<Login> {
 
           var route = new MaterialPageRoute(
             builder: (BuildContext context) =>
-                new Home(
+                new MainPage(
                 idUser: data[0]['userid'],
                  firstname : data[0]['firstname'],
         lastname:data[0]['lastname'],

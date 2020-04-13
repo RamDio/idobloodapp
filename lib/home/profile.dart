@@ -17,12 +17,12 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   List data;
   var _isLoading = false;
-  String firstname = "FirstName ",
-      lastname = "LastName ",
-      gender = "Gender ",
+  String firstname = "firstname ",
+      lastname = "lastname ",
+      gender = "gender ",
       address="address",
       bloodtype="bloodtype",
-      username = "userName ";
+      username = "username ";
   int contact;
 
   /**************** Get Login Connection && Data ************************/

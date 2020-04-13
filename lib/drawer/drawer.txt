@@ -4,60 +4,10 @@ import 'package:idobloodapp/home/events.dart';
 import 'package:idobloodapp/home/home.dart';
 import 'package:idobloodapp/home/profile.dart';
 import 'package:idobloodapp/home/rewards.dart';
-import 'package:http/http.dart' as http;
 
-import 'dart:async';
-import 'dart:convert'
-;
 class MainDrawer extends StatelessWidget {
-
-   List data;
-  var _isLoading = false;
-
-  String username = "username ",
-      firstname = "firstname",
-      lastname = "lastname",
-      bloodtype="bloodtype",
-      address="address",      gender = "gender ";
-
-
-int contact;
-  Future<String> getLogin(String id) async {
-    var response = await http.get(
-        Uri.encodeFull(
-            "https://idobloodadmin.000webhostapp.com/consultprofile.php?ID=" +
-                id +
-                ""),
-        headers: {"Accept": "application/json"});
-
-    // setState(() {
-    //   _isLoading = true;
-    //   var convertDataToJson = json.decode(response.body);
-    //   data = convertDataToJson['result'];
-    //   if (data != null) {
-    //     username = data[0]['username'];
-    //     firstname = data[0]['firstname'];
-    //     lastname = data[0]['lastname'];
-    //     gender = data[0]['gender'];
-    //     contact=data[0]['contact'];
-    //     address =data[0]['address'];
-    //     bloodtype=data[0]['bloodtype'];
-    //   }
-    // });
-    print(data);
-  }
-
-  var idUser;
+  var idUser,username,firstname,lastname,address,contact,bloodtype;
   MainDrawer({Key key, this.idUser,this.firstname,this.lastname,this.address,this.contact,this.bloodtype,this.username}) : super(key: key);
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   setState(() {
-  //     getLogin(widget.idUser);
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Drawer(
