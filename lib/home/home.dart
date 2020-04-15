@@ -16,7 +16,7 @@ class Home extends StatelessWidget {
         elevation:0.0,
          backgroundColor: Color.fromRGBO(244, 13, 48, 1),
         title: Text(
-          "",
+          "DATA",
           style: TextStyle(color: Colors.black),
         ),
     
