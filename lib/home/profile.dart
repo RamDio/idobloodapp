@@ -17,21 +17,18 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   List data;
   var _isLoading = false;
-  String firstname = "firstname ",
-      lastname = "lastname ",
-      gender = "gender ",
-      address="address",
-      bloodtype="bloodtype",
-      username = "username ";
-  int contact;
+  String firstname = "Firstname ",
+      lastname = "Lastname ",
+      gender = "Gender ",
+      address="Address",
+      bloodtype="Bloodtype",
+      username = "Username ";
+  int contact=0;
 
   /**************** Get Login Connection && Data ************************/
   Future<String> getLogin(String id) async {
     var response = await http.get(
-        Uri.encodeFull(
-            "https://idobloodadmin.000webhostapp.com/consultprofile.php?ID=" +
-                id +
-                ""),
+        Uri.encodeFull("https://idobloodadmin.000webhostapp.com/consultprofile.php?ID="+id+""),
         headers: {"Accept": "application/json"});
 
     setState(() {
@@ -127,7 +124,7 @@ class _ProfileState extends State<Profile> {
                               Row(
                                 children: <Widget>[
                                   Text(
-                                    "User Name : ",
+                                    "User name : ",
                                     style: TextStyle(fontSize: 24.0),
                                   ),
                                   SizedBox(
@@ -142,7 +139,7 @@ class _ProfileState extends State<Profile> {
                               Row(
                                 children: <Widget>[
                                   Text(
-                                    "Last Name : ",
+                                    "Last name : ",
                                     style: TextStyle(fontSize: 24.0),
                                   ),
                                   SizedBox(
@@ -157,7 +154,7 @@ class _ProfileState extends State<Profile> {
                               Row(
                                 children: <Widget>[
                                   Text(
-                                    "First Name : ",
+                                    "First name : ",
                                     style: TextStyle(fontSize: 24.0),
                                   ),
                                   SizedBox(
@@ -184,6 +181,52 @@ class _ProfileState extends State<Profile> {
                                   )
                                 ],
                               ),
+                              Row(
+                                children: <Widget>[
+                                  Text(
+                                    "Contact : ",
+                                    style: TextStyle(fontSize: 24.0),
+                                  ),
+                                  SizedBox(
+                                    width: 5.0,
+                                  ),
+                                  Text(
+                                    contact.toString(),
+                                    style: TextStyle(fontSize: 20.0),
+                                  )
+                                ],
+                              ),
+                              Row(
+                                children: <Widget>[
+                                  Text(
+                                    "Address : ",
+                                    style: TextStyle(fontSize: 24.0),
+                                  ),
+                                  SizedBox(
+                                    width: 5.0,
+                                  ),
+                                  Text(
+                                    address,
+                                    style: TextStyle(fontSize: 20.0),
+                                  )
+                                ],
+                              ),
+                              Row(
+                                children: <Widget>[
+                                  Text(
+                                    "Gender : ",
+                                    style: TextStyle(fontSize: 24.0),
+                                  ),
+                                  SizedBox(
+                                    width: 5.0,
+                                  ),
+                                  Text(
+                                    bloodtype,
+                                    style: TextStyle(fontSize: 20.0),
+                                  )
+                                ],
+                              ),
+                              
                             ],
                           ),
                         ),
