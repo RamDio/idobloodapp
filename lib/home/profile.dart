@@ -1,6 +1,4 @@
-// import 'package:econstat/update_profile.dart';
 import 'package:flutter/material.dart';
-// import 'package:url_launcher/url_launcher.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
@@ -20,8 +18,8 @@ class _ProfileState extends State<Profile> {
   String firstname = "FirstName ",
       lastname = "LastName ",
       gender = "Gender ",
-      address="address",
-      bloodtype="bloodtype",
+      address = "address",
+      bloodtype = "bloodtype",
       username = "userName ";
   int contact;
 
@@ -39,13 +37,12 @@ class _ProfileState extends State<Profile> {
       var convertDataToJson = json.decode(response.body);
       data = convertDataToJson['result'];
       if (data != null) {
-       
         firstname = data[0]['firstname'];
         lastname = data[0]['lastname'];
         gender = data[0]['gender'];
-        contact=data[0]['contact'];
-        address=data[0]['address'];
-        bloodtype=data[0]['bloodtype'];
+        contact = data[0]['contact'];
+        address = data[0]['address'];
+        bloodtype = data[0]['bloodtype'];
         username = data[0]['username'];
       }
     });
@@ -173,40 +170,60 @@ class _ProfileState extends State<Profile> {
                                 children: <Widget>[
                                   Text(
                                     "Gender : ",
-                                    style: TextStyle(fontSize: 24.0),
+                                    style: TextStyle(fontSize: 14.0),
                                   ),
                                   SizedBox(
                                     width: 5.0,
                                   ),
                                   Text(
                                     gender,
-                                    style: TextStyle(fontSize: 20.0),
+                                    style: TextStyle(fontSize: 10.0),
                                   )
                                 ],
                               ),
                             ],
                           ),
                         ),
-                        new ButtonBarTheme(
-                          data: null,
-                          // make buttons use the appropriate styles for cards
-                          child: new ButtonBar(
-                            children: <Widget>[
-                              new FlatButton(
-                                child: const Text('Update'),
-                                onPressed: () {
-                                  var route = new MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        new Updateprofile(
-                                          idUser: widget.idUser,
-                                        ),
-                                  );
-                                  Navigator.of(context).push(route);
-                                },
+                        // new ButtonBarTheme(
+                        //   data: null,
+                        //   // make buttons use the appropriate styles for cards
+                        //   child: new ButtonBar(
+                        //     children: <Widget>[
+                        //       new FlatButton(
+                        //         child: const Text('Update'),
+                        //         onPressed: () {
+                        //           var route = new MaterialPageRoute(
+                        //             builder: (BuildContext context) =>
+                        //                 new Updateprofile(
+                        //                   idUser: widget.idUser,
+                        //                 ),
+                        //           );
+                        //           Navigator.of(context).push(route);
+                        //         },
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
+                        new RaisedButton(
+                          colorBrightness: Brightness.light,
+                          animationDuration: Duration(seconds: 2),
+                          splashColor: Colors.yellow[200],
+                          elevation: 5.0,
+                          child: const Text('Update My Profile'),
+                          onPressed: () {
+                            var route = new MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  new Updateprofile(
+                                idUser: widget.idUser,
                               ),
-                            ],
+                            );
+                            Navigator.of(context).push(route);
+                          },
+                          shape: RoundedRectangleBorder(
+                            borderRadius: new BorderRadius.circular(18.0),
+                            side: BorderSide(color: Colors.black),
                           ),
-                        ),
+                        )
                       ],
                     ),
                   ),

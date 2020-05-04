@@ -39,7 +39,7 @@ class MainDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(FontAwesomeIcons.home),
-            title: Text("DASHBOARD",
+            title: Text("My Profile",
                 style: TextStyle(
                   fontSize: 18,
                 )),
@@ -58,7 +58,7 @@ class MainDrawer extends StatelessWidget {
               FontAwesomeIcons.user,
               color: Colors.green,
             ),
-            title: Text("Profile",
+            title: Text("Blood Info",
                 style: TextStyle(
                   fontSize: 18,
                 )),

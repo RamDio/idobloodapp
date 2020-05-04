@@ -74,16 +74,20 @@ class Home extends StatelessWidget {
                    child: Row(
                     // crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Column(
-                        children: <Widget>[
+                      Expanded(
+                                              child: Column(
+                          children: <Widget>[
 
-                          Text("$firstname $lastname",
-                          style:TextStyle(fontWeight: FontWeight.bold,
-                          fontSize: 28.0, color: Colors.white
-                          
-                          )
-                          ),
-                        ],
+                            Text("$firstname $lastname",
+                            style:TextStyle(fontWeight: FontWeight.bold,
+                            fontSize: 28.0, color: Colors.white,
+                            
+                            
+                            ),
+                             overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                 ),
@@ -119,7 +123,8 @@ class Home extends StatelessWidget {
                              Icon(Icons.person,size: 40,color: Color.fromRGBO(244, 13, 48, 1),),
                              Text("$gender",style:TextStyle(
                                fontSize:40
-                             )),
+                             ),
+                              overflow: TextOverflow.ellipsis,),
                            ],
                          ),
                             Row(
@@ -130,13 +135,16 @@ class Home extends StatelessWidget {
                              )),
                               ],
                             ),
-                            Row(
-                              children: <Widget>[
-                                Icon(Icons.location_city,size: 40,color: Color.fromRGBO(244, 13, 48, 1),),
-                                Text("$address",style:TextStyle(
-                               fontSize:40
-                             )),
-                              ],
+                           Expanded(
+                                                          child: Row(
+                                children: <Widget>[
+                                  Icon(Icons.location_city,size: 40,color: Color.fromRGBO(244, 13, 48, 1),),
+                                  Text("$address",style:TextStyle(
+                                 fontSize:40
+                               ),
+                                overflow: TextOverflow.ellipsis,),
+                                ],
+                              ),
                             ),
               
                       ],
