@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:idobloodapp/home/home.dart';
+import 'loading/loading.dart';
 import 'login.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
@@ -16,6 +17,7 @@ class _RegisterState extends State<Register> {
   final formKey = new GlobalKey<FormState>();
 
   String _errorText;
+  bool loading=false;
 
   // Default Drop Down Item.
   // String dropdownValue = 'A';
@@ -114,7 +116,7 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return loading ? Loading() : Scaffold(
       body: new Padding(
         padding: const EdgeInsets.only(
             left: 16.0, top: 30.0, right: 16.0, bottom: 16.0),

@@ -18,18 +18,12 @@ class _ProfileState extends State<Profile> {
   String firstname = "Firstname ",
       lastname = "Lastname ",
       gender = "Gender ",
-<<<<<<< HEAD
       address = "address",
       bloodtype = "bloodtype",
       username = "userName ";
   int contact;
-=======
-      address="Address",
-      bloodtype="Bloodtype",
-      username = "Username ";
-  int contact=0;
->>>>>>> f338561fb743878d819a291d8c5b7da270df7c07
 
+      
   /**************** Get Login Connection && Data ************************/
   Future<String> getLogin(String id) async {
     var response = await http.get(

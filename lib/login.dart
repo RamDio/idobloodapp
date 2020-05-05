@@ -5,8 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:idobloodapp/drawer/mainmenu.dart';
 import 'package:idobloodapp/home/home.dart';
 import 'package:idobloodapp/register.dart';
-import 'package:idobloodapp/register.dart';
-import 'package:idobloodapp/registration.dart';
+
+import 'loading/loading.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -14,6 +14,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  bool loading = false;
   
   TextEditingController _pseudoController = new TextEditingController();
   TextEditingController _passwordController = new TextEditingController();
@@ -65,7 +66,7 @@ class _LoginState extends State<Login> {
 
           var route = new MaterialPageRoute(
             builder: (BuildContext context) =>
-                new MainPage(
+                new Home(
                 idUser: data[0]['userid'],
                  firstname : data[0]['firstname'],
         lastname:data[0]['lastname'],
@@ -122,8 +123,8 @@ class _LoginState extends State<Login> {
                       _isSecured = !_isSecured;
                     });
                   }),
-              labelText: "your Password",
-              hintText: "Write your Password please",
+              labelText: " Password",
+              hintText: "Password",
               border: InputBorder.none),
           obscureText: _isSecured,
           controller: _passwordController,
@@ -138,6 +139,7 @@ class _LoginState extends State<Login> {
         child: const Text('No Account? Tap to Register'),
 
         onPressed: () {
+          setState(() => loading = true);
           var route = new MaterialPageRoute(
             builder: (BuildContext context) => new Register(),
           );
@@ -155,8 +157,7 @@ class _LoginState extends State<Login> {
         elevation: 8.0,
         splashColor: Colors.blueGrey,
         onPressed: () {
-          // Perform some action
-          //SnackBar(content: Text("TEST SNACK BAR"),backgroundColor: Colors.deepOrange,);
+          setState(() => loading = true);
           getLogin(_pseudoController.text);
           VerifData(_pseudoController.text, _passwordController.text, data);
         },
@@ -175,7 +176,7 @@ class _LoginState extends State<Login> {
       ),
     );
 
-    return Scaffold(
+     return loading ? Loading() : Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: new ListView(
         children: <Widget>[
