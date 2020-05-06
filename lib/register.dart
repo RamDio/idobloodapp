@@ -16,8 +16,8 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   final formKey = new GlobalKey<FormState>();
 
-  String _errorText;
-  bool loading=false;
+  String _errorText="";
+  // bool loading=false;
 
   // Default Drop Down Item.
   // String dropdownValue = 'A';
@@ -116,7 +116,7 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    return loading ? Loading() : Scaffold(
+    return Scaffold(
       body: new Padding(
         padding: const EdgeInsets.only(
             left: 16.0, top: 30.0, right: 16.0, bottom: 16.0),
@@ -159,21 +159,7 @@ class _RegisterState extends State<Register> {
                 ),
               ),
             ),
-            // new ListTile(
-            //   title: Card(
-            //     child: TextField(
-            //       decoration: InputDecoration(
-            //           icon: Icon(
-            //             Icons.person,
-            //           ),
-            //           labelText: "Gender  ",
-            //           hintText: " Gender ",
-            //           errorText: _errorText,
-            //           border: InputBorder.none),
-            //       controller: _genderController,
-            //     ),
-            //   ),
-            // ),
+          
             new ListTile(
               title: Card(
                 child: TextField(
@@ -226,20 +212,7 @@ class _RegisterState extends State<Register> {
                 ),
               ),
             ),
-            // new ListTile(
-            //   title: Card(
-            //     child: TextField(
-            //       decoration: InputDecoration(
-            //           icon: Icon(
-            //             Icons.pin_drop,
-            //           ),
-            //           labelText: "Bloodtype  ",
-            //           hintText: " Bloodtype ",
-            //           border: InputBorder.none),
-            //       controller: _bloodtypeController,
-            //     ),
-            //   ),
-            // ),
+           
             new ListTile(
               title: Card(
                 child: TextField(
@@ -262,28 +235,7 @@ class _RegisterState extends State<Register> {
                 ),
               ),
             ),
-            //   DropdownButton<String>(
-            //   value: dropdownValue,
-            //   icon: Icon(Icons.arrow_drop_down),
-            //   iconSize: 24,
-            //   elevation: 16,
-            //   style: TextStyle(color: Colors.red, fontSize: 18),
-            //   underline: Container(
-            //     height: 2,
-            //     color: Colors.deepPurpleAccent,
-            //   ),
-            //   onChanged: (String data) {
-            //     setState(() {
-            //       dropdownValue = data;
-            //     });
-            //   },
-            //   items: bloodtype.map<DropdownMenuItem<String>>((String value) {
-            //     return DropdownMenuItem<String>(
-            //       value: value,
-            //       child: Text(value),
-            //     );
-            //   }).toList(),
-            // ),
+           
 
             new ListTile(
               title: Card(

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:idobloodapp/home/home.dart';
 import 'package:idobloodapp/register.dart';
+import 'home/home.dart';
 import 'login.dart';
 import 'dart:async';
 
@@ -28,7 +29,7 @@ class _MyAppState extends State<MyApp> {
       (){
         Navigator.push(
           context, MaterialPageRoute(
-            builder: (context) =>Login(),
+            builder: (context) =>Home(),
             ));
       }
     );

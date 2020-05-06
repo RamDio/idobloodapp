@@ -14,7 +14,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  bool loading = false;
+  // bool loading = false;
   
   TextEditingController _pseudoController = new TextEditingController();
   TextEditingController _passwordController = new TextEditingController();
@@ -139,7 +139,7 @@ class _LoginState extends State<Login> {
         child: const Text('No Account? Tap to Register'),
 
         onPressed: () {
-          setState(() => loading = true);
+          // setState(() => loading = true);
           var route = new MaterialPageRoute(
             builder: (BuildContext context) => new Register(),
           );
@@ -157,7 +157,7 @@ class _LoginState extends State<Login> {
         elevation: 8.0,
         splashColor: Colors.blueGrey,
         onPressed: () {
-          setState(() => loading = true);
+          // setState(() => loading = true);
           getLogin(_pseudoController.text);
           VerifData(_pseudoController.text, _passwordController.text, data);
         },
@@ -176,7 +176,7 @@ class _LoginState extends State<Login> {
       ),
     );
 
-     return loading ? Loading() : Scaffold(
+     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       body: new ListView(
         children: <Widget>[

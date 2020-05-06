@@ -144,15 +144,9 @@ int contact;
                   fontSize: 18,
                 )),
             onTap: () {
-              var route = new MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        new Profile(idUser: this.idUser),
-                  );
-                  Navigator.of(context).push(route);
-              // Navigator.of(context).pop();
-              // Navigator.of(context).push(MaterialPageRoute(
-              //     builder: (BuildContext context) => Rewards()));
-
+              Navigator.of(context).pop();
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) => Rewards()));
             },
           ),
         ],
