@@ -101,7 +101,7 @@ class _RewardsState extends State<Rewards> {
             
               Padding(
                 padding: const EdgeInsets.only(left:0.0),
-                child: Column(
+                child: Row(
                   children: <Widget>[
                     Padding(
                       padding: const EdgeInsets.only(left:48.0),
@@ -122,30 +122,26 @@ class _RewardsState extends State<Rewards> {
                         ],
                       ),
                     ),
-                    
-                    Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(left: 58.0),
-                          child: Row(
-                            children: <Widget>[
-                              Text("POINTS",
-                               style:TextStyle(fontWeight: FontWeight.bold,
-                                    fontSize: 28.0, color: Colors.white,
-                              ),
-                              
-                              ),
-                              Text("0",
-                               style:TextStyle(fontWeight: FontWeight.bold,
-                                    fontSize: 28.0, color: Colors.white,
-                              ),
-                              
-                              ),
-                            ],
+                    Padding(
+                      padding: const EdgeInsets.only(left:48.0),
+                      child: Column(
+                        children: <Widget>[
+                          Text("POINTS",
+                           style:TextStyle(fontWeight: FontWeight.bold,
+                                fontSize: 28.0, color: Colors.white,
                           ),
-                        ),
-                      ],
+                          
+                          ),
+                          Text("0 ",
+                           style:TextStyle(fontWeight: FontWeight.bold,
+                                fontSize: 28.0, color: Colors.white,
+                          ),
+                          
+                          ),
+                        ],
+                      ),
                     ),
+                   
                   ],
                 ),
               ),
