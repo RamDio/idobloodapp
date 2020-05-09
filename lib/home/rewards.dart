@@ -21,65 +21,20 @@ class _RewardsState extends State<Rewards> {
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Color.fromRGBO(244, 13, 48, 1),
-        title: Text(
-          "",
-          style: TextStyle(color: Colors.black),
+        title:  Padding(
+          padding: const EdgeInsets.only(left:35.0),
+          child: Text(
+              "Rewards",
+              style: TextStyle(color: Colors.white),
+            ),
         ),
-
-       
+        
       ),
       drawer: MainDrawer(),
       body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(left: 100.0, top: 7.0),
-                  child: Row(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(left: 15.0),
-                        child: Row(
-                          children: <Widget>[
-                            Text("REWARDS",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 28.0,
-                                    color: Colors.white)),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 100.0),
-              child: Row(
-                // crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Expanded(
-                    child: Column(
-                      children: <Widget>[
-                        Text(
-                          "",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 28.0,
-                            color: Colors.white,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
             Padding(
               padding: const EdgeInsets.only(left: 0.0),
               child: Row(
@@ -147,8 +102,12 @@ class _RewardsState extends State<Rewards> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       new ListTile(
-                        title: Card(
-                          child: Text("You Haven't Donated yet"),
+                        title: SizedBox(
+                          height: 80.0,
+                          child: Card(
+                            elevation: 10,
+                            child: Text("You Haven't Donated yet"),
+                          ),
                         ),
                       ),
                     ],
