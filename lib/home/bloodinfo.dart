@@ -40,11 +40,13 @@ class _BloodInfoState extends State<BloodInfo> {
                     child: SizedBox(
                       height: 120.0,
                       width: 120.0,
-                      child: Card(
-                        elevation: 10,
-                        child: Center(child: Text("A",style: TextStyle(
-                          fontSize:50.0
-                        ),)),
+                      child: GestureDetector(
+                                              child: Card(
+                          elevation: 10,
+                          child: Center(child: Text("A",style: TextStyle(
+                            fontSize:50.0
+                          ),)),
+                        ),
                       ),
                     ),
                   ),
@@ -53,11 +55,13 @@ class _BloodInfoState extends State<BloodInfo> {
                     child: SizedBox(
                       height: 120.0,
                       width: 120.0,
-                      child: Card(
-                        elevation: 10,
-                        child: Center(child: Text("B",style: TextStyle(
-                          fontSize:50.0
-                        ),)),
+                      child: GestureDetector(
+                                              child: Card(
+                          elevation: 10,
+                          child: Center(child: Text("B",style: TextStyle(
+                            fontSize:50.0
+                          ),)),
+                        ),
                       ),
                     ),
                   ),
@@ -73,11 +77,13 @@ class _BloodInfoState extends State<BloodInfo> {
                     child: SizedBox(
                       height: 120.0,
                       width: 120.0,
-                      child: Card(
-                        elevation: 10,
-                        child: Center(child: Text("O",style: TextStyle(
-                          fontSize:50.0
-                        ),)),
+                      child: GestureDetector(
+                                              child: Card(
+                          elevation: 10,
+                          child: Center(child: Text("O",style: TextStyle(
+                            fontSize:50.0
+                          ),)),
+                        ),
                       ),
                     ),
                   ),
@@ -86,11 +92,13 @@ class _BloodInfoState extends State<BloodInfo> {
                     child: SizedBox(
                       height: 120.0,
                       width: 120.0,
-                      child: Card(
-                        elevation: 10,
-                        child: Center(child: Text("AB",style: TextStyle(
-                          fontSize:50.0
-                        ),)),
+                      child: GestureDetector(
+                                              child: Card(
+                          elevation: 10,
+                          child: Center(child: Text("AB",style: TextStyle(
+                            fontSize:50.0
+                          ),)),
+                        ),
                       ),
                     ),
                   ),
