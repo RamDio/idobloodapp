@@ -17,36 +17,7 @@ class _RegisterState extends State<Register> {
   final formKey = new GlobalKey<FormState>();
 
   String _errorText="";
-  // bool loading=false;
-
-  // Default Drop Down Item.
-  // String dropdownValue = 'A';
-
-  // // To show Selected Item in Text.
-  // String holder = '' ;
-
-  // List <String> bloodtype = [
-  //   'A',
-  //   'B',
-  //   'O',
-  //   'AB',
-  //   'A+',
-  //   'B+',
-  //   'O+',
-  //   'AB+',
-  //   'A-',
-  //   'B-',
-  //   'O-',
-  //   'AB-',
-  //   ] ;
-
-  // void getDropDownItem(){
-
-  //   setState(() {
-  //     holder = dropdownValue ;
-  //   });
-  // }
-
+  String password='';
   var _isSecured = true;
   void onCreatedAccount() {
     var alert = new AlertDialog(
@@ -255,6 +226,7 @@ class _RegisterState extends State<Register> {
               title: Card(
                 child: TextFormField(
                   obscureText: true,
+                  
                   decoration: InputDecoration(
                       icon: new IconButton(
                           icon: Icon(
@@ -268,13 +240,17 @@ class _RegisterState extends State<Register> {
                       labelText: "Password  ",
                       hintText: "Password ",
                       border: InputBorder.none),
+                      validator: (val)=>val.length<8?'Password must be 8 characters long':null,
+                onChanged: (val){
+                   setState(()=>password=val);
+                } ,
                   controller: _passwordController,
                 ),
               ),
             ),
-            SizedBox(
-              height: 25.0,
-            ),
+            // SizedBox(
+            //   height: 20.0,
+            // ),
             new RaisedButton(
               child: Text("Back"),
               onPressed: () {

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idobloodapp/drawer/maindrawer.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatelessWidget {
-  
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   final idUser,username,firstname,lastname,gender,contact,address,bloodtype;
   Home({Key key, this.idUser,this.firstname,this.lastname,this.username,this.gender,this.contact,this.address,this.bloodtype}) : super(key: key);
 
