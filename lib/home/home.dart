@@ -3,6 +3,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idobloodapp/drawer/maindrawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'rewards.dart';
+
 class Home extends StatelessWidget {
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   final idUser,username,firstname,lastname,gender,contact,address,bloodtype;
@@ -147,14 +149,71 @@ class Home extends StatelessWidget {
                                 ],
                               ),
                             ),
+                     
+
               
                       ],
+                    
                     ),
+                    
                   ),
                 ),
                 ),
 
-                   
+              
+                     
+                  Center(
+                    child: Column(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10.0),
+                          child: SizedBox(
+                            height: 50.0,
+         
+                            child: GestureDetector(
+                              onTap: () {
+                              
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (BuildContext context) => Rewards()));
+                              },
+                              child: Card(
+                                elevation: 10,
+                                child: Center(
+                                    child: Text(
+                                  "Rewards",
+                                  style: TextStyle(fontSize: 20.0),
+                                )),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10.0),
+                          child: SizedBox(
+                            height: 50.0,
+                           
+                            child: GestureDetector(
+                              onTap: () {
+                              
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (BuildContext context) => Rewards()));
+                              },
+                              child: Card(
+                                elevation: 10,
+                                child: Center(
+                                    child: Text(
+                                  "Donation History",
+                                  style: TextStyle(fontSize: 20.0),
+                                )),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    
+                  ),
+                
           ]
         ),
     );

@@ -30,7 +30,7 @@ class _RewardsState extends State<Rewards> {
         ),
         
       ),
-      drawer: MainDrawer(),
+      // drawer: MainDrawer(),
       body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -56,7 +56,7 @@ class MainDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(FontAwesomeIcons.home),
-            title: Text("My Profile",
+            title: Text("Blood Drive Info",
                 style: TextStyle(
                   fontSize: 18,
                 )),
@@ -75,7 +75,7 @@ class MainDrawer extends StatelessWidget {
               FontAwesomeIcons.user,
               color: Colors.green,
             ),
-            title: Text("Blood Info",
+            title: Text("Events",
                 style: TextStyle(
                   fontSize: 18,
                 )),
@@ -90,7 +90,7 @@ class MainDrawer extends StatelessWidget {
               FontAwesomeIcons.calendarWeek,
               color: Colors.red,
             ),
-            title: Text("Updates and Events",
+            title: Text("My Profile",
                 style: TextStyle(
                   fontSize: 18,
                 )),
@@ -102,7 +102,7 @@ class MainDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(FontAwesomeIcons.trophy, color: Colors.blue),
-            title: Text("Rewards",
+            title: Text("Blood Benefits Info",
                 style: TextStyle(
                   fontSize: 18,
                 )),
