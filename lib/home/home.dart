@@ -21,7 +21,37 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
 
+
+
+   void errorPick() {
+    var alert = new AlertDialog(
+      title: Center(child: new Text('Failed')),
+      content: new SingleChildScrollView(
+        child: new ListBody(
+          children: <Widget>[
+            Center(
+                child: new Text(
+                    'Error Picking Image ')),
+          ],
+        ),
+      ),
+      actions: <Widget>[
+        new FlatButton(
+          child: new Text('Ok'),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+      ],
+    );
+    showDialog(context: context, child: alert);
+  }
+
   Future<File> _image;
+  String status='';
+  String base64Image;
+  File tmpFile;
+  String errMessage='Error Uploading file';
 
   chooseImage(){
     setState(() {
@@ -47,11 +77,12 @@ class _HomeState extends State<Home> {
           )
           ;
         }else if(null!=snapshot.error){
-          return  CircleAvatar(
+         errorPick();
+        }else{
+          return CircleAvatar(
             radius: 50,
-            backgroundImage: AssetImage("asset/kitty.jpg"),
-          )
-          ;
+            backgroundImage: AssetImage("asset/kitty.jpeg"),
+          );
         }
       },
       
