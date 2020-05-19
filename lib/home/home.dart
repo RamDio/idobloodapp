@@ -10,6 +10,14 @@ import 'package:http/http.dart' as http;
 import 'rewards.dart';
 
 class Home extends StatefulWidget {
+  
+
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   final idUser,
       username,
       firstname,
@@ -19,7 +27,7 @@ class Home extends StatefulWidget {
       address,
       bloodtype;
   Home(
-      {Key key,
+    {Key key,
       this.idUser,
       this.firstname,
       this.lastname,
@@ -29,13 +37,6 @@ class Home extends StatefulWidget {
       this.address,
       this.bloodtype})
       : super(key: key);
-
-  @override
-  _HomeState createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   static final String uploadEndPoint='https://idobloodadmin.000webhostapp.com/upload_image.php';
   Future<File> _image;
   String status = '';
@@ -171,7 +172,7 @@ setState(() {
                         padding: const EdgeInsets.only(left: 28.0),
                         child: Row(
                           children: <Widget>[
-                            Text("O",
+                            Text("$bloodtype",
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 28.0,
