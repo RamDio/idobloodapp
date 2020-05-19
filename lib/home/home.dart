@@ -1,15 +1,62 @@
+
+
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idobloodapp/drawer/maindrawer.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'rewards.dart';
 
-class Home extends StatelessWidget {
-  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+class Home extends StatefulWidget {
   final idUser,username,firstname,lastname,gender,contact,address,bloodtype;
   Home({Key key, this.idUser,this.firstname,this.lastname,this.username,this.gender,this.contact,this.address,this.bloodtype}) : super(key: key);
 
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+
+  Future<File> _image;
+
+  chooseImage(){
+    setState(() {
+      _image=ImagePicker.pickImage(source: ImageSource.gallery);
+    });
+
+  }
+
+  uploadImage(){
+
+  }
+
+  showImage(){
+    return FutureBuilder<File>(
+      future: _image,
+      builder: (BuildContext context,AsyncSnapshot<File>snapshot){
+        if(snapshot.connectionState==ConnectionState.done&&
+        null !=snapshot.data
+        ){
+          return CircleAvatar(
+            radius: 50,
+            child: Image.file(snapshot.data),
+          )
+          ;
+        }else if(null!=snapshot.error){
+          return  CircleAvatar(
+            radius: 50,
+            backgroundImage: AssetImage("asset/kitty.jpg"),
+          )
+          ;
+        }
+      },
+      
+      );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,19 +66,19 @@ class Home extends StatelessWidget {
         elevation:0.0,
          backgroundColor: Color.fromRGBO(244, 13, 48, 1),
         title: Text(
-          "DATA",
+          "My Profile",
           style: TextStyle(color: Colors.black),
         ),
     
-        actions: <Widget>[
-          FlatButton.icon(
-            icon: Icon(FontAwesomeIcons.signOutAlt),
-            label: Text('LOGOUT'),
-            onPressed: () async {
-              // await _auth.signOut();
-            },
-          )
-        ], //remove drop shadow
+        // actions: <Widget>[
+        //   FlatButton.icon(
+        //     icon: Icon(FontAwesomeIcons.signOutAlt),
+        //     label: Text('LOGOUT'),
+        //     onPressed: () async {
+        //       // await _auth.signOut();
+        //     },
+        //   )
+        // ], //remove drop shadow
       ),
 
         drawer:MainDrawer(),
@@ -48,15 +95,28 @@ class Home extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 100.0,top:7.0),
                   child: Row(
                     children: <Widget>[
-                      CircleAvatar(
-                        radius:50,
-                        backgroundImage:AssetImage("asset/kitty.jpeg"),
+                      showImage(),
+                      // CircleAvatar(
+                      //   radius:50,
+                      //   backgroundImage:AssetImage(showImage()),
+                      // ),
+                      Row(
+                        children: <Widget>[
+                          RaisedButton(
+                            child:Icon(Icons.image) ,
+                            onPressed: chooseImage,
+                            ),
+                            RaisedButton(
+                            child:Icon(Icons.image) ,
+                            onPressed: uploadImage,
+                            ),
+                        ],
                       ),
                          Padding(
                            padding: const EdgeInsets.only(left:28.0),
                            child: Row(
                              children: <Widget>[
-                               Text("$bloodtype",
+                               Text("O",
                                style:TextStyle(fontWeight: FontWeight.bold,
                                 fontSize: 28.0, color: Colors.white
                                 
@@ -81,7 +141,7 @@ class Home extends StatelessWidget {
                                               child: Column(
                           children: <Widget>[
 
-                            Text("$firstname $lastname",
+                            Text("Riamae Paragamac",
                             style:TextStyle(fontWeight: FontWeight.bold,
                             fontSize: 28.0, color: Colors.white,
                             
@@ -100,7 +160,7 @@ class Home extends StatelessWidget {
                 padding: const EdgeInsets.only(left:100.0),
                 child: Row(
                   children: <Widget>[
-                    Text("@ $username",
+                    Text("@Ria",
                      style:TextStyle(fontWeight: FontWeight.bold,
                           fontSize: 28.0, color: Colors.white,
                     ),
@@ -124,7 +184,7 @@ class Home extends StatelessWidget {
                          Row(
                            children: <Widget>[
                              Icon(Icons.person,size: 40,color: Color.fromRGBO(244, 13, 48, 1),),
-                             Text("$gender",style:TextStyle(
+                             Text("Female",style:TextStyle(
                                fontSize:40
                              ),
                               overflow: TextOverflow.ellipsis,),
@@ -133,7 +193,7 @@ class Home extends StatelessWidget {
                             Row(
                               children: <Widget>[
                                 Icon(Icons.contact_phone,size: 40,color: Color.fromRGBO(244, 13, 48, 1),),
-                                Text("$contact",style:TextStyle(
+                                Text("0915123457",style:TextStyle(
                                fontSize:40
                              )),
                               ],
@@ -142,7 +202,7 @@ class Home extends StatelessWidget {
                                                           child: Row(
                                 children: <Widget>[
                                   Icon(Icons.location_city,size: 40,color: Color.fromRGBO(244, 13, 48, 1),),
-                                  Text("$address",style:TextStyle(
+                                  Text("Macanhan, cdoc",style:TextStyle(
                                  fontSize:40
                                ),
                                 overflow: TextOverflow.ellipsis,),
@@ -218,7 +278,4 @@ class Home extends StatelessWidget {
         ),
     );
   }
-
-
-  
 }
