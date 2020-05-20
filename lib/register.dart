@@ -16,7 +16,7 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   final formKey = new GlobalKey<FormState>();
 
-  String _errorText="";
+  String error='';
   String password='';
   var _isSecured = true;
   void onCreatedAccount() {
@@ -88,183 +88,186 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: new Padding(
-        padding: const EdgeInsets.only(
-            left: 16.0, top: 30.0, right: 16.0, bottom: 16.0),
-        child: ListView(
-          children: <Widget>[
-            Center(
-                child: Text(
-              "SIGN UP",
-              style: TextStyle(fontSize: 30),
-            )),
-            new ListTile(
-              title: Card(
-                child: TextFormField(
-                  decoration: InputDecoration(
-                      icon: Icon(
-                        Icons.person,
-                      ),
-                      labelText: "First Name  ",
-                      errorText: _errorText,
-                      hintText: " First Name ",
-                      border: InputBorder.none),
-                  controller: _firstnameController,
-                
-                ),
-                
-              ),
-            ),
-            new ListTile(
-              title: Card(
-                child: TextField(
-                  decoration: InputDecoration(
-                      icon: Icon(
-                        Icons.person,
-                      ),
-                      labelText: "Last Name ",
-                      hintText: " Last Name ",
-                      errorText: _errorText,
-                      border: InputBorder.none),
-                  controller: _lastnameController,
-                ),
-              ),
-            ),
-          
-            new ListTile(
-              title: Card(
-                child: TextField(
-                  controller: _genderController,
-                  decoration: InputDecoration(
-                    suffixIcon: PopupMenuButton<String>(
-                      icon: const Icon(Icons.arrow_drop_down),
-                      onSelected: (String value) {
-                        _genderController.text = value;
-                      },
-                      itemBuilder: (BuildContext context) {
-                        return gender
-                            .map<PopupMenuItem<String>>((String value) {
-                          return new PopupMenuItem(
-                              child: new Text(value), value: value);
-                        }).toList();
-                      },
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            new ListTile(
-              title: Card(
-                child: TextField(
-                  decoration: InputDecoration(
-                      icon: Icon(
-                        Icons.phone,
-                      ),
-                      labelText: "Contact Number ",
-                      hintText: " Contact Number ",
-                      errorText: _errorText,
-                      border: InputBorder.none),
-                  controller: _contactController,
-                ),
-              ),
-            ),
-            new ListTile(
-              title: Card(
-                child: TextField(
-                  decoration: InputDecoration(
-                      icon: Icon(
-                        Icons.home,
-                      ),
-                      labelText: "Address  ",
-                      hintText: " Address ",
-                      errorText: _errorText,
-                      border: InputBorder.none),
-                  controller: _addressController,
-                ),
-              ),
-            ),
-           
-            new ListTile(
-              title: Card(
-                child: TextField(
-                  controller: _bloodtypeController,
-                  decoration: InputDecoration(
-                    suffixIcon: PopupMenuButton<String>(
-                      icon: const Icon(Icons.arrow_drop_down),
-                      onSelected: (String value) {
-                        _bloodtypeController.text = value;
-                      },
-                      itemBuilder: (BuildContext context) {
-                        return bloodtype
-                            .map<PopupMenuItem<String>>((String value) {
-                          return new PopupMenuItem(
-                              child: new Text(value), value: value);
-                        }).toList();
-                      },
-                    ),
-                  ),
-                ),
-              ),
-            ),
-           
-
-            new ListTile(
-              title: Card(
-                child: TextField(
-                  decoration: InputDecoration(
-                      icon: Icon(
-                        Icons.person,
-                      ),
-                      labelText: "UserName  ",
-                      hintText: " User Name ",
-                      border: InputBorder.none),
-                  controller: _usernameController,
-                ),
-              ),
-            ),
-            new ListTile(
-              title: Card(
-                child: TextFormField(
-                  obscureText: true,
+      body: Form(
+         key: formKey,
+              child: new Padding(
+          padding: const EdgeInsets.only(
+              left: 16.0, top: 30.0, right: 16.0, bottom: 16.0),
+          child: ListView(
+            children: <Widget>[
+              Center(
+                  child: Text(
+                "SIGN UP",
+                style: TextStyle(fontSize: 30),
+              )),
+              new ListTile(
+                title: Card(
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                        icon: Icon(
+                          Icons.person,
+                        ),
+                        labelText: "First Name  ",
+                        hintText: " First Name ",
+                        border: InputBorder.none),
+                    controller: _firstnameController,
                   
-                  decoration: InputDecoration(
-                      icon: new IconButton(
-                          icon: Icon(
-                            Icons.remove_red_eye,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              _isSecured = !_isSecured;
-                            });
-                          }),
-                      labelText: "Password  ",
-                      hintText: "Password ",
-                      border: InputBorder.none),
-                      validator: (val)=>val.length<8?'Password must be 8 characters long':null,
-                onChanged: (val){
-                   setState(()=>password=val);
-                } ,
-                  controller: _passwordController,
+                  ),
+                  
                 ),
               ),
-            ),
-            // SizedBox(
-            //   height: 20.0,
-            // ),
-            new RaisedButton(
-              child: Text("Back"),
-              onPressed: () {
-                Navigator.of(context).pop();
-                //_UpdateData(widget.idUser, _nom.text, _pseudo.text, _prenom.text, _numTel.text);
-              },
-            ),
-            new RaisedButton(
-              child: Text("Register"),
-              onPressed: () {
-                _addData();
-              },
-            ),
-          ],
+              new ListTile(
+                title: Card(
+                  child: TextField(
+                    decoration: InputDecoration(
+                        icon: Icon(
+                          Icons.person,
+                        ),
+                        labelText: "Last Name ",
+                        hintText: " Last Name ",
+                        border: InputBorder.none),
+                    controller: _lastnameController,
+                  ),
+                ),
+              ),
+            
+              new ListTile(
+                title: Card(
+                  child: TextField(
+                    controller: _genderController,
+                    decoration: InputDecoration(
+                      suffixIcon: PopupMenuButton<String>(
+                        icon: const Icon(Icons.arrow_drop_down),
+                        onSelected: (String value) {
+                          _genderController.text = value;
+                        },
+                        itemBuilder: (BuildContext context) {
+                          return gender
+                              .map<PopupMenuItem<String>>((String value) {
+                            return new PopupMenuItem(
+                                child: new Text(value), value: value);
+                          }).toList();
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              new ListTile(
+                title: Card(
+                  child: TextField(
+                    decoration: InputDecoration(
+                        icon: Icon(
+                          Icons.phone,
+                        ),
+                        labelText: "Contact Number ",
+                        hintText: " Contact Number ",
+                        border: InputBorder.none),
+                    controller: _contactController,
+                  ),
+                ),
+              ),
+              new ListTile(
+                title: Card(
+                  child: TextField(
+                    decoration: InputDecoration(
+                        icon: Icon(
+                          Icons.home,
+                        ),
+                        labelText: "Address  ",
+                        hintText: " Address ",
+                        border: InputBorder.none),
+                    controller: _addressController,
+                  ),
+                ),
+              ),
+             
+              new ListTile(
+                title: Card(
+                  child: TextField(
+                    controller: _bloodtypeController,
+                    decoration: InputDecoration(
+                      suffixIcon: PopupMenuButton<String>(
+                        icon: const Icon(Icons.arrow_drop_down),
+                        onSelected: (String value) {
+                          _bloodtypeController.text = value;
+                        },
+                        itemBuilder: (BuildContext context) {
+                          return bloodtype
+                              .map<PopupMenuItem<String>>((String value) {
+                            return new PopupMenuItem(
+                                child: new Text(value), value: value);
+                          }).toList();
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+             
+
+              new ListTile(
+                title: Card(
+                  child: TextField(
+                    decoration: InputDecoration(
+                        icon: Icon(
+                          Icons.person,
+                        ),
+                        labelText: "UserName  ",
+                        hintText: " User Name ",
+                        border: InputBorder.none),
+                    controller: _usernameController,
+                  ),
+                ),
+              ),
+              new ListTile(
+                title: Card(
+                  child: TextFormField(
+                    obscureText: true,
+                    
+                    decoration: InputDecoration(
+                        icon: new IconButton(
+                            icon: Icon(
+                              Icons.remove_red_eye,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _isSecured = !_isSecured;
+                              });
+                            }),
+                        labelText: "Password  ",
+                        hintText: "Password ",
+                        border: InputBorder.none),
+                        validator: (val)=>val.length<8?'Password must be 8 characters long':null,
+                  onChanged: (val){
+                     setState(()=>password=val);
+                  } ,
+                    controller: _passwordController,
+                  ),
+                ),
+              ),
+              // SizedBox(
+              //   height: 20.0,
+              // ),
+              new RaisedButton(
+                child: Text("Back"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                  //_UpdateData(widget.idUser, _nom.text, _pseudo.text, _prenom.text, _numTel.text);
+                },
+              ),
+              new RaisedButton(
+                child: Text("Register"),
+                onPressed: () {
+                if(formKey.currentState.validate()){
+                  _addData();
+                }else{
+                  error='Please Input the blank spaces';
+                }
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
