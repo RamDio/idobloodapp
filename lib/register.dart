@@ -221,8 +221,8 @@ class _RegisterState extends State<Register> {
                 ),
               ),
               new ListTile(
-                title: Card(
-                  child: TextFormField(
+            
+                  title: TextFormField(
                     obscureText: true,
                     
                     decoration: InputDecoration(
@@ -244,8 +244,9 @@ class _RegisterState extends State<Register> {
                   } ,
                     controller: _passwordController,
                   ),
-                ),
+             
               ),
+              SizedBox(height: 20.0),
               // SizedBox(
               //   height: 20.0,
               // ),
