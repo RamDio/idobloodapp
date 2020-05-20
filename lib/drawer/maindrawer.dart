@@ -63,7 +63,7 @@ class MainDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context).pop();
               Navigator.of(context).push(
-                  MaterialPageRoute(builder: (BuildContext context) => Home()));
+                  MaterialPageRoute(builder: (BuildContext context) => Events()));
             },
           ),
           new Divider(
@@ -82,7 +82,7 @@ class MainDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context).pop();
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => BloodInfo()));
+                  builder: (BuildContext context) => Events()));
             },
           ),
           ListTile(
@@ -97,19 +97,19 @@ class MainDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context).pop();
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => Events()));
+                  builder: (BuildContext context) => Home()));
             },
           ),
           ListTile(
             leading: Icon(FontAwesomeIcons.trophy, color: Colors.blue),
-            title: Text("Blood Benefits Info",
+            title: Text("Donation Benefits and Blood Info",
                 style: TextStyle(
                   fontSize: 18,
                 )),
             onTap: () {
               Navigator.of(context).pop();
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => Rewards()));
+                  builder: (BuildContext context) => BloodInfo()));
             },
           ),
         ],

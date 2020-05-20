@@ -122,6 +122,11 @@ class _RegisterState extends State<Register> {
                           ),
                         ),
                       ),
+                       validator: (val) =>
+                          val.isEmpty ? 'Enter your lastname' : null,
+                      onChanged: (val) {
+                        setState(() => firstname = val);
+                      },
                       controller: _firstnameController,
                     ),
                   ),

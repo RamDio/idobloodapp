@@ -56,6 +56,8 @@ flutter:
   - asset/rlogo.png
   - asset/llogo.png
   - asset/login.png
+  - asset/rewards.png
+  - asset/history.png
 
 
 flutter_icons:

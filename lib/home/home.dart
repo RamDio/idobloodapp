@@ -28,6 +28,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Color.fromRGBO(244, 13, 48, 1),
       appBar: AppBar(
         elevation: 0.0,
@@ -51,6 +52,7 @@ class Home extends StatelessWidget {
       body: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
+        
           children: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -115,7 +117,7 @@ class Home extends StatelessWidget {
             Expanded(
               child: Container(
                 width: double.infinity,
-                margin: EdgeInsets.only(top: 15),
+                margin: EdgeInsets.only(top: 0),
                 decoration: BoxDecoration(
                   color: Colors.white,
                 ),
@@ -161,49 +163,72 @@ class Home extends StatelessWidget {
               ),
             ),
             Center(
-              child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: SizedBox(
-                      height: 50.0,
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => Rewards()));
-                        },
-                        child: Card(
-                          elevation: 10,
-                          child: Center(
-                              child: Text(
-                            "Rewards",
-                            style: TextStyle(fontSize: 20.0),
-                          )),
+              child: Padding(
+                padding: const EdgeInsets.only(top:1.0),
+                child: Column(
+                  children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: SizedBox(
+                        height: 60.0,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) => Rewards()));
+                          },
+                          child: Card(
+                            elevation: 10,
+                            child: Center(
+                                child: Row(
+                              children: <Widget>[
+                                new Image.asset(
+                                  'asset/rewards.png',
+                                  width: 50.0,
+                                  height: 50.0,
+                                  fit: BoxFit.cover,
+                                ),
+                                Text(
+                                  "Rewards",
+                                  style: TextStyle(fontSize: 20.0),
+                                ),
+                              ],
+                            )),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10.0),
-                    child: SizedBox(
-                      height: 50.0,
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => Rewards()));
-                        },
-                        child: Card(
-                          elevation: 10,
-                          child: Center(
-                              child: Text(
-                            "Donation History",
-                            style: TextStyle(fontSize: 20.0),
-                          )),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: SizedBox(
+                        height: 60.0,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) => Rewards()));
+                          },
+                          child: Card(
+                            elevation: 10,
+                            child: Center(
+                                child: Row(
+                              children: <Widget>[
+                                new Image.asset(
+                                  'asset/history.png',
+                                  width: 50.0,
+                                  height: 50.0,
+                                  fit: BoxFit.cover,
+                                ),
+                                Text(
+                                  "Donation History",
+                                  style: TextStyle(fontSize: 20.0),
+                                ),
+                              ],
+                            )),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ]),
