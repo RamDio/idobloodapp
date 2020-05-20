@@ -2,7 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:idobloodapp/home/home.dart';
+<<<<<<< HEAD
 import 'loading/loading.dart';
+=======
+
+>>>>>>> register edited 1
 import 'login.dart';
 import 'dart:async';
 import 'package:http/http.dart' as http;
@@ -17,6 +21,14 @@ class _RegisterState extends State<Register> {
   final formKey = new GlobalKey<FormState>();
 
   String error = '';
+<<<<<<< HEAD
+=======
+  String firstname = '';
+  String lastname = '';
+  String contact = '';
+  String address = '';
+  String username = '';
+>>>>>>> register edited 1
   String password = '';
   var _isSecured = true;
   void onCreatedAccount() {
@@ -89,11 +101,9 @@ class _RegisterState extends State<Register> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-         decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('assets/peso.jpg'),
-            fit: BoxFit.cover )
-        ),
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/peso.jpg'), fit: BoxFit.cover)),
         child: Form(
           key: formKey,
           child: new Padding(
@@ -114,19 +124,37 @@ class _RegisterState extends State<Register> {
                         ),
                         labelText: "First Name  ",
                         hintText: " First Name ",
-                        border: InputBorder.none),
+                       fillColor: Colors.white,
+                    border: new OutlineInputBorder(
+                      borderRadius: new BorderRadius.circular(25.0),
+                      borderSide: new BorderSide(
+                        color: Colors.pink,
+                      ),
+                    ),),
                     controller: _firstnameController,
                   ),
                 ),
 
                 TextFormField(
                   decoration: InputDecoration(
-                      icon: Icon(
-                        Icons.person,
+                    icon: Icon(
+                      Icons.person,
+                    ),
+                    labelText: "Last Name ",
+                    hintText: " Last Name ",
+                    fillColor: Colors.white,
+                    border: new OutlineInputBorder(
+                      borderRadius: new BorderRadius.circular(25.0),
+                      borderSide: new BorderSide(
+                        color: Colors.pink,
                       ),
-                      labelText: "Last Name ",
-                      hintText: " Last Name ",
-                      border: InputBorder.none),
+                    ),
+                  ),
+                  validator: (val) =>
+                      val.isEmpty ? 'Enter your lastname' : null,
+                  onChanged: (val) {
+                    setState(() => lastname = val);
+                  },
                   controller: _lastnameController,
                 ),
 
@@ -139,34 +167,67 @@ class _RegisterState extends State<Register> {
                         _genderController.text = value;
                       },
                       itemBuilder: (BuildContext context) {
-                        return gender.map<PopupMenuItem<String>>((String value) {
+                        return gender
+                            .map<PopupMenuItem<String>>((String value) {
                           return new PopupMenuItem(
                               child: new Text(value), value: value);
                         }).toList();
                       },
+                    ),
+                    fillColor: Colors.white,
+                    border: new OutlineInputBorder(
+                      borderRadius: new BorderRadius.circular(25.0),
+                      borderSide: new BorderSide(
+                        color: Colors.pink,
+                      ),
                     ),
                   ),
                 ),
 
                 TextFormField(
                   decoration: InputDecoration(
-                      icon: Icon(
-                        Icons.phone,
+                    icon: Icon(
+                      Icons.phone,
+                    ),
+                    labelText: "Contact Number ",
+                    hintText: " Contact Number ",
+                    fillColor: Colors.white,
+                    border: new OutlineInputBorder(
+                      borderRadius: new BorderRadius.circular(25.0),
+                      borderSide: new BorderSide(
+                        color: Colors.pink,
                       ),
-                      labelText: "Contact Number ",
-                      hintText: " Contact Number ",
-                      border: InputBorder.none),
+                    ),
+                  ),
+                  keyboardType: TextInputType.number,
+                  validator: (val) => val.length < 11
+                      ? 'Enter 11 digits'
+                      : val.isEmpty ? 'Enter number' : null,
+                  onChanged: (val) {
+                    setState(() => contact = val);
+                  },
                   controller: _contactController,
                 ),
 
                 TextFormField(
                   decoration: InputDecoration(
-                      icon: Icon(
-                        Icons.home,
+                    icon: Icon(
+                      Icons.home,
+                    ),
+                    labelText: "Address  ",
+                    hintText: " Address ",
+                    fillColor: Colors.white,
+                    border: new OutlineInputBorder(
+                      borderRadius: new BorderRadius.circular(25.0),
+                      borderSide: new BorderSide(
+                        color: Colors.pink,
                       ),
-                      labelText: "Address  ",
-                      hintText: " Address ",
-                      border: InputBorder.none),
+                    ),
+                  ),
+                  validator: (val) => val.isEmpty ? 'Enter Address' : null,
+                  onChanged: (val) {
+                    setState(() => address = val);
+                  },
                   controller: _addressController,
                 ),
 
@@ -186,38 +247,63 @@ class _RegisterState extends State<Register> {
                         }).toList();
                       },
                     ),
+                    fillColor: Colors.white,
+                    border: new OutlineInputBorder(
+                      borderRadius: new BorderRadius.circular(25.0),
+                      borderSide: new BorderSide(
+                        color: Colors.pink,
+                      ),
+                    ),
                   ),
                 ),
 
                 TextFormField(
                   decoration: InputDecoration(
-                      icon: Icon(
-                        Icons.person,
+                    icon: Icon(
+                      Icons.person,
+                    ),
+                    labelText: "UserName  ",
+                    hintText: " User Name ",
+                    fillColor: Colors.white,
+                    border: new OutlineInputBorder(
+                      borderRadius: new BorderRadius.circular(25.0),
+                      borderSide: new BorderSide(
+                        color: Colors.pink,
                       ),
-                      labelText: "UserName  ",
-                      hintText: " User Name ",
-                      border: InputBorder.none),
+                    ),
+                  ),
+                  validator: (val) => val.isEmpty ? 'Enter Username' : null,
+                  onChanged: (val) {
+                    setState(() => username = val);
+                  },
                   controller: _usernameController,
                 ),
 
                 TextFormField(
                   obscureText: true,
                   decoration: InputDecoration(
-                      icon: new IconButton(
-                          icon: Icon(
-                            Icons.remove_red_eye,
-                          ),
-                          onPressed: () {
-                            setState(() {
-                              _isSecured = !_isSecured;
-                            });
-                          }),
-                      labelText: "Password  ",
-                      hintText: "Password ",
-                      border: InputBorder.none),
+                    labelText: "Password  ",
+                    hintText: "Password ",
+                    fillColor: Colors.white,
+                    border: new OutlineInputBorder(
+                      borderRadius: new BorderRadius.circular(25.0),
+                      borderSide: new BorderSide(
+                        color: Colors.pink,
+                      ),
+                    ),
+                    icon: new IconButton(
+                        icon: Icon(
+                          Icons.remove_red_eye,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _isSecured = !_isSecured;
+                          });
+                        }),
+                  ),
                   validator: (val) => val.length < 8
                       ? 'Password must be 8 characters long'
-                      : null,
+                      : val.isEmpty ? 'Enter password' : null,
                   onChanged: (val) {
                     setState(() => password = val);
                   },
