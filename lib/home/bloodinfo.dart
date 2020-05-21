@@ -26,7 +26,7 @@ class _BloodInfoState extends State<BloodInfo> {
         elevation: 0.0,
         backgroundColor: Color.fromRGBO(244, 13, 48, 1),
         title: Text(
-          "Blood Type Info",
+          "Blood Information",
           style: TextStyle(color: Colors.black),
         ),
       ),
@@ -37,13 +37,12 @@ class _BloodInfoState extends State<BloodInfo> {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(left: 0.0, top: 80.0),
-              child: Row(
+              child: Column(
                 children: <Widget>[
                   Padding(
-                    padding: const EdgeInsets.only(left: 30.0),
+                    padding: const EdgeInsets.only(left: 0.0),
                     child: SizedBox(
-                      height: 120.0,
-                      width: 120.0,
+                      height: 70.0,
                       child: GestureDetector(
                         onTap: () {
                         
@@ -53,19 +52,28 @@ class _BloodInfoState extends State<BloodInfo> {
                         child: Card(
                           elevation: 10,
                           child: Center(
-                              child: Text(
-                            "A",
-                            style: TextStyle(fontSize: 50.0),
-                          )),
+                              child: Row(
+                                children: <Widget>[
+                                   new Image.asset(
+                                  'asset/rewards.png',
+                                  width: 50.0,
+                                  height: 50.0,
+                                  fit: BoxFit.cover,
+                                ),
+                                  Text(
+                            "What Is Blood?",
+                            style: TextStyle(fontSize: 30.0),
+                          ),
+                                ],
+                              )),
                         ),
                       ),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 30.0),
+                    padding: const EdgeInsets.only(left: 0.0),
                     child: SizedBox(
-                      height: 120.0,
-                      width: 120.0,
+                     height: 70.0,
                       child: GestureDetector(
                         onTap: () {
                    
@@ -76,25 +84,17 @@ class _BloodInfoState extends State<BloodInfo> {
                           elevation: 10,
                           child: Center(
                               child: Text(
-                            "B",
-                            style: TextStyle(fontSize: 50.0),
+                            "Blood Fact",
+                            style: TextStyle(fontSize: 30.0),
                           )),
                         ),
                       ),
                     ),
                   ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 0.0, top: 20.0),
-              child: Row(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(left: 30.0),
+                   Padding(
+                    padding: const EdgeInsets.only(left: 0.0),
                     child: SizedBox(
-                      height: 120.0,
-                      width: 120.0,
+                      height: 70.0,
                       child: GestureDetector(
                         onTap: () {
                   
@@ -105,18 +105,17 @@ class _BloodInfoState extends State<BloodInfo> {
                           elevation: 10,
                           child: Center(
                               child: Text(
-                            "O",
-                            style: TextStyle(fontSize: 50.0),
+                            "Blood Types",
+                            style: TextStyle(fontSize: 30.0),
                           )),
                         ),
                       ),
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 30.0),
+                    padding: const EdgeInsets.only(left: 0.0),
                     child: SizedBox(
-                      height: 120.0,
-                      width: 120.0,
+                     height: 70.0,
                       child: GestureDetector(
                         onTap: () {
              
@@ -127,8 +126,8 @@ class _BloodInfoState extends State<BloodInfo> {
                           elevation: 10,
                           child: Center(
                               child: Text(
-                            "AB",
-                            style: TextStyle(fontSize: 50.0),
+                            "Benefits of Blood Donation",
+                            style: TextStyle(fontSize: 25.0),
                           )),
                         ),
                       ),
@@ -137,6 +136,7 @@ class _BloodInfoState extends State<BloodInfo> {
                 ],
               ),
             ),
+      
           ]),
     );
   }

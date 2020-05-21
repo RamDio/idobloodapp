@@ -58,7 +58,8 @@ flutter:
   - asset/login.png
   - asset/rewards.png
   - asset/history.png
-
+  - asset/bloodfacts.jpg
+  - asset/drop.png
 
 flutter_icons:
   android: true
