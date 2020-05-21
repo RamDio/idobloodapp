@@ -31,113 +31,141 @@ class _BloodInfoState extends State<BloodInfo> {
         ),
       ),
       drawer: MainDrawer(),
-      body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(left: 0.0, top: 80.0),
-              child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(left: 0.0),
-                    child: SizedBox(
-                      height: 70.0,
-                      child: GestureDetector(
-                        onTap: () {
-                        
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => A()));
-                        },
-                        child: Card(
-                          elevation: 10,
-                          child: Center(
-                              child: Row(
+      body: ListView(
+        children: <Widget>[
+          Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(left: 0.0, top: 80.0),
+                  child: Column(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.only(left: 0.0),
+                        child: SizedBox(
+                          height: 120.0,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (BuildContext context) => A()));
+                            },
+                            child: Card(
+                              elevation: 10,
+                              child: Center(
+                                  child: Row(
                                 children: <Widget>[
-                                   new Image.asset(
-                                  'asset/rewards.png',
-                                  width: 50.0,
-                                  height: 50.0,
-                                  fit: BoxFit.cover,
-                                ),
+                                  new Image.asset(
+                                    'asset/drop.png',
+                                    width: 70.0,
+                                    height: 120.0,
+                                    fit: BoxFit.cover,
+                                  ),
                                   Text(
-                            "What Is Blood?",
-                            style: TextStyle(fontSize: 30.0),
-                          ),
+                                    "What Is Blood?",
+                                    style: TextStyle(fontSize: 30.0),
+                                  ),
                                 ],
                               )),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 0.0),
-                    child: SizedBox(
-                     height: 70.0,
-                      child: GestureDetector(
-                        onTap: () {
-                   
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => B()));
-                        },
-                        child: Card(
-                          elevation: 10,
-                          child: Center(
-                              child: Text(
-                            "Blood Fact",
-                            style: TextStyle(fontSize: 30.0),
-                          )),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 0.0),
+                        child: SizedBox(
+                          height: 120.0,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (BuildContext context) => B()));
+                            },
+                            child: Card(
+                              elevation: 10,
+                              child: Row(
+                                children: <Widget>[
+                                  new Image.asset(
+                                    'asset/bloodfacts.jpg',
+                                    width: 80.0,
+                                    height: 120.0,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  Text(
+                                    "Blood Fact",
+                                    style: TextStyle(fontSize: 30.0),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                   Padding(
-                    padding: const EdgeInsets.only(left: 0.0),
-                    child: SizedBox(
-                      height: 70.0,
-                      child: GestureDetector(
-                        onTap: () {
-                  
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => O()));
-                        },
-                        child: Card(
-                          elevation: 10,
-                          child: Center(
-                              child: Text(
-                            "Blood Types",
-                            style: TextStyle(fontSize: 30.0),
-                          )),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 0.0),
+                        child: SizedBox(
+                          height: 120.0,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (BuildContext context) => O()));
+                            },
+                            child: Card(
+                              elevation: 10,
+                              child: Center(
+                                  child: Row(
+                                    children: <Widget>[
+                                      new Image.asset(
+                                    'asset/bloodtype.jpg',
+                                    width: 80.0,
+                                    height: 120.0,
+                                    fit: BoxFit.cover,
+                                  ),
+                                      Text(
+                                "Blood Types",
+                                style: TextStyle(fontSize: 30.0),
+                              ),
+                                    ],
+                                  )),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 0.0),
-                    child: SizedBox(
-                     height: 70.0,
-                      child: GestureDetector(
-                        onTap: () {
-             
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => AB()));
-                        },
-                        child: Card(
-                          elevation: 10,
-                          child: Center(
-                              child: Text(
-                            "Benefits of Blood Donation",
-                            style: TextStyle(fontSize: 25.0),
-                          )),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 0.0),
+                        child: SizedBox(
+                          height: 120.0,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (BuildContext context) => AB()));
+                            },
+                            child: Card(
+                              elevation: 10,
+                              child: Center(
+                                  child: Row(
+                                    children: <Widget>[
+                                        new Image.asset(
+                                    'asset/blooddonation.png',
+                                    width: 80.0,
+                                    height: 120.0,
+                                    fit: BoxFit.cover,
+                                  ),
+                                      Text(
+                                "Benefits of Blood ""\n""Donation",
+                                style: TextStyle(fontSize: 25.0),
+                              ),
+                                    ],
+                                  )),
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-      
-          ]),
+                ),
+              ]),
+        ],
+      ),
     );
   }
 }

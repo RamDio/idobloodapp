@@ -60,6 +60,8 @@ flutter:
   - asset/history.png
   - asset/bloodfacts.jpg
   - asset/drop.png
+  - asset/bloodtype.jpg
+  - asset/blooddonation.png
 
 flutter_icons:
   android: true
