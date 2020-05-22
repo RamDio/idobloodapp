@@ -6,17 +6,21 @@ class A extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       backgroundColor: Color.fromRGBO(244, 13, 48, 1),
-      appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: Color.fromRGBO(244, 13, 48, 1),
-        title: Text(
-          "Blood Type A",
-          style: TextStyle(color: Colors.black),
-        ),
-        
-
-      ),
+       body: new Container(
+         constraints:new BoxConstraints.expand(),
+         color: new Color(0xFF736AB7),
+         child:new Stack(
+           children: <Widget>[
+           new Container(
+             child: new Image.asset("name",
+              fit:BoxFit.cover,
+              height: 300.0,
+             ),
+            
+             )
+           ],)
+       ),
+     
       
     );
   }
