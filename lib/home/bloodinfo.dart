@@ -27,8 +27,8 @@ class _BloodInfoState extends State<BloodInfo> {
         elevation: 0.0,
         backgroundColor: Color.fromRGBO(244, 13, 48, 1),
         title: Text(
-          "Blood Information",
-          style: TextStyle(color: Colors.black),
+          "Blood Awareness",
+          style: TextStyle(color: Colors.white),
         ),
       ),
       drawer: MainDrawer(),
