@@ -62,6 +62,7 @@ flutter:
   - asset/drop.png
   - asset/bloodtype.jpg
   - asset/blooddonation.png
+  - asset/bladrap.png
 
 flutter_icons:
   android: true
