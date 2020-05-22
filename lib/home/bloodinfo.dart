@@ -39,11 +39,11 @@ class _BloodInfoState extends State<BloodInfo> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Padding(
-                  padding: const EdgeInsets.only(left: 0.0, top: 80.0),
+                  padding: const EdgeInsets.only(left: 0.0, top: 50.0),
                   child: Column(
                     children: <Widget>[
                       Padding(
-                        padding: const EdgeInsets.only(left: 0.0),
+                        padding: const EdgeInsets.only(left: 30.0,right:30.0),
                         child: SizedBox(
                           height: 120.0,
                           child: GestureDetector(
@@ -58,14 +58,14 @@ class _BloodInfoState extends State<BloodInfo> {
                                   child: Row(
                                 children: <Widget>[
                                   new Image.asset(
-                                    'asset/drop.png',
-                                    width: 70.0,
+                                    'asset/bladrap.png',
+                                    width: 80.0,
                                     height: 120.0,
                                     fit: BoxFit.cover,
                                   ),
                                   Text(
                                     "What Is Blood?",
-                                    style: TextStyle(fontSize: 30.0,color: Colors.white,fontWeight: FontWeight.w800),
+                                    style: TextStyle(fontSize: 25.0,color: Colors.white,fontWeight: FontWeight.w800),
                                   ),
                                 ],
                               )),
@@ -74,7 +74,7 @@ class _BloodInfoState extends State<BloodInfo> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 0.0),
+                        padding: const EdgeInsets.only(left: 30.0,right:30.0),
                         child: SizedBox(
                           height: 120.0,
                           child: GestureDetector(
@@ -95,7 +95,7 @@ class _BloodInfoState extends State<BloodInfo> {
                                   ),
                                   Text(
                                     "Blood Fact",
-                                    style: TextStyle(fontSize: 30.0,color: Colors.white,fontWeight: FontWeight.w800),
+                                    style: TextStyle(fontSize:25.0,color: Colors.white,fontWeight: FontWeight.w800),
                                   ),
                                 ],
                               ),
@@ -104,7 +104,7 @@ class _BloodInfoState extends State<BloodInfo> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 0.0),
+                        padding: const EdgeInsets.only(left: 30.0,right:30.0),
                         child: SizedBox(
                           height: 120.0,
                           child: GestureDetector(
@@ -126,7 +126,7 @@ class _BloodInfoState extends State<BloodInfo> {
                                   ),
                                       Text(
                                 "Blood Types",
-                                style: TextStyle(fontSize: 30.0,color: Colors.white,fontWeight: FontWeight.w800),
+                                style: TextStyle(fontSize: 25.0,color: Colors.white,fontWeight: FontWeight.w800),
                               ),
                                     ],
                                   )),
@@ -135,7 +135,7 @@ class _BloodInfoState extends State<BloodInfo> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 0.0),
+                        padding: const EdgeInsets.only(left: 30.0,right:30.0),
                         child: SizedBox(
                           height: 120.0,
                           child: GestureDetector(
@@ -157,7 +157,7 @@ class _BloodInfoState extends State<BloodInfo> {
                                   ),
                                       Text(
                                 "Benefits of Blood ""\n""Donation",
-                                style: TextStyle(fontSize: 25.0,color: Colors.white,fontWeight: FontWeight.w800),
+                                style: TextStyle(fontSize: 20.0,color: Colors.white,fontWeight: FontWeight.w800),
                               ),
                                     ],
                                   )),
