@@ -18,6 +18,7 @@ class BloodInfo extends StatefulWidget {
 }
 
 class _BloodInfoState extends State<BloodInfo> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,6 +52,7 @@ class _BloodInfoState extends State<BloodInfo> {
                                   builder: (BuildContext context) => A()));
                             },
                             child: Card(
+                              color:Color(0xff98aad7),
                               elevation: 10,
                               child: Center(
                                   child: Row(
@@ -63,7 +65,7 @@ class _BloodInfoState extends State<BloodInfo> {
                                   ),
                                   Text(
                                     "What Is Blood?",
-                                    style: TextStyle(fontSize: 30.0),
+                                    style: TextStyle(fontSize: 30.0,color: Colors.white,fontWeight: FontWeight.w800),
                                   ),
                                 ],
                               )),
@@ -81,6 +83,7 @@ class _BloodInfoState extends State<BloodInfo> {
                                   builder: (BuildContext context) => B()));
                             },
                             child: Card(
+                              color:Color(0xff697fbf),
                               elevation: 10,
                               child: Row(
                                 children: <Widget>[
@@ -92,7 +95,7 @@ class _BloodInfoState extends State<BloodInfo> {
                                   ),
                                   Text(
                                     "Blood Fact",
-                                    style: TextStyle(fontSize: 30.0),
+                                    style: TextStyle(fontSize: 30.0,color: Colors.white,fontWeight: FontWeight.w800),
                                   ),
                                 ],
                               ),
@@ -110,6 +113,7 @@ class _BloodInfoState extends State<BloodInfo> {
                                   builder: (BuildContext context) => O()));
                             },
                             child: Card(
+                              color:Color(0xfffbaa19),
                               elevation: 10,
                               child: Center(
                                   child: Row(
@@ -122,7 +126,7 @@ class _BloodInfoState extends State<BloodInfo> {
                                   ),
                                       Text(
                                 "Blood Types",
-                                style: TextStyle(fontSize: 30.0),
+                                style: TextStyle(fontSize: 30.0,color: Colors.white,fontWeight: FontWeight.w800),
                               ),
                                     ],
                                   )),
@@ -140,6 +144,7 @@ class _BloodInfoState extends State<BloodInfo> {
                                   builder: (BuildContext context) => AB()));
                             },
                             child: Card(
+                              color:Color(0xffe98324),
                               elevation: 10,
                               child: Center(
                                   child: Row(
@@ -152,7 +157,7 @@ class _BloodInfoState extends State<BloodInfo> {
                                   ),
                                       Text(
                                 "Benefits of Blood ""\n""Donation",
-                                style: TextStyle(fontSize: 25.0),
+                                style: TextStyle(fontSize: 25.0,color: Colors.white,fontWeight: FontWeight.w800),
                               ),
                                     ],
                                   )),
