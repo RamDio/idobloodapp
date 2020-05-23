@@ -11,6 +11,7 @@ class A extends StatelessWidget {
           color: new Color(0xFF736AB7),
           child: new Stack(
             children: <Widget>[
+            
               new Container(
                 child: new Image.asset(
                   "asset/blhad.jpg",
@@ -51,7 +52,8 @@ class A extends StatelessWidget {
                                       color: Colors.white,
                                       fontSize: 50,
                                       fontWeight: FontWeight.bold)),
-                              new Text("is a body fluid in humans and other animals that delivers necessary substances such as nutrients and oxygen to the cells and transports metabolic waste products away from those same cells. In vertebrates, it is composed of blood cells suspended in blood plasma ", style: TextStyle(fontSize: 20,color:Colors.white))
+                              new Text("is a body fluid in humans and other animals that delivers necessary substances such as nutrients and oxygen to the cells and transports metabolic waste products away from those same cells. In vertebrates, it is composed of blood cells suspended in blood plasma ", style: TextStyle(fontSize: 20,color:Colors.white),),
+                               
                             ],
                           ),
                         ),
@@ -59,9 +61,25 @@ class A extends StatelessWidget {
                     ),
                   ),
                 ],
-              )
+              ),
+               _getToolbar(context),
             ],
           )),
     );
   }
 }
+
+
+
+
+                    
+ Container _getToolbar(BuildContext context) {
+    return new Container(
+            margin: new EdgeInsets.only(
+                top: MediaQuery
+                    .of(context)
+                    .padding
+                    .top),
+            child: new BackButton(color: Colors.white),
+          );
+  }
