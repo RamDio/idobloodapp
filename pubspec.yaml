@@ -64,6 +64,11 @@ flutter:
   - asset/blooddonation.png
   - asset/bladrap.png
   - asset/blhad.jpg
+  - asset/vlhad.jpg
+  - asset/facts.jpg
+  - asset/o.jpg
+  - asset/bg.jpg
+  - asset/bd.png
 
 flutter_icons:
   android: true
