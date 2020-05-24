@@ -61,7 +61,7 @@ class A extends StatelessWidget {
                                 child: new Text("Blood Components",
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 50,
+                                        fontSize: 30,
                                         fontWeight: FontWeight.bold)),
                               ),
                               Padding(
@@ -74,7 +74,7 @@ class A extends StatelessWidget {
                                 child: new Text("Red Blood Cells",
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 50,
+                                        fontSize: 30,
                                         fontWeight: FontWeight.bold)),
                               ),
                               Padding(
@@ -87,7 +87,7 @@ class A extends StatelessWidget {
                                 child: new Text("Platelets",
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 50,
+                                        fontSize: 30,
                                         fontWeight: FontWeight.bold)),
                               ),
                               Padding(
@@ -99,7 +99,7 @@ class A extends StatelessWidget {
                                 child: new Text("Plasma",
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 50,
+                                        fontSize: 30,
                                         fontWeight: FontWeight.bold)),
                               ),
                               Padding(
@@ -112,7 +112,7 @@ class A extends StatelessWidget {
                                 child: new Text("White Blood Cells",
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 50,
+                                        fontSize: 30,
                                         fontWeight: FontWeight.bold)),
                               ),
                               Padding(
