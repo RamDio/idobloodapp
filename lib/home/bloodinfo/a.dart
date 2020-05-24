@@ -52,8 +52,75 @@ class A extends StatelessWidget {
                                       color: Colors.white,
                                       fontSize: 50,
                                       fontWeight: FontWeight.bold)),
-                              new Text("is a body fluid in humans and other animals that delivers necessary substances such as nutrients and oxygen to the cells and transports metabolic waste products away from those same cells. In vertebrates, it is composed of blood cells suspended in blood plasma ", style: TextStyle(fontSize: 20,color:Colors.white),),
-                               
+                              Padding(
+                                padding: const EdgeInsets.only(top:18.0),
+                                child: new Text(blood, style: TextStyle(fontSize: 20,color:Colors.white),),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top:30.0),
+                                child: new Text("Blood Components",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 50,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top:18.0),
+                                child: new Text(blood2, style: TextStyle(fontSize: 20,color:Colors.white),),
+                              ),
+
+                              Padding(
+                                padding: const EdgeInsets.only(top:30.0),
+                                child: new Text("Red Blood Cells",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 50,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top:18.0),
+                                child: new Text(blood3, style: TextStyle(fontSize: 20,color:Colors.white),),
+                              ),
+
+                              Padding(
+                                padding: const EdgeInsets.only(top:30.0),
+                                child: new Text("Platelets",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 50,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top:18.0),
+                                child: new Text(blood4, style: TextStyle(fontSize: 20,color:Colors.white),),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top:30.0),
+                                child: new Text("Plasma",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 50,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top:18.0),
+                                child: new Text(blood5, style: TextStyle(fontSize: 20,color:Colors.white),),
+                              ),
+
+                              Padding(
+                                padding: const EdgeInsets.only(top:30.0),
+                                child: new Text("White Blood Cells",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 50,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top:18.0),
+                                child: new Text(blood6, style: TextStyle(fontSize: 20,color:Colors.white),),
+                              ),
+                              
+                              
                             ],
                           ),
                         ),
@@ -83,3 +150,23 @@ class A extends StatelessWidget {
             child: new BackButton(color: Colors.white),
           );
   }
+
+  String blood="is a body fluid in humans and other"
+  " animals that delivers necessary substances such"
+  " as nutrients and oxygen to the cells and transports"
+  " metabolic waste products away from those same cells. "
+  "In vertebrates, it is composed of blood cells suspended in blood plasma."
+  " There is no substitute for blood. It cannot be made or manufactured."
+  " Generous blood donors are the only source of blood for patients in need of a blood transfusion.";
+
+  String blood2="There are four basic components that comprise human blood: plasma, red blood cells, white blood cells and platelets.";
+   String blood3="Red blood cells represent 40%-45% of your blood volume. They are generated from your bone marrow at a rate of four "
+                "to five billion per hour. They have a lifecycle of about 120 days in the body.";
+ String blood4="Platelets are an amazing part of your blood. Platelets are the smallest of our blood cells and literally look like small"
+ " plates in their non-active form. Platelets control bleeding. Wherever a wound occurs, the blood vessel will send out a signal."
+ "";
+ String blood5="Plasma is the liquid portion of your blood. Plasma is yellowish in color and is made up mostly of water, but it also"
+ " contains proteins, sugars, hormones and salts. It transports water and nutrients to your body’s tissues.";
+ String blood6="Although white blood cells (leukocytes) only account for about 1% of your blood, they are very important. White blood"
+ " cells are essential for good health and protection against illness and disease."
+ "They flow through the bloodstream and attack foreign bodies, like viruses and bacteria.";
