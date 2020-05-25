@@ -77,6 +77,11 @@ class B extends StatelessWidget {
                                 padding: const EdgeInsets.only(top:20.0),
                                 child: new Text(trivia7, style: TextStyle(fontSize: 20,color:Colors.white),),
                               ),
+                               Padding(
+                                padding: const EdgeInsets.only(top:20.0),
+                                child: new Text(trivia8, style: TextStyle(fontSize: 20,color:Colors.white),),
+                              ),
+                            
                             
                                
                             ],
@@ -107,13 +112,28 @@ class B extends StatelessWidget {
 
 
 
-  String trivia1="There are 150 Billion red blood cells in one ounce of blood.";
-  String trivia2="There are 2.4 Trillion red blood cells in one pint of blood.";
-  String trivia3="The human body manufactures 17 million red blood cells per"
+  String trivia1="•There are 150 Billion red blood cells in one ounce of blood.";
+  String trivia2="•There are 2.4 Trillion red blood cells in one pint of blood.";
+  String trivia3="•The human body manufactures 17 million red blood cells per"
                   " second. If stress precipitates a need the body can produce up to 7 times "
                   "that amount. (That’s up to 119 million red blood cells per second.)";
-  String trivia4="A red blood cell is around 7 microns in size. (A micron is one millionth of a meter).";
-  String trivia5="It only takes 20 to 60 seconds for a drop of blood to travel from the heart, through your body, and back to the heart again.";
-  String trivia6="Cows have 800 (and possibly more) blood types.";
-  String trivia7="All blood isn’t red. Crabs have blue blood. Earthworms and leeches have green blood."
+  String trivia4="•A red blood cell is around 7 microns in size. (A micron is one millionth of a meter).";
+  String trivia5="•It only takes 20 to 60 seconds for a drop of blood to travel from the heart, through your body, and back to the heart again.";
+  String trivia6="•Cows have 800 (and possibly more) blood types.";
+  String trivia7="•All blood isn’t red. Crabs have blue blood. Earthworms and leeches have green blood."
                   " Many invertebrates, such as starfish, have clear or yellowish blood.";
+  String trivia8="•	Apheresis is a special kind of blood donation that allows a donor to give specific blood components, such as platelets.\n"
+"\n"
+"•	42 days: how long most donated red blood cells can be stored.\n"
+"\n"
+"•	Five days: how long most donated platelets can be stored.\n"
+"\n"
+
+
+"•	One year: how long frozen plasma can be stored.\n"
+"\n"
+"•	Much of today’s medical care depends on a steady supply of blood from healthy donors.\n"
+"\n"
+"•	2.7 pints: the average whole blood and red blood cell transfusion.\n"
+"\n"
+"•	Children being treated for cancer, premature infants and children having heart surgery need blood and platelets from donors of all types, especially type O.\n";
