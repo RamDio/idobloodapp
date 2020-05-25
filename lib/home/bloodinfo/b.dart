@@ -48,12 +48,36 @@ class B extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 200.0),
                           child: Column(
                             children: <Widget>[
-                              new Text("BLOOD",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 50,
-                                      fontWeight: FontWeight.bold)),
-                              new Text("is a body fluid in humans and other animals that delivers necessary substances such as nutrients and oxygen to the cells and transports metabolic waste products away from those same cells. In vertebrates, it is composed of blood cells suspended in blood plasma ", style: TextStyle(fontSize: 20,color:Colors.white),),
+                              
+                              Padding(
+                                padding: const EdgeInsets.only(top:20.0),
+                                child: new Text(trivia1, style: TextStyle(fontSize: 20,color:Colors.white),),
+                              ),
+                               Padding(
+                                padding: const EdgeInsets.only(top:20.0),
+                                child: new Text(trivia2, style: TextStyle(fontSize: 20,color:Colors.white),),
+                              ),
+                               Padding(
+                                padding: const EdgeInsets.only(top:20.0),
+                                child: new Text(trivia3, style: TextStyle(fontSize: 20,color:Colors.white),),
+                              ),
+                               Padding(
+                                padding: const EdgeInsets.only(top:20.0),
+                                child: new Text(trivia4, style: TextStyle(fontSize: 20,color:Colors.white),),
+                              ),
+                               Padding(
+                                padding: const EdgeInsets.only(top:20.0),
+                                child: new Text(trivia5, style: TextStyle(fontSize: 20,color:Colors.white),),
+                              ),
+                               Padding(
+                                padding: const EdgeInsets.only(top:20.0),
+                                child: new Text(trivia6, style: TextStyle(fontSize: 20,color:Colors.white),),
+                              ),
+                               Padding(
+                                padding: const EdgeInsets.only(top:20.0),
+                                child: new Text(trivia7, style: TextStyle(fontSize: 20,color:Colors.white),),
+                              ),
+                            
                                
                             ],
                           ),
@@ -80,3 +104,16 @@ class B extends StatelessWidget {
             child: new BackButton(color: Colors.white),
           );
   }
+
+
+
+  String trivia1="There are 150 Billion red blood cells in one ounce of blood.";
+  String trivia2="There are 2.4 Trillion red blood cells in one pint of blood.";
+  String trivia3="The human body manufactures 17 million red blood cells per"
+                  " second. If stress precipitates a need the body can produce up to 7 times "
+                  "that amount. (That’s up to 119 million red blood cells per second.)";
+  String trivia4="A red blood cell is around 7 microns in size. (A micron is one millionth of a meter).";
+  String trivia5="It only takes 20 to 60 seconds for a drop of blood to travel from the heart, through your body, and back to the heart again.";
+  String trivia6="Cows have 800 (and possibly more) blood types.";
+  String trivia7="All blood isn’t red. Crabs have blue blood. Earthworms and leeches have green blood."
+                  " Many invertebrates, such as starfish, have clear or yellowish blood.";
