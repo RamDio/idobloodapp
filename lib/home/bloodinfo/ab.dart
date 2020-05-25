@@ -13,14 +13,14 @@ class AB extends StatelessWidget {
           child: new Stack(
             children: <Widget>[
             
-              new Container(
-                child: new Image.asset(
-                  "asset/bd.png",
-                  fit: BoxFit.cover,
-                  height: 300.0,
-                ),
-                constraints: new BoxConstraints.expand(height: 300.0),
-              ),
+              // new Container(
+              //   child: new Image.asset(
+              //     "asset/bd.png",
+              //     fit: BoxFit.cover,
+              //     height: 300.0,
+              //   ),
+              //   constraints: new BoxConstraints.expand(height: 300.0),
+              // ),
               new Container(
                 margin: new EdgeInsets.only(top: 190.0),
                 height: 110.0,
@@ -45,15 +45,22 @@ class AB extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.only(top: 200.0),
+                          padding: const EdgeInsets.only(top: 100.0),
                           child: Column(
                             children: <Widget>[
-                              new Text("BLOOD",
+                              new Text("The Benefits of Donating Blood",
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 50,
+                                      fontSize: 35,
                                       fontWeight: FontWeight.bold)),
-                              new Text("is a body fluid in humans and other animals that delivers necessary substances such as nutrients and oxygen to the cells and transports metabolic waste products away from those same cells. In vertebrates, it is composed of blood cells suspended in blood plasma ", style: TextStyle(fontSize: 20,color:Colors.white),),
+                              Padding(
+                                padding: const EdgeInsets.only(top:18.0),
+                                child: new Text(benefit, style: TextStyle(fontSize: 20,color:Colors.white),),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top:18.0),
+                                child: new Text(benefit2, style: TextStyle(fontSize: 20,color:Colors.white),),
+                              ),
                                
                             ],
                           ),
@@ -81,3 +88,11 @@ class AB extends StatelessWidget {
             child: new BackButton(color: Colors.white),
           );
   }
+
+  String benefit="According to the American Red Cross, one donation "
+  "can save as many as three lives. It turns out that donating blood doesn’t "
+  "just benefit recipients. There are health benefits for donors too, on "
+  "top of the benefits that come from helping others. ";
+
+  String benefit2="Donating blood has benefits for your emotional and physical health."
+  " According to a report by the Mental Health Foundation, helping others can:";
