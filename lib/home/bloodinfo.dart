@@ -5,11 +5,12 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:idobloodapp/home/bloodinfo/blood.dart';
+import 'package:idobloodapp/home/bloodinfo/blooddonation.dart';
+import 'package:idobloodapp/home/bloodinfo/bloodtype.dart';
 import '../drawer/maindrawer.dart';
-import 'bloodinfo/a.dart';
-import 'bloodinfo/ab.dart';
-import 'bloodinfo/b.dart';
-import 'bloodinfo/o.dart';
+
+import 'bloodinfo/bloodfact.dart';
 import 'updateprofile.dart';
 
 class BloodInfo extends StatefulWidget {
@@ -49,7 +50,7 @@ class _BloodInfoState extends State<BloodInfo> {
                           child: GestureDetector(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (BuildContext context) => A()));
+                                  builder: (BuildContext context) => Blood()));
                             },
                             child: Card(
                               color:Color(0xff98aad7),
@@ -80,7 +81,7 @@ class _BloodInfoState extends State<BloodInfo> {
                           child: GestureDetector(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (BuildContext context) => B()));
+                                  builder: (BuildContext context) => Bloodfact()));
                             },
                             child: Card(
                               color:Color(0xff697fbf),
@@ -110,7 +111,7 @@ class _BloodInfoState extends State<BloodInfo> {
                           child: GestureDetector(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (BuildContext context) => O()));
+                                  builder: (BuildContext context) => Bloodtype()));
                             },
                             child: Card(
                               color:Color(0xfffbaa19),
@@ -141,7 +142,7 @@ class _BloodInfoState extends State<BloodInfo> {
                           child: GestureDetector(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (BuildContext context) => AB()));
+                                  builder: (BuildContext context) => Blooddonation()));
                             },
                             child: Card(
                               color:Color(0xffe98324),
