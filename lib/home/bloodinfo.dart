@@ -22,7 +22,7 @@ class _BloodInfoState extends State<BloodInfo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(244, 13, 48, 1),
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Color.fromRGBO(244, 13, 48, 1),
