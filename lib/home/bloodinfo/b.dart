@@ -14,12 +14,12 @@ class B extends StatelessWidget {
             children: <Widget>[
             
               new Container(
-                child: new Image.asset(
-                  "asset/facts.jpg",
-                  fit: BoxFit.contain,
-                  height: 300.0,
-                ),
-                constraints: new BoxConstraints.expand(height: 300.0),
+                // child: new Image.asset(
+                //   "asset/facts.jpg",
+                //   fit: BoxFit.contain,
+                //   height: 300.0,
+                // ),
+                // constraints: new BoxConstraints.expand(height: 300.0),
               ),
               new Container(
                 margin: new EdgeInsets.only(top: 190.0),
@@ -45,9 +45,15 @@ class B extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.only(top: 200.0),
+                          padding: const EdgeInsets.only(top: 10.0),
                           child: Column(
                             children: <Widget>[
+                              Image.asset(
+                  "asset/facts.jpg",
+                  fit: BoxFit.contain,
+                  height: 300.0,
+                ),
+                
                               
                               Padding(
                                 padding: const EdgeInsets.only(top:20.0),
