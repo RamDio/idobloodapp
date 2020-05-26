@@ -61,6 +61,14 @@ class AB extends StatelessWidget {
                                 padding: const EdgeInsets.only(top:18.0),
                                 child: new Text(benefit2, style: TextStyle(fontSize: 20,color:Colors.white),),
                               ),
+                              Padding(
+                                padding: const EdgeInsets.only(top:18.0),
+                                child: new Text(benefit3, style: TextStyle(fontSize: 20,color:Colors.white),),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(top:18.0),
+                                child: new Text(benefit4, style: TextStyle(fontSize: 20,color:Colors.white),),
+                              ),
                                
                             ],
                           ),
@@ -96,3 +104,24 @@ class AB extends StatelessWidget {
 
   String benefit2="Donating blood has benefits for your emotional and physical health."
   " According to a report by the Mental Health Foundation, helping others can:";
+
+  String benefit3="•reduce stress\n"
+  "\n"
+"•	improve your emotional well-being\n"
+"\n"
+"•	benefit your physical health\n"
+"\n"
+"•	help get rid of negative feelings\n"
+"\n"
+"•	provide a sense of belonging and reduce isolation\n";
+
+String benefit4="•	reduced risk of hemochromatosis. Hemochromatosis is a health "
+"condition that arises due to excess absorption of iron by the body. This may be "
+"inherited or may be caused due to alcoholism, anemia or other disorders. Regular blood donation may help in reducing iron overload.\n"
+"•	Blood donation helps in lowering the risk of cancer. By donating blood the"
+" iron stores in the body are maintained at healthy levels. A reduction in the iron level in the body is linked with low cancer risk. \n"
+"•	Blood donation helps in maintaining the iron levels and reduces the risk of various health ailments.\n"
+"•	Regular blood donation reduces the weight of the donors. This is helpful"
+" to those who are obese and are at higher risk of cardiovascular diseases and other health disorders.\n"
+"•	After donating blood, the body works to replenish the blood loss.\n "
+"This stimulates the production of new blood cells and in turn, helps in maintaining good health.";
