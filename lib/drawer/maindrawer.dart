@@ -32,25 +32,27 @@ class MainDrawer extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: <Widget>[
           DrawerHeader(
-            decoration: BoxDecoration(color: Colors.red),
+            decoration: BoxDecoration
+            (
+                gradient: LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      stops: [0.1, 0.3, 0.7, 1],
+      colors: [Colors.green, Colors.blue, Colors.orange, Colors.pink])
+            ),
             child: Stack(
               children: <Widget>[
                 Align(
-                  alignment: Alignment.centerLeft,
-                  child: CircleAvatar(
-                    radius: 50,
-                    backgroundImage: 
-                    AssetImage('asset/kitty.jpeg'),
-                  ),
+                  alignment: Alignment.center,
+                  // child: CircleAvatar(
+                  //   radius: 50,
+                  //   backgroundImage: 
+                  //   AssetImage('asset/kitty.jpeg'),
+                  // ),
+                  child: Image.asset("asset/rlogo.png"),
                 ),
-                Align(
-                    alignment: Alignment.centerRight,
-                    child: Text("",
-                        style: TextStyle(color: Colors.white, fontSize: 20.0))),
-                Align(
-                    alignment: Alignment.centerRight + Alignment(0, .4),
-                    child: Text('hb123',
-                        style: TextStyle(color: Colors.white, fontSize: 18.0))),
+               
+               
               ],
             ),
           ),

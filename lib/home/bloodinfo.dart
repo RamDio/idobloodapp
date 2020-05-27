@@ -46,13 +46,16 @@ class _BloodInfoState extends State<BloodInfo> {
                       Padding(
                         padding: const EdgeInsets.only(left: 30.0,right:30.0),
                         child: SizedBox(
+                          
                           height: 120.0,
                           child: GestureDetector(
+                            
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (BuildContext context) => Blood()));
                             },
                             child: Card(
+                           
                               color:Color(0xff98aad7),
                               elevation: 10,
                               child: Center(
@@ -162,6 +165,27 @@ class _BloodInfoState extends State<BloodInfo> {
                               ),
                                     ],
                                   )),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 30.0,right:30.0),
+                        child: SizedBox(
+                          height: 120.0,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (BuildContext context) => Blooddonation()));
+                            },
+                            child: Container(
+                              decoration:BoxDecoration(
+                                gradient: LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      stops: [0.1, 0.3, 0.7, 1],
+      colors: [Color(0xff98aad7), Color(0xff697fbf), Color(0xfffbaa19), Color(0xffe98324)])
+                              )
                             ),
                           ),
                         ),
