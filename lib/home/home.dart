@@ -4,7 +4,7 @@ import 'package:idobloodapp/drawer/maindrawer.dart';
 
 import 'rewards.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   var idUser,
       username,
       firstname,
@@ -26,212 +26,222 @@ class Home extends StatelessWidget {
       : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Color.fromRGBO(244, 13, 48, 1),
-      appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: Color.fromRGBO(244, 13, 48, 1),
-        title: Text(
-          "",
-          style: TextStyle(color: Colors.black),
-        ),
+  _HomeState createState() => _HomeState();
+}
 
-        actions: <Widget>[
-          FlatButton.icon(
-            icon: Icon(FontAwesomeIcons.signOutAlt),
-            label: Text('LOGOUT'),
-            onPressed: () async {
-              // await _auth.signOut();
-            },
-          )
-        ], //remove drop shadow
-      ),
-      drawer: MainDrawer(),
-      body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-        
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(left: 100.0, top: 7.0),
-                  child: Row(
-                    children: <Widget>[
-                      CircleAvatar(
-                        radius: 50,
-                        backgroundImage: AssetImage("asset/kitty.jpeg"),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 28.0),
-                        child: Row(
-                          children: <Widget>[
-                            Text("$bloodtype",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 28.0,
-                                    color: Colors.white)),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 100.0),
-              child: Row(
-                // crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Column(
-                    children: <Widget>[
-                      Text("$firstname $lastname",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 28.0,
-                              color: Colors.white)),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 100.0),
-              child: Row(
-                children: <Widget>[
-                  Text(
-                    "@ $username",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 28.0,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Container(
-                width: double.infinity,
-                margin: EdgeInsets.only(top: 0),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 18.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Icon(
-                            Icons.person,
-                            size: 40,
-                            color: Color.fromRGBO(244, 13, 48, 1),
-                          ),
-                          Text("$gender", style: TextStyle(fontSize: 40)),
-                        ],
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Icon(
-                            Icons.contact_phone,
-                            size: 40,
-                            color: Color.fromRGBO(244, 13, 48, 1),
-                          ),
-                          Text("$contact", style: TextStyle(fontSize: 40)),
-                        ],
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Icon(
-                            Icons.location_city,
-                            size: 40,
-                            color: Color.fromRGBO(244, 13, 48, 1),
-                          ),
-                          Text("$address", style: TextStyle(fontSize: 40)),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.only(top:1.0),
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
-                      child: SizedBox(
-                        height: 60.0,
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (BuildContext context) => Rewards()));
-                          },
-                          child: Card(
-                            elevation: 10,
-                            child: Center(
-                                child: Row(
-                              children: <Widget>[
-                                new Image.asset(
-                                  'asset/rewards.png',
-                                  width: 50.0,
-                                  height: 50.0,
-                                  fit: BoxFit.cover,
-                                ),
-                                Text(
-                                  "Rewards",
-                                  style: TextStyle(fontSize: 20.0),
-                                ),
-                              ],
-                            )),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0),
-                      child: SizedBox(
-                        height: 60.0,
-                        child: GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (BuildContext context) => Rewards()));
-                          },
-                          child: Card(
-                            elevation: 10,
-                            child: Center(
-                                child: Row(
-                              children: <Widget>[
-                                new Image.asset(
-                                  'asset/history.png',
-                                  width: 50.0,
-                                  height: 50.0,
-                                  fit: BoxFit.cover,
-                                ),
-                                Text(
-                                  "Donation History",
-                                  style: TextStyle(fontSize: 20.0),
-                                ),
-                              ],
-                            )),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ]),
+class _HomeState extends State<Home> {
+  Widget _fullname() {
+    TextStyle _nametextstyle = TextStyle(
+      fontFamily: 'Roboto',
+      color: Colors.black,
+      fontSize: 28.0,
+      fontWeight: FontWeight.w700,
+    );
+
+    return Text(
+      "firstname lastname",
+      style: _nametextstyle,
     );
   }
+
+  Widget _username(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 6.0),
+      decoration: BoxDecoration(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        borderRadius: BorderRadius.circular(4.0),
+      ),
+      child: Text(
+        "username",
+        style: TextStyle(
+            fontFamily: 'Spectral',
+            color: Colors.black,
+            fontSize: 20.0,
+            fontWeight: FontWeight.w300),
+      ),
+    );
+  }
+
+  Widget _separator(Size screenSize) {
+    return Container(
+      width: screenSize.width ,
+      height: 2.0,
+      color: Colors.black54,
+      margin: EdgeInsets.only(top: 4.0),
+    );
+  }
+
+ 
+
+  Widget _info(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      padding: EdgeInsets.only(top: 18.0),
+      child: Column(
+        children: <Widget>[
+          Text("gender",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20.0,
+              )),
+          Text("contact",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20.0,
+              )),
+          Text("address",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20.0,
+              )),
+          Text("bloodtype",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20.0,
+              )),
+        ],
+      ),
+    );
+  }
+
+  // Widget _statContainer(){
+  //   TextStyle statlabeltextStyle = TextStyle(
+  //   fontFamily: 'Roboto',
+  //   color: Colors.black,
+  //   fontSize: 16.0,
+  //   fontWeight: FontWeight.w200,
+  // );
+  // TextStyle statcounttextStyle = TextStyle(
+  //   fontFamily: 'Roboto',
+  //   color: Colors.black,
+  //   fontSize: 24.0,
+  //   fontWeight: FontWeight.bold,
+  // );
+  // }
+  @override
+  Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
+    return Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          elevation: 0.0,
+          backgroundColor: Colors.red,
+          title: Text(
+            "",
+            style: TextStyle(color: Colors.black),
+          ),
+
+          actions: <Widget>[
+            FlatButton.icon(
+              icon: Icon(FontAwesomeIcons.signOutAlt),
+              label: Text('LOGOUT'),
+              onPressed: () async {
+                // await _auth.signOut();
+              },
+            )
+          ], //remove drop shadow
+        ),
+        drawer: MainDrawer(),
+        body: Stack(
+          children: <Widget>[
+            _coverimage(screenSize),
+            SafeArea(
+                child: SingleChildScrollView(
+              child: Column(children: <Widget>[
+                SizedBox(
+                  height: screenSize.height / 14.4,
+                ),
+                _profileimage(),
+                _fullname(),
+                _username(context),
+                _separator(screenSize),
+                _info(context),
+                _buttons(context),
+              ]),
+            ))
+          ],
+        ));
+  }
+}
+
+Widget _coverimage(Size screenSize) {
+  return Container(
+    height: screenSize.height / 5.6,
+    decoration: BoxDecoration(
+      color: Colors.red,
+    ),
+  );
+}
+
+Widget _profileimage() {
+  return Center(
+    child: Container(
+      width: 140.0,
+      height: 140.0,
+      decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("asset/kitty.jpeg"),
+            fit: BoxFit.cover,
+          ),
+          borderRadius: BorderRadius.circular(80.0),
+          border: Border.all(color: Colors.white, width: 10.0)),
+    ),
+  );
+}
+
+Widget _buttons(BuildContext context){
+  return Padding(padding: EdgeInsets.symmetric(
+    vertical: 40.0,horizontal:16.0
+  ),
+  child: Row(children: <Widget>[
+    Expanded(child: InkWell(onTap:(){
+      Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) => Rewards()));
+    } ,
+    child: Container(
+      height:40.0,
+      decoration:BoxDecoration(
+        border: Border.all(),
+        color: Color(0xFF404A5C)
+      ),
+      child: Center(
+        child: Text("REWARDS",
+        style: TextStyle(
+          color:Colors.white,
+          fontWeight:FontWeight.w600,
+        ),
+        ),
+      ),
+    ),
+    ),
+    ),
+    SizedBox(width: 10.0,),
+    Expanded(child: InkWell(onTap:(){
+      Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) => Rewards()));
+    } ,
+    child: Container(
+      height:40.0,
+      decoration:BoxDecoration(
+        border: Border.all(),
+       
+      ),
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Text("Donation History",
+          style: TextStyle(
+            
+            fontWeight:FontWeight.w600,
+          ),
+          ),
+        ),
+      ),
+    ),
+    ),
+    ),
+    SizedBox(width: 10.0,)
+  ],),
+  );
 }
