@@ -9,6 +9,8 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert'
 ;
+
+import '../home/profile.dart';
 class MainDrawer extends StatelessWidget {
 
    
@@ -84,7 +86,7 @@ class MainDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context).pop();
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => Events()));
+                  builder: (BuildContext context) => Profile()));
             },
           ),
           ListTile(

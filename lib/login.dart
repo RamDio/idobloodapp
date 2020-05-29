@@ -6,9 +6,19 @@ import 'package:idobloodapp/drawer/mainmenu.dart';
 
 import 'package:idobloodapp/home/home.dart';
 import 'package:idobloodapp/register.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'loading/loading.dart';
+import 'registration.dart';
 
+
+Future<void> main() async {
+      WidgetsFlutterBinding.ensureInitialized();
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      var username = prefs.getString('username');
+      print(username);
+      runApp(MaterialApp(home: username == null ? Login() : Home()));
+    }
 class Login extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
@@ -157,8 +167,10 @@ class _LoginState extends State<Login> {
         color: Theme.of(context).accentColor,
         elevation: 8.0,
         splashColor: Colors.blueGrey,
-        onPressed: () {
+        onPressed: () async{
           // setState(() => loading = true);
+           SharedPreferences prefs = await SharedPreferences.getInstance();
+          prefs.setString('username', '$username');
           getLogin(_pseudoController.text);
           VerifData(_pseudoController.text, _passwordController.text, data);
         },

@@ -1,261 +1,180 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-import 'package:http/http.dart' as http;
-// import 'package:http_parser/http_parser.dart' as http;
-import 'dart:async';
-import 'dart:convert';
 
-class Profile extends StatefulWidget {
-  final idUser;
-  Profile({Key key, this.idUser}) : super(key: key);
+import 'package:idobloodapp/drawer/maindrawer.dart';
 
-  @override
-  _ProfileState createState() => _ProfileState();
-}
-
-class _ProfileState extends State<Profile> { List data;
-  var _isLoading = false;
-
-
-  String firstname,lastname,gender,address,bloodtype,username;
-  int contact;
-  // String user_name = "userName ",
-  //     first_name = "FirstName ",
-  //     last_name = "LastName ",
-  //     gender = "Gender ";
-
-  
-  Future<String> getLogin(String id) async {
-    var response = await http.get(
-        Uri.encodeFull(
-            "https://astringent-dents.000webhostapp.com/EConstat/FlutterTraining/ConsultProfile.php?ID=" +
-                id +
-                ""),
-        headers: {"Accept": "application/json"});
-
-    setState(() {
-      _isLoading = true;
-      var convertDataToJson = json.decode(response.body);
-      data = convertDataToJson['result'];
-      if (data != null) {
-        firstname = data[0]['first_name'];
-        lastname = data[0]['last_name'];
-        gender = data[0]['gender'];
-        contact=data[0]['contact'];
-        address=data[0]['address'];
-        bloodtype=data[0]['address'];
-        username = data[0]['username'];
-        
-      }
-    });
-    print(data);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    setState(() {
-      getLogin(widget.idUser);
-    });
-  }
-
-  _launchURL() async {
-    const url = 'tel:27181132';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not make Call';
-    }
-  }
+class Profile extends StatelessWidget {
+  var idUser,
+      username,
+      firstname,
+      lastname,
+      gender,
+      contact,
+      address,
+      bloodtype;
+  Profile(
+      {Key key,
+      this.idUser,
+      this.firstname,
+      this.lastname,
+      this.username,
+      this.gender,
+      this.contact,
+      this.address,
+      this.bloodtype})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    {
-      return new Scaffold(
-        appBar: AppBar(
-          title: Text(" Menu"),
-          actions: <Widget>[
-            new IconButton(
-                icon: new Icon(Icons.call),
-                onPressed: () {
-                  _launchURL();
-                }),
-
-            // action button
-            new IconButton(
-              icon: new Icon(Icons.map),
-              onPressed: () {},
-            ),
-          ],
+    return Scaffold(
+      backgroundColor: Color.fromRGBO(244, 13, 48, 1),
+      appBar: AppBar(
+        elevation: 0.0,
+        backgroundColor: Color.fromRGBO(244, 13, 48, 1),
+        title: Text(
+          "",
+          style: TextStyle(color: Colors.black),
         ),
-        body: !_isLoading
-            ? new CircularProgressIndicator()
-            : new Container(
-                child: new Center(
-                  child: Card(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Row(
+
+        actions: <Widget>[
+          // FlatButton.icon(
+          //   icon: Icon(FontAwesomeIcons.signOutAlt),
+          //   label: Text('LOGOUT'),
+          //   onPressed: () async {
+          //     // await _auth.signOut();
+          //   },
+          // )
+        ], //remove drop shadow
+      ),
+      drawer: MainDrawer(),
+      body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(left: 100.0, top: 7.0),
+                  child: Row(
+                    children: <Widget>[
+                      CircleAvatar(
+                        radius: 50,
+                        backgroundImage: AssetImage("asset/kitty.jpeg"),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 28.0),
+                        child: Row(
                           children: <Widget>[
-                            new Container(
-                              width: 60.0,
-                              height: 60.0,
-                              child: new CircleAvatar(
-                                minRadius: 50.0,
-                                backgroundColor: Colors.blue.shade50,
-                                child: new Text(gender),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 5.0,
-                            ),
-                            Text(
-                              username,
-                              style: TextStyle(fontSize: 20.0),
-                            )
+                            Text("$bloodtype",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 28.0,
+                                    color: Colors.white)),
                           ],
                         ),
-                        SizedBox(
-                          height: 20.0,
-                        ),
-                        new Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  Text(
-                                    "User Name : ",
-                                    style: TextStyle(fontSize: 24.0),
-                                  ),
-                                  SizedBox(
-                                    width: 5.0,
-                                  ),
-                                  Text(
-                                    username,
-                                    style: TextStyle(fontSize: 20.0),
-                                  )
-                                ],
-                              ),
-                              Row(
-                                children: <Widget>[
-                                  Text(
-                                    "Last Name : ",
-                                    style: TextStyle(fontSize: 24.0),
-                                  ),
-                                  SizedBox(
-                                    width: 5.0,
-                                  ),
-                                  Text(
-                                    lastname,
-                                    style: TextStyle(fontSize: 20.0),
-                                  )
-                                ],
-                              ),
-                              Row(
-                                children: <Widget>[
-                                  Text(
-                                    "First Name : ",
-                                    style: TextStyle(fontSize: 24.0),
-                                  ),
-                                  SizedBox(
-                                    width: 5.0,
-                                  ),
-                                  Text(
-                                    firstname,
-                                    style: TextStyle(fontSize: 20.0),
-                                  )
-                                ],
-                              ),
-                              Row(
-                                children: <Widget>[
-                                  Text(
-                                    "Gender : ",
-                                    style: TextStyle(fontSize: 24.0),
-                                  ),
-                                  SizedBox(
-                                    width: 5.0,
-                                  ),
-                                  Text(
-                                    gender,
-                                    style: TextStyle(fontSize: 20.0),
-                                  )
-                                ],
-                              ),
-                               Row(
-                                children: <Widget>[
-                                  Text(
-                                    "Contact : ",
-                                    style: TextStyle(fontSize: 24.0),
-                                  ),
-                                  SizedBox(
-                                    width: 5.0,
-                                  ),
-                                  Text(
-                                    contact.toString(),
-                                    style: TextStyle(fontSize: 20.0),
-                                  )
-                                ],
-                              ),
-                               Row(
-                                children: <Widget>[
-                                  Text(
-                                    "Address : ",
-                                    style: TextStyle(fontSize: 24.0),
-                                  ),
-                                  SizedBox(
-                                    width: 5.0,
-                                  ),
-                                  Text(
-                                    address,
-                                    style: TextStyle(fontSize: 20.0),
-                                  )
-                                ],
-                              ),
-                               Row(
-                                children: <Widget>[
-                                  Text(
-                                    "Bloodtype : ",
-                                    style: TextStyle(fontSize: 24.0),
-                                  ),
-                                  SizedBox(
-                                    width: 5.0,
-                                  ),
-                                  Text(
-                                    bloodtype,
-                                    style: TextStyle(fontSize: 20.0),
-                                  )
-                                ],
-                              ),
-                            ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 100.0),
+              child: Row(
+                // crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Expanded(
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          "$firstname $lastname",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 28.0,
+                            color: Colors.white,
                           ),
+                          overflow: TextOverflow.ellipsis,
                         ),
-                        // new ButtonTheme.bar(
-                        //   // make buttons use the appropriate styles for cards
-                        //   child: new ButtonBar(
-                        //     children: <Widget>[
-                        //       new FlatButton(
-                        //         child: const Text('Update'),
-                        //         onPressed: () {
-                        //           var route = new MaterialPageRoute(
-                        //             builder: (BuildContext context) =>
-                        //                 new Update(
-                        //                   idUser: widget.idUser,
-                        //                 ),
-                        //           );
-                        //           Navigator.of(context).push(route);
-                        //         },
-                        //       ),
-                        //     ],
-                        //   ),
-                        // ),
                       ],
                     ),
                   ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 100.0),
+              child: Row(
+                children: <Widget>[
+                  Text(
+                    "@ $username",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 28.0,
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Container(
+                width: double.infinity,
+                margin: EdgeInsets.only(top: 15),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 18.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Icon(
+                            Icons.person,
+                            size: 40,
+                            color: Color.fromRGBO(244, 13, 48, 1),
+                          ),
+                          Text(
+                            "$gender",
+                            style: TextStyle(fontSize: 40),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: <Widget>[
+                          Icon(
+                            Icons.contact_phone,
+                            size: 40,
+                            color: Color.fromRGBO(244, 13, 48, 1),
+                          ),
+                          Text("$contact", style: TextStyle(fontSize: 40)),
+                        ],
+                      ),
+                      Expanded(
+                        child: Row(
+                          children: <Widget>[
+                            Icon(
+                              Icons.location_city,
+                              size: 40,
+                              color: Color.fromRGBO(244, 13, 48, 1),
+                            ),
+                            Text(
+                              "$address",
+                              style: TextStyle(fontSize: 40),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-      );
-    }
+            ),
+          ]),
+    );
   }
 }

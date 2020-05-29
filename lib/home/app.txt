@@ -1,0 +1,436 @@
+import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:http/http.dart' as http;
+// import 'package:http_parser/http_parser.dart' as http;
+import 'dart:async';
+import 'dart:convert';
+
+
+class Donordata {
+ int donorID;
+ String firstname;
+ String lastname;
+ String gender;
+ int contact;
+ String address;
+ String bloodtype;
+ 
+ String username;
+ 
+  Donordata({
+    this.donorID,
+    this.firstname,
+    this.lastname,
+    this.gender,
+    this.address,
+    this.bloodtype,
+    this.contact,
+    this.username
+  });
+ 
+  factory Donordata.fromJson(Map<String, dynamic> json) {
+    return Donordata(
+      donorID: json['userid'],
+      firstname: json['firstname'],
+      lastname: json['lastname'],
+      gender: json['gender'],
+      contact: json['contact'],
+      address: json['address'],
+      bloodtype: json['address'],
+      username: json['address'],
+ 
+    );
+  }
+}
+
+class Profile extends StatefulWidget {
+  final idUser;
+  Profile({Key key, this.idUser}) : super(key: key);
+
+  @override
+  _ProfileState createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> { List data;
+  var _isLoading = false;
+
+
+  String firstname,lastname,gender,address,bloodtype,username;
+  int contact;
+  // String user_name = "userName ",
+  //     first_name = "FirstName ",
+  //     last_name = "LastName ",
+  //     gender = "Gender ";
+
+  // final String apiURL = 'https://idobloodadmin.000webhostapp.com/selectall.php?ID'+id+'';
+ 
+  Future<List<Donordata>> fetchStudents(String id) async {
+ 
+   
+    var response = await http.get(
+        Uri.encodeFull(
+            'https://idobloodadmin.000webhostapp.com/selectall.php?ID'+id+''),
+        headers: {"Accept": "application/json"});
+ 
+    if (response.statusCode == 200) {
+ 
+      final items = json.decode(response.body).cast<Map<String, dynamic>>();
+ 
+      List<Donordata> studentList = items.map<Donordata>((json) {
+        return Donordata.fromJson(json);
+      }).toList();
+ 
+      return studentList;
+      }
+     else {
+      throw Exception('Failed to load data from Server.');
+    }
+  }
+
+  var url = 'https://idobloodadmin.000webhostapp.com/userdata.php';
+ 
+  Future<List<Donordata>> fetchStudent(final idUser) async {
+ 
+    var data = {'userid': int.parse(idUser)};
+ 
+    var response = await http.post(url, body: json.encode(data));
+ 
+    if (response.statusCode == 200) {
+ 
+      print(response.statusCode);
+ 
+      final items = json.decode(response.body).cast<Map<String, dynamic>>();
+ 
+      List<Donordata> studentList = items.map<Donordata>((json) {
+        return Donordata.fromJson(json);
+      }).toList();
+ 
+      return studentList;
+      }
+     else {
+      throw Exception('Failed to load data from Server.');
+    }
+  }
+
+  
+  // Future<String> getLogin(String id) async {
+  //   var response = await http.get(
+  //       Uri.encodeFull(
+  //           "https://idobloodadmin.000webhostapp.com/consultprofile.php?ID=" +
+  //               id +
+  //               ""),
+  //       headers: {"Accept": "application/json"});
+
+  //   setState(() {
+  //     _isLoading = true;
+  //     var convertDataToJson = json.decode(response.body);
+  //     data = convertDataToJson['result'];
+  //     if (data != null) {
+  //       firstname = data[0]['first_name'];
+  //       lastname = data[0]['last_name'];
+  //       gender = data[0]['gender'];
+  //       contact=data[0]['contact'];
+  //       address=data[0]['address'];
+  //       bloodtype=data[0]['address'];
+  //       username = data[0]['username'];
+        
+  //     }
+  //   });
+  //   print(data);
+  // }
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      fetchStudent(widget.idUser);
+    });
+  }
+
+  _launchURL() async {
+    const url = 'tel:27181132';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not make Call';
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    
+  return FutureBuilder<List<Donordata>>(
+      future: fetchStudents(firstname),
+      builder: (context, snapshot) {
+ 
+      if (!snapshot.hasData) return Center(
+        child: CircularProgressIndicator()
+      );
+ 
+      return ListView(
+      children: snapshot.data
+      .map((data) => Column(children: <Widget>[
+      
+          Padding(
+          padding: EdgeInsets.fromLTRB(20, 5, 0, 5),
+          child: Text(data.firstname ,
+            style: TextStyle(fontSize: 21), 
+            textAlign: TextAlign.left)),
+          
+    
+ 
+      Divider(color: Colors.black),
+      ],))
+    .toList(),
+    );
+    },
+  );
+  }}
+
+  import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:idobloodapp/drawer/maindrawer.dart';
+
+import 'rewards.dart';
+
+class Home extends StatefulWidget {
+  final idUser,
+      username,
+      firstname,
+      lastname,
+      gender,
+      contact,
+      address,
+      bloodtype;
+  Home(
+      {Key key,
+      this.idUser,
+      this.firstname,
+      this.lastname,
+      this.username,
+      this.gender,
+      this.contact,
+      this.address,
+      this.bloodtype})
+      : super(key: key);
+
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  Widget _fullname() {
+    TextStyle _nametextstyle = TextStyle(
+      fontFamily: 'Roboto',
+      color: Colors.black,
+      fontSize: 28.0,
+      fontWeight: FontWeight.w700,
+    );
+
+    return Text(
+      "firstname lastname",
+      style: _nametextstyle,
+    );
+  }
+
+  Widget _username(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 4.0, horizontal: 6.0),
+      decoration: BoxDecoration(
+        color: Theme.of(context).scaffoldBackgroundColor,
+        borderRadius: BorderRadius.circular(4.0),
+      ),
+      child: Text(
+        "",
+        style: TextStyle(
+            fontFamily: 'Spectral',
+            color: Colors.black,
+            fontSize: 20.0,
+            fontWeight: FontWeight.w300),
+      ),
+    );
+  }
+
+  Widget _separator(Size screenSize) {
+    return Container(
+      width: screenSize.width ,
+      height: 2.0,
+      color: Colors.black54,
+      margin: EdgeInsets.only(top: 4.0),
+    );
+  }
+
+ 
+
+  Widget _info(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      padding: EdgeInsets.only(top: 18.0),
+      child: Column(
+        children: <Widget>[
+          Text("gender",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20.0,
+              )),
+          Text("contact",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20.0,
+              )),
+          Text("address",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20.0,
+              )),
+          Text("bloodtype",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20.0,
+              )),
+        ],
+      ),
+    );
+  }
+
+  // Widget _statContainer(){
+  //   TextStyle statlabeltextStyle = TextStyle(
+  //   fontFamily: 'Roboto',
+  //   color: Colors.black,
+  //   fontSize: 16.0,
+  //   fontWeight: FontWeight.w200,
+  // );
+  // TextStyle statcounttextStyle = TextStyle(
+  //   fontFamily: 'Roboto',
+  //   color: Colors.black,
+  //   fontSize: 24.0,
+  //   fontWeight: FontWeight.bold,
+  // );
+  // }
+  @override
+  Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
+    return Scaffold(
+        resizeToAvoidBottomInset: false,
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          elevation: 0.0,
+          backgroundColor: Colors.red,
+          title: Text(
+            "",
+            style: TextStyle(color: Colors.black),
+          ),
+
+          actions: <Widget>[
+            FlatButton.icon(
+              icon: Icon(FontAwesomeIcons.signOutAlt),
+              label: Text('LOGOUT'),
+              onPressed: () async {
+                // await _auth.signOut();
+              },
+            )
+          ], //remove drop shadow
+        ),
+        drawer: MainDrawer(),
+        body: Stack(
+          children: <Widget>[
+            _coverimage(screenSize),
+            SafeArea(
+                child: SingleChildScrollView(
+              child: Column(children: <Widget>[
+                SizedBox(
+                  height: screenSize.height / 14.4,
+                ),
+                _profileimage(),
+                _fullname(),
+                _username(context),
+                _separator(screenSize),
+                _info(context),
+                _buttons(context),
+              ]),
+            ))
+          ],
+        ));
+  }
+}
+
+Widget _coverimage(Size screenSize) {
+  return Container(
+    height: screenSize.height / 5.6,
+    decoration: BoxDecoration(
+      color: Colors.red,
+    ),
+  );
+}
+
+Widget _profileimage() {
+  return Center(
+    child: Container(
+      width: 140.0,
+      height: 140.0,
+      decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("asset/kitty.jpeg"),
+            fit: BoxFit.cover,
+          ),
+          borderRadius: BorderRadius.circular(80.0),
+          border: Border.all(color: Colors.white, width: 10.0)),
+    ),
+  );
+}
+
+Widget _buttons(BuildContext context){
+  return Padding(padding: EdgeInsets.symmetric(
+    vertical: 40.0,horizontal:16.0
+  ),
+  child: Row(children: <Widget>[
+    Expanded(child: InkWell(onTap:(){
+      Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) => Rewards()));
+    } ,
+    child: Container(
+      height:40.0,
+      decoration:BoxDecoration(
+        border: Border.all(),
+        color: Color(0xFF404A5C)
+      ),
+      child: Center(
+        child: Text("REWARDS",
+        style: TextStyle(
+          color:Colors.white,
+          fontWeight:FontWeight.w600,
+        ),
+        ),
+      ),
+    ),
+    ),
+    ),
+    SizedBox(width: 10.0,),
+    Expanded(child: InkWell(onTap:(){
+      Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) => Rewards()));
+    } ,
+    child: Container(
+      height:40.0,
+      decoration:BoxDecoration(
+        border: Border.all(),
+       
+      ),
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Text("Donation History",
+          style: TextStyle(
+            
+            fontWeight:FontWeight.w600,
+          ),
+          ),
+        ),
+      ),
+    ),
+    ),
+    ),
+    SizedBox(width: 10.0,)
+  ],),
+  );
+}
