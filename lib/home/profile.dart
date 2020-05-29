@@ -1,180 +1,60 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:idobloodapp/drawer/maindrawer.dart';
 
-class Profile extends StatelessWidget {
-  var idUser,
-      username,
-      firstname,
-      lastname,
-      gender,
-      contact,
-      address,
-      bloodtype;
-  Profile(
-      {Key key,
-      this.idUser,
-      this.firstname,
-      this.lastname,
-      this.username,
-      this.gender,
-      this.contact,
-      this.address,
-      this.bloodtype})
-      : super(key: key);
+import '../drawer/maindrawer.dart';
+
+class Profile extends StatefulWidget {
+  @override
+  _ProfileState createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+
+  Future<List> getData()async{
+    final response= await http.get("https://idobloodadmin.000webhostapp.com/fetchdata.php");
+  return json.decode(response.body);
+  
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(244, 13, 48, 1),
-      appBar: AppBar(
-        elevation: 0.0,
-        backgroundColor: Color.fromRGBO(244, 13, 48, 1),
-        title: Text(
-          "",
-          style: TextStyle(color: Colors.black),
-        ),
-
-        actions: <Widget>[
-          // FlatButton.icon(
-          //   icon: Icon(FontAwesomeIcons.signOutAlt),
-          //   label: Text('LOGOUT'),
-          //   onPressed: () async {
-          //     // await _auth.signOut();
-          //   },
-          // )
-        ], //remove drop shadow
-      ),
+      appBar: new AppBar(title: new Text("data"),),
       drawer: MainDrawer(),
-      body: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(left: 100.0, top: 7.0),
-                  child: Row(
-                    children: <Widget>[
-                      CircleAvatar(
-                        radius: 50,
-                        backgroundImage: AssetImage("asset/kitty.jpeg"),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 28.0),
-                        child: Row(
-                          children: <Widget>[
-                            Text("$bloodtype",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 28.0,
-                                    color: Colors.white)),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 100.0),
-              child: Row(
-                // crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Expanded(
-                    child: Column(
-                      children: <Widget>[
-                        Text(
-                          "$firstname $lastname",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 28.0,
-                            color: Colors.white,
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 100.0),
-              child: Row(
-                children: <Widget>[
-                  Text(
-                    "@ $username",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 28.0,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Container(
-                width: double.infinity,
-                margin: EdgeInsets.only(top: 15),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 18.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Row(
-                        children: <Widget>[
-                          Icon(
-                            Icons.person,
-                            size: 40,
-                            color: Color.fromRGBO(244, 13, 48, 1),
-                          ),
-                          Text(
-                            "$gender",
-                            style: TextStyle(fontSize: 40),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Icon(
-                            Icons.contact_phone,
-                            size: 40,
-                            color: Color.fromRGBO(244, 13, 48, 1),
-                          ),
-                          Text("$contact", style: TextStyle(fontSize: 40)),
-                        ],
-                      ),
-                      Expanded(
-                        child: Row(
-                          children: <Widget>[
-                            Icon(
-                              Icons.location_city,
-                              size: 40,
-                              color: Color.fromRGBO(244, 13, 48, 1),
-                            ),
-                            Text(
-                              "$address",
-                              style: TextStyle(fontSize: 40),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ]),
+
+      body: new FutureBuilder<List>(
+        future: getData(),
+        builder:(context, snapshot){
+          if(snapshot.hasError) print(snapshot.error);
+
+          return snapshot.hasData 
+          ? new ItemList()
+          :new Center(child: new CircularProgressIndicator(),);
+        }
+        ),
     );
+  }
+}
+
+class ItemList extends StatelessWidget {
+
+  final List list;
+  ItemList({this.list});
+
+  @override
+  Widget build(BuildContext context) {
+    return new ListView.builder(
+      itemCount: list==null ? 0 : list.length,
+      itemBuilder: (context,i){
+        return new ListTile(
+          title: new Text(list[i]['username'],style: TextStyle(color:Colors.black),),
+          subtitle: new Text("Name ${list[i]['firstname']}"),
+        )
+        ;
+      },
+      );
   }
 }
