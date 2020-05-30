@@ -9,6 +9,7 @@ import 'package:idobloodapp/register.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'loading/loading.dart';
+import 'registeruser.dart';
 import 'registration.dart';
 
 
@@ -152,7 +153,7 @@ class _LoginState extends State<Login> {
         onPressed: () {
           // setState(() => loading = true);
           var route = new MaterialPageRoute(
-            builder: (BuildContext context) => new Register(),
+            builder: (BuildContext context) => new RegisterUser(),
           );
           Navigator.of(context).push(route);
         },
