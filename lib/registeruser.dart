@@ -346,13 +346,19 @@ return Scaffold(
                     ),
           ),
 
-            new RaisedButton(
-                    child: Text("Back"),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                      //_UpdateData(widget.idUser, _nom.text, _pseudo.text, _prenom.text, _numTel.text);
-                    },
-                  ),
+            new FlatButton(
+        child: const Text('Cancel'),
+        onPressed: () {
+          firstnameController.clear();
+          lastnameController.clear();
+          genderController.clear();
+          contactController.clear();
+         addressController.clear();
+          bloodtypeController.clear();
+          passwordController.clear();
+          usernameController.clear();
+        },
+      ),
           RaisedButton(
             // userRegistration,
             onPressed: (){
@@ -392,6 +398,16 @@ return Scaffold(
         ],
       ),
   ),
-    )));
+    )),
+     bottomNavigationBar: new FlatButton(
+        child: new Text("Click Here to Log In",
+        style: TextStyle(fontSize: 20.0)),
+        onPressed: (){
+            Navigator.of(context).push(
+                  MaterialPageRoute(builder: (BuildContext context) => Login()));
+
+          },
+          ),
+    );
 }
 }

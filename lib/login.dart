@@ -144,22 +144,6 @@ class _LoginState extends State<Login> {
       ),
     );
 
-    /****************************************************/
-    /********************* Button Login****************************************/
-    var createaccount = new Container(
-      child: FlatButton(
-        child: const Text('No Account? Tap to Register'),
-
-        onPressed: () {
-          // setState(() => loading = true);
-          var route = new MaterialPageRoute(
-            builder: (BuildContext context) => new RegisterUser(),
-          );
-          Navigator.of(context).push(route);
-        },
-      ),
-    );
-/*************************************************/
 
     /********************* Button Login****************************************/
     var loginButton = new Container(
@@ -171,7 +155,7 @@ class _LoginState extends State<Login> {
         onPressed: () async{
           // setState(() => loading = true);
            SharedPreferences prefs = await SharedPreferences.getInstance();
-          prefs.setString('username', '$username');
+          prefs.setString('username', username);
           getLogin(_pseudoController.text);
           VerifData(_pseudoController.text, _passwordController.text, data);
         },
@@ -222,10 +206,20 @@ class _LoginState extends State<Login> {
                   ],
                 ),
           ),
-          SizedBox(height: 5.0,),
-          createaccount
+         
         ],
       ),
+       bottomNavigationBar: new FlatButton(
+        child: new Text("No Account? Sign Up",
+        style: TextStyle(fontSize: 20.0)),
+        onPressed: (){
+            Navigator.of(context).push(
+                  MaterialPageRoute(builder: (BuildContext context) => RegisterUser()));
+
+          },
+          ),
+     
+    
     );
   }
 }
