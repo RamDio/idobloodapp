@@ -7,6 +7,7 @@ import 'dart:convert';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idobloodapp/home/bloodinfo/blood.dart';
 import 'package:idobloodapp/home/bloodinfo/blooddonation.dart';
+import 'package:idobloodapp/home/bloodinfo/bloodsteps.dart';
 import 'package:idobloodapp/home/bloodinfo/bloodtype.dart';
 import '../drawer/maindrawer.dart';
 
@@ -19,7 +20,6 @@ class BloodInfo extends StatefulWidget {
 }
 
 class _BloodInfoState extends State<BloodInfo> {
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,19 +44,16 @@ class _BloodInfoState extends State<BloodInfo> {
                   child: Column(
                     children: <Widget>[
                       Padding(
-                        padding: const EdgeInsets.only(left: 30.0,right:30.0),
+                        padding: const EdgeInsets.only(left: 30.0, right: 30.0),
                         child: SizedBox(
-                          
                           height: 120.0,
                           child: GestureDetector(
-                            
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (BuildContext context) => Blood()));
                             },
                             child: Card(
-                           
-                              color:Color(0xff98aad7),
+                              color: Color(0xff98aad7),
                               elevation: 10,
                               child: Center(
                                   child: Row(
@@ -69,7 +66,10 @@ class _BloodInfoState extends State<BloodInfo> {
                                   ),
                                   Text(
                                     "What Is Blood?",
-                                    style: TextStyle(fontSize: 25.0,color: Colors.white,fontWeight: FontWeight.w800),
+                                    style: TextStyle(
+                                        fontSize: 25.0,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w800),
                                   ),
                                 ],
                               )),
@@ -78,16 +78,17 @@ class _BloodInfoState extends State<BloodInfo> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 30.0,right:30.0),
+                        padding: const EdgeInsets.only(left: 30.0, right: 30.0),
                         child: SizedBox(
                           height: 120.0,
                           child: GestureDetector(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (BuildContext context) => Bloodfact()));
+                                  builder: (BuildContext context) =>
+                                      Bloodfact()));
                             },
                             child: Card(
-                              color:Color(0xff697fbf),
+                              color: Color(0xff697fbf),
                               elevation: 10,
                               child: Row(
                                 children: <Widget>[
@@ -99,7 +100,10 @@ class _BloodInfoState extends State<BloodInfo> {
                                   ),
                                   Text(
                                     "Blood Fact",
-                                    style: TextStyle(fontSize:25.0,color: Colors.white,fontWeight: FontWeight.w800),
+                                    style: TextStyle(
+                                        fontSize: 25.0,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w800),
                                   ),
                                 ],
                               ),
@@ -108,84 +112,106 @@ class _BloodInfoState extends State<BloodInfo> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 30.0,right:30.0),
+                        padding: const EdgeInsets.only(left: 30.0, right: 30.0),
                         child: SizedBox(
                           height: 120.0,
                           child: GestureDetector(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (BuildContext context) => Bloodtype()));
+                                  builder: (BuildContext context) =>
+                                      Bloodtype()));
                             },
                             child: Card(
-                              color:Color(0xfffbaa19),
+                              color: Color(0xfffbaa19),
                               elevation: 10,
                               child: Center(
                                   child: Row(
-                                    children: <Widget>[
-                                      new Image.asset(
+                                children: <Widget>[
+                                  new Image.asset(
                                     'asset/bloodtype.jpg',
                                     width: 80.0,
                                     height: 120.0,
                                     fit: BoxFit.cover,
                                   ),
-                                      Text(
-                                "Blood Types",
-                                style: TextStyle(fontSize: 25.0,color: Colors.white,fontWeight: FontWeight.w800),
-                              ),
-                                    ],
-                                  )),
+                                  Text(
+                                    "Blood Types",
+                                    style: TextStyle(
+                                        fontSize: 25.0,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w800),
+                                  ),
+                                ],
+                              )),
                             ),
                           ),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 30.0,right:30.0),
+                        padding: const EdgeInsets.only(left: 30.0, right: 30.0),
                         child: SizedBox(
                           height: 120.0,
                           child: GestureDetector(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (BuildContext context) => Blooddonation()));
+                                  builder: (BuildContext context) =>
+                                      Blooddonation()));
                             },
                             child: Card(
-                              color:Color(0xffe98324),
+                              color: Color(0xffe98324),
                               elevation: 10,
                               child: Center(
                                   child: Row(
-                                    children: <Widget>[
-                                        new Image.asset(
+                                children: <Widget>[
+                                  new Image.asset(
                                     'asset/blooddonation.png',
                                     width: 80.0,
                                     height: 120.0,
                                     fit: BoxFit.cover,
                                   ),
-                                      Text(
-                                "Benefits of Blood ""\n""Donation",
-                                style: TextStyle(fontSize: 20.0,color: Colors.white,fontWeight: FontWeight.w800),
-                              ),
-                                    ],
-                                  )),
+                                  Text(
+                                    "Benefits of Blood " "\n" "Donation",
+                                    style: TextStyle(
+                                        fontSize: 20.0,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w800),
+                                  ),
+                                ],
+                              )),
                             ),
                           ),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 30.0,right:30.0),
+                        padding: const EdgeInsets.only(left: 30.0, right: 30.0),
                         child: SizedBox(
                           height: 120.0,
                           child: GestureDetector(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (BuildContext context) => Blooddonation()));
+                                  builder: (BuildContext context) =>
+                                      Bloodsteps()));
                             },
-                            child: Container(
-                              decoration:BoxDecoration(
-                                gradient: LinearGradient(
-      begin: Alignment.topLeft,
-      end: Alignment.bottomRight,
-      stops: [0.1, 0.3, 0.7, 1],
-      colors: [Color(0xff98aad7), Color(0xff697fbf), Color(0xfffbaa19), Color(0xffe98324)])
-                              )
+                            child: Card(
+                              color: Color(0xffe98324),
+                              elevation: 10,
+                              child: Center(
+                                  child: Row(
+                                children: <Widget>[
+                                  new Image.asset(
+                                    'asset/blooddonation.png',
+                                    width: 80.0,
+                                    height: 120.0,
+                                    fit: BoxFit.cover,
+                                  ),
+                                  Text(
+                                    "Process of Blood " "\n" "Donation",
+                                    style: TextStyle(
+                                        fontSize: 20.0,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w800),
+                                  ),
+                                ],
+                              )),
                             ),
                           ),
                         ),
