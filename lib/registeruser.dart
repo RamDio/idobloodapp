@@ -132,7 +132,9 @@ return Scaffold(
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: Text('User Registration Form', 
-                      style: TextStyle(fontSize: 21))),
+                      style: TextStyle(fontSize: 21,
+                      color:Color(0xfff23b5f)
+                      ))),
  
             Divider(),          
  
@@ -390,7 +392,11 @@ return Scaffold(
               // print(email);
                       // print(password);
                       
-              color: Colors.green,
+              color: Color(0xfff23b5f),
+        shape: RoundedRectangleBorder(
+  borderRadius: BorderRadius.circular(18.0),
+  side: BorderSide(color: Colors.red)
+),
               textColor: Colors.white,
               padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
               child: Text('Register'),
@@ -398,7 +404,7 @@ return Scaffold(
             SizedBox(height: 12.0),
                   Text(
                     error,
-                    style: TextStyle(color: Colors.red, fontSize:14.0),
+                    style: TextStyle(color: Color(0xfff23b5f), fontSize:14.0),
                   ),   
  
             Visibility(

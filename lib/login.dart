@@ -149,7 +149,11 @@ class _LoginState extends State<Login> {
     var loginButton = new Container(
       child: RaisedButton(
         child: const Text('LogIn'),
-        color: Theme.of(context).accentColor,
+        color: Color(0xfff23b5f),
+        shape: RoundedRectangleBorder(
+  borderRadius: BorderRadius.circular(18.0),
+  side: BorderSide(color: Colors.red)
+),
         elevation: 8.0,
         splashColor: Colors.blueGrey,
         onPressed: () async{
@@ -192,7 +196,9 @@ class _LoginState extends State<Login> {
               child: Column(
                 children: <Widget>[
                   Image.asset("asset/login.png",height: 150,width: 150,),
-                  new Text("LOGIN",style:TextStyle(fontSize: 30)),
+                  new Text("LOGIN",style:TextStyle(fontSize: 30,color:Colors.white,
+                  fontWeight: FontWeight.w800
+                  )),
                 ],
               ),
             )),
