@@ -70,6 +70,7 @@ flutter:
   - asset/o.jpg
   - asset/bg.jpg
   - asset/bd.png
+  - asset/back.png
 
 flutter_icons:
   android: true

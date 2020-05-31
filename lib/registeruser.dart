@@ -116,289 +116,304 @@ Future userRegistration() async{
 @override
 Widget build(BuildContext context) {
 return Scaffold(
-  body: SingleChildScrollView(
-    child: Form(
-      key: formKey,
-          child: Center(
-      child: Column(
-        children: <Widget>[
+  body: Container(
+    decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('asset/back.png'),
+            fit: BoxFit.cover )
+        ),
+    child: SingleChildScrollView(
+      child: Form(
+        key: formKey,
+            child: Center(
+        child: Column(
+          children: <Widget>[
  
-          Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: Text('User Registration Form', 
-                    style: TextStyle(fontSize: 21))),
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Text('User Registration Form', 
+                      style: TextStyle(fontSize: 21))),
  
-          Divider(),          
+            Divider(),          
  
-          Container(
-          width: 280,
-          padding: EdgeInsets.all(10.0),
-          child: TextFormField(
-                      decoration: InputDecoration(
-                        labelText: "First Name  ",
-                        hintText: " First Name ",
-                        fillColor: Colors.white,
-                        border: new OutlineInputBorder(
-                          borderRadius: new BorderRadius.circular(25.0),
-                          borderSide: new BorderSide(
-                            color: Colors.pink,
-                          ),
-                        ),
-                      ),
-                       validator: (val) =>
-                          val.isEmpty ? 'Enter your lastname' : null,
-                      onChanged: (val) {
-                        setState(() => firstname = val);
-                      },
-                      controller: firstnameController,
-                    ),
-          ),
-          Container(
-          width: 280,
-          padding: EdgeInsets.all(10.0),
-          child: TextFormField(
-                      decoration: InputDecoration(
-                        labelText: "Last Name ",
-                        hintText: " Last Name ",
-                        fillColor: Colors.white,
-                        border: new OutlineInputBorder(
-                          borderRadius: new BorderRadius.circular(25.0),
-                          borderSide: new BorderSide(
-                            color: Colors.pink,
-                          ),
-                        ),
-                      ),
-                      validator: (val) =>
-                          val.isEmpty ? 'Enter your lastname' : null,
-                      onChanged: (val) {
-                        setState(() => lastname = val);
-                      },
-                      controller: lastnameController,
-                    ),
-          ),
-
-          Container(
-          width: 280,
-          padding: EdgeInsets.all(10.0),
-          child: TextFormField(
-                      controller: genderController,
-                      decoration: InputDecoration(
-                        labelText: "Gender ",
-                        suffixIcon: PopupMenuButton<String>(
-                          icon: const Icon(Icons.arrow_drop_down),
-                          onSelected: (String value) {
-                            genderController.text = value;
-                          },
-                          itemBuilder: (BuildContext context) {
-                            return gender
-                                .map<PopupMenuItem<String>>((String value) {
-                              return new PopupMenuItem(
-                                  child: new Text(value), value: value);
-                            }).toList();
-                          },
-                        ),
-                        fillColor: Colors.white,
-                        border: new OutlineInputBorder(
-                          borderRadius: new BorderRadius.circular(25.0),
-                          borderSide: new BorderSide(
-                            color: Colors.pink,
-                          ),
-                        ),
-                      ),
-                    ),
-          ),
-          Container(
-          width: 280,
-          padding: EdgeInsets.all(10.0),
-          child:  TextFormField(
-                      decoration: InputDecoration(
-                    
-                        labelText: "Contact Number ",
-                        hintText: " Contact Number ",
-                        fillColor: Colors.white,
-                        border: new OutlineInputBorder(
-                          borderRadius: new BorderRadius.circular(25.0),
-                          borderSide: new BorderSide(
-                            color: Colors.pink,
-                          ),
-                        ),
-                      ),
-                      keyboardType: TextInputType.number,
-                      validator: (val) => val.length < 11
-                          ? 'Enter 11 digits'
-                          : val.isEmpty ? 'Enter number' : null,
-                      onChanged: (val) {
-                        setState(() => contact = val);
-                      },
-                      controller: contactController,
-                    ),
-          ),
-          Container(
-          width: 280,
-          padding: EdgeInsets.all(10.0),
-          child: TextFormField(
-                      decoration: InputDecoration(
-                     
-                        labelText: "Address  ",
-                        hintText: " Address ",
-                        fillColor: Colors.white,
-                        border: new OutlineInputBorder(
-                          borderRadius: new BorderRadius.circular(25.0),
-                          borderSide: new BorderSide(
-                            color: Colors.pink,
-                          ),
-                        ),
-                      ),
-                      validator: (val) => val.isEmpty ? 'Enter Address' : null,
-                      onChanged: (val) {
-                        setState(() => address = val);
-                      },
-                      controller: addressController,
-                    ),
-          ),
-          Container(
-          width: 280,
-          padding: EdgeInsets.all(10.0),
-          child: TextFormField(
-                      controller: bloodtypeController,
-                      decoration: InputDecoration(
-                        labelText: "Bloodtype ",
-                        suffixIcon: PopupMenuButton<String>(
-                          icon: const Icon(Icons.arrow_drop_down),
-                          onSelected: (String value) {
-                            bloodtypeController.text = value;
-                          },
-                          itemBuilder: (BuildContext context) {
-                            return bloodtype
-                                .map<PopupMenuItem<String>>((String value) {
-                              return new PopupMenuItem(
-                                  child: new Text(value), value: value);
-                            }).toList();
-                          },
-                        ),
-                        fillColor: Colors.white,
-                        border: new OutlineInputBorder(
-                          borderRadius: new BorderRadius.circular(25.0),
-                          borderSide: new BorderSide(
-                            color: Colors.pink,
-                          ),
-                        ),
-                      ),
-                    ),
-          ),
- 
-          Container(
-          width: 280,
-          padding: EdgeInsets.all(10.0),
-          child:TextFormField(
-                      decoration: InputDecoration(
-                    
-                        labelText: "UserName  ",
-                        hintText: " User Name ",
-                        fillColor: Colors.white,
-                        border: new OutlineInputBorder(
-                          borderRadius: new BorderRadius.circular(25.0),
-                          borderSide: new BorderSide(
-                            color: Colors.pink,
-                          ),
-                        ),
-                      ),
-                      validator: (val) => val.isEmpty ? 'Enter Username' : null,
-                      onChanged: (val) {
-                        setState(() => username = val);
-                      },
-                      controller: usernameController,
-                    ),
-          ),
- 
-          Container(
-          width: 280,
-          padding: EdgeInsets.all(10.0),
-          child: TextFormField(
-                      obscureText: _isSecured,
-                      decoration: InputDecoration(
-                        labelText: "Password  ",
-                        hintText: "Password ",
-                        fillColor: Colors.white,
-                        border: new OutlineInputBorder(
-                          borderRadius: new BorderRadius.circular(25.0),
-                          borderSide: new BorderSide(
-                            color: Colors.pink,
-                          ),
-                        ),
-                        icon: new IconButton(
-                            icon: Icon(
-                              Icons.remove_red_eye,
+            Container(
+            width: 280,
+            padding: EdgeInsets.all(10.0),
+            child: TextFormField(
+                        decoration: InputDecoration(
+                          labelText: "First Name  ",
+                          hintText: " First Name ",
+                          fillColor: Colors.white,
+                          filled:true,
+                          border: new OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(25.0),
+                            borderSide: new BorderSide(
+                              color: Colors.pink,
                             ),
-                            onPressed: () {
-                              setState(() {
-                                _isSecured = !_isSecured;
-                              });
-                            }),
+                          ),
+                        ),
+                         validator: (val) =>
+                            val.isEmpty ? 'Enter your lastname' : null,
+                        onChanged: (val) {
+                          setState(() => firstname = val);
+                        },
+                        controller: firstnameController,
                       ),
-                      validator: (val) => val.length < 8
-                          ? 'Password must be 8 characters long'
-                          : val.isEmpty ? 'Enter password' : null,
-                      onChanged: (val) {
-                        setState(() => password = val);
-                      },
-                      controller: passwordController,
-                    ),
-          ),
+            ),
+            Container(
+            width: 280,
+            padding: EdgeInsets.all(10.0),
+            child: TextFormField(
+                        decoration: InputDecoration(
+                          labelText: "Last Name ",
+                          hintText: " Last Name ",
+                          fillColor: Colors.white,
+                          filled:true,
+                          border: new OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(25.0),
+                            borderSide: new BorderSide(
+                              color: Colors.pink,
+                            ),
+                          ),
+                        ),
+                        validator: (val) =>
+                            val.isEmpty ? 'Enter your lastname' : null,
+                        onChanged: (val) {
+                          setState(() => lastname = val);
+                        },
+                        controller: lastnameController,
+                      ),
+            ),
 
-            new FlatButton(
-        child: const Text('Cancel'),
-        onPressed: () {
-          firstnameController.clear();
-          lastnameController.clear();
-          genderController.clear();
-          contactController.clear();
-         addressController.clear();
-          bloodtypeController.clear();
-          passwordController.clear();
-          usernameController.clear();
-        },
-      ),
-          RaisedButton(
-            // userRegistration,
-            onPressed: (){
-              if(formKey.currentState.validate()){
-                      // setState(() => loading = true);
-                        dynamic result = userRegistration();
-                        if(result==null){
-                            setState(() {
-                              error='please supply a valid email';
-                              // loading=false;
-                            });
-                        }
-                    }
-            },
-            // print(email);
-                    // print(password);
-                    
-            color: Colors.green,
-            textColor: Colors.white,
-            padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-            child: Text('Click Here To Register User Online'),
-          ),
-          SizedBox(height: 12.0),
-                Text(
-                  error,
-                  style: TextStyle(color: Colors.red, fontSize:14.0),
-                ),   
- 
-          Visibility(
-            visible: visible, 
-            child: Container(
-              margin: EdgeInsets.only(bottom: 30),
-              child: CircularProgressIndicator()
-              )
+            Container(
+            width: 280,
+            padding: EdgeInsets.all(10.0),
+            child: TextFormField(
+                        controller: genderController,
+                        decoration: InputDecoration(
+                          labelText: "Gender ",
+                          suffixIcon: PopupMenuButton<String>(
+                            icon: const Icon(Icons.arrow_drop_down),
+                            onSelected: (String value) {
+                              genderController.text = value;
+                            },
+                            itemBuilder: (BuildContext context) {
+                              return gender
+                                  .map<PopupMenuItem<String>>((String value) {
+                                return new PopupMenuItem(
+                                    child: new Text(value), value: value);
+                              }).toList();
+                            },
+                          ),
+                          fillColor: Colors.white,
+                          filled:true,
+                          border: new OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(25.0),
+                            borderSide: new BorderSide(
+                              color: Colors.pink,
+                            ),
+                          ),
+                        ),
+                      ),
+            ),
+            Container(
+            width: 280,
+            padding: EdgeInsets.all(10.0),
+            child:  TextFormField(
+                        decoration: InputDecoration(
+                      
+                          labelText: "Contact Number ",
+                          hintText: " Contact Number ",
+                          fillColor: Colors.white,
+                          filled:true,
+                          border: new OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(25.0),
+                            borderSide: new BorderSide(
+                              color: Colors.pink,
+                            ),
+                          ),
+                        ),
+                        keyboardType: TextInputType.number,
+                        validator: (val) => val.length < 11
+                            ? 'Enter 11 digits'
+                            : val.isEmpty ? 'Enter number' : null,
+                        onChanged: (val) {
+                          setState(() => contact = val);
+                        },
+                        controller: contactController,
+                      ),
+            ),
+            Container(
+            width: 280,
+            padding: EdgeInsets.all(10.0),
+            child: TextFormField(
+                        decoration: InputDecoration(
+                       
+                          labelText: "Address  ",
+                          hintText: " Address ",
+                          fillColor: Colors.white,
+                          filled:true,
+                          border: new OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(25.0),
+                            borderSide: new BorderSide(
+                              color: Colors.pink,
+                            ),
+                          ),
+                        ),
+                        validator: (val) => val.isEmpty ? 'Enter Address' : null,
+                        onChanged: (val) {
+                          setState(() => address = val);
+                        },
+                        controller: addressController,
+                      ),
+            ),
+            Container(
+            width: 280,
+            padding: EdgeInsets.all(10.0),
+            child: TextFormField(
+                        controller: bloodtypeController,
+                        decoration: InputDecoration(
+                          labelText: "Bloodtype ",
+                          suffixIcon: PopupMenuButton<String>(
+                            icon: const Icon(Icons.arrow_drop_down),
+                            onSelected: (String value) {
+                              bloodtypeController.text = value;
+                            },
+                            itemBuilder: (BuildContext context) {
+                              return bloodtype
+                                  .map<PopupMenuItem<String>>((String value) {
+                                return new PopupMenuItem(
+                                    child: new Text(value), value: value);
+                              }).toList();
+                            },
+                          ),
+                          fillColor: Colors.white,
+                          filled:true,
+                          border: new OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(25.0),
+                            borderSide: new BorderSide(
+                              color: Colors.pink,
+                            ),
+                          ),
+                        ),
+                      ),
             ),
  
-        ],
-      ),
+            Container(
+            width: 280,
+            padding: EdgeInsets.all(10.0),
+            child:TextFormField(
+                        decoration: InputDecoration(
+                      
+                          labelText: "UserName  ",
+                          hintText: " User Name ",
+                          fillColor: Colors.white,
+                          filled:true,
+                          border: new OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(25.0),
+                            borderSide: new BorderSide(
+                              color: Colors.pink,
+                            ),
+                          ),
+                        ),
+                        validator: (val) => val.isEmpty ? 'Enter Username' : null,
+                        onChanged: (val) {
+                          setState(() => username = val);
+                        },
+                        controller: usernameController,
+                      ),
+            ),
+ 
+            Container(
+            width: 280,
+            padding: EdgeInsets.all(10.0),
+            child: TextFormField(
+                        obscureText: _isSecured,
+                        decoration: InputDecoration(
+                          labelText: "Password  ",
+                          hintText: "Password ",
+                          fillColor: Colors.white,
+                          filled:true,
+                          border: new OutlineInputBorder(
+                            borderRadius: new BorderRadius.circular(25.0),
+                            borderSide: new BorderSide(
+                              color: Colors.pink,
+                            ),
+                          ),
+                          icon: new IconButton(
+                              icon: Icon(
+                                Icons.remove_red_eye,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _isSecured = !_isSecured;
+                                });
+                              }),
+                        ),
+                        validator: (val) => val.length < 8
+                            ? 'Password must be 8 characters long'
+                            : val.isEmpty ? 'Enter password' : null,
+                        onChanged: (val) {
+                          setState(() => password = val);
+                        },
+                        controller: passwordController,
+                      ),
+            ),
+
+              new FlatButton(
+          child: const Text('Cancel'),
+          onPressed: () {
+            firstnameController.clear();
+            lastnameController.clear();
+            genderController.clear();
+            contactController.clear();
+           addressController.clear();
+            bloodtypeController.clear();
+            passwordController.clear();
+            usernameController.clear();
+          },
+        ),
+            RaisedButton(
+              // userRegistration,
+              onPressed: (){
+                if(formKey.currentState.validate()){
+                        // setState(() => loading = true);
+                          dynamic result = userRegistration();
+                          if(result==null){
+                              setState(() {
+                                error='please supply a valid email';
+                                // loading=false;
+                              });
+                          }
+                      }
+              },
+              // print(email);
+                      // print(password);
+                      
+              color: Colors.green,
+              textColor: Colors.white,
+              padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+              child: Text('Register'),
+            ),
+            SizedBox(height: 12.0),
+                  Text(
+                    error,
+                    style: TextStyle(color: Colors.red, fontSize:14.0),
+                  ),   
+ 
+            Visibility(
+              visible: visible, 
+              child: Container(
+                margin: EdgeInsets.only(bottom: 30),
+                child: CircularProgressIndicator()
+                )
+              ),
+ 
+          ],
+        ),
+    ),
+      )),
   ),
-    )),
      bottomNavigationBar: new FlatButton(
         child: new Text("Click Here to Log In",
         style: TextStyle(fontSize: 20.0)),

@@ -176,38 +176,45 @@ class _LoginState extends State<Login> {
 
      return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      body: new ListView(
-        children: <Widget>[
-          SizedBox(
-            height: 50.0,
-          ),
-          Center(child: Padding(
-            padding: const EdgeInsets.all(0.0),
-            child: Column(
-              children: <Widget>[
-                Image.asset("asset/login.png",height: 150,width: 150,),
-                new Text("LOGIN",style:TextStyle(fontSize: 30)),
-              ],
+      body: Container(
+         decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('asset/back.png'),
+            fit: BoxFit.cover )
+        ),
+        child: new ListView(
+          children: <Widget>[
+            SizedBox(
+              height: 50.0,
             ),
-          )),
-          new Padding(
-            padding: const EdgeInsets.all(9.0),  
-                child: Column(
-                  children: <Widget>[pseudo, password,
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: <Widget>[Center(child: cancelButton), Center(child: loginButton)],
+            Center(child: Padding(
+              padding: const EdgeInsets.all(0.0),
+              child: Column(
+                children: <Widget>[
+                  Image.asset("asset/login.png",height: 150,width: 150,),
+                  new Text("LOGIN",style:TextStyle(fontSize: 30)),
+                ],
+              ),
+            )),
+            new Padding(
+              padding: const EdgeInsets.all(9.0),  
+                  child: Column(
+                    children: <Widget>[pseudo, password,
+                    SizedBox(
+                      height: 20.0,
                     ),
+                    Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[Center(child: cancelButton), Center(child: loginButton)],
+                      ),
+                    ),
+                    ],
                   ),
-                  ],
-                ),
-          ),
-         
-        ],
+            ),
+           
+          ],
+        ),
       ),
        bottomNavigationBar: new FlatButton(
         child: new Text("No Account? Sign Up",
