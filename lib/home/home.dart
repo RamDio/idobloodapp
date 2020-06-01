@@ -5,6 +5,7 @@ import 'package:idobloodapp/drawer/maindrawer.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../login.dart';
+import 'donationhistory.dart';
 import 'rewards.dart';
 
 class Home extends StatelessWidget {
@@ -208,7 +209,7 @@ Widget _buttons(BuildContext context){
     SizedBox(width: 10.0,),
     Expanded(child: InkWell(onTap:(){
       Navigator.of(context).push(MaterialPageRoute(
-                                builder: (BuildContext context) => Rewards()));
+                                builder: (BuildContext context) => DonationHistory()));
     } ,
     child: Container(
       height:40.0,

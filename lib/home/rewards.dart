@@ -24,7 +24,7 @@ class _RewardsState extends State<Rewards> {
         title:  Padding(
           padding: const EdgeInsets.only(left:25.0),
           child: Text(
-              "Donation History",
+              "Reward Points",
               style: TextStyle(color: Colors.white),
             ),
         ),
