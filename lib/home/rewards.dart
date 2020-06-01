@@ -41,7 +41,7 @@ class _RewardsState extends State<Rewards> {
                 width: double.infinity,
                 margin: EdgeInsets.only(top: 15),
                 decoration: BoxDecoration(
-                  color: Colors.white,
+                  color:  Color.fromRGBO(244, 13, 48, 1),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(top: 18.0),
@@ -49,15 +49,13 @@ class _RewardsState extends State<Rewards> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      new ListTile(
-                        title: SizedBox(
-                          height: 80.0,
-                          child: Card(
-                            elevation: 10,
-                            child: Text("You Haven't Donated yet"),
-                          ),
-                        ),
-                      ),
+                    Center(child: Column(
+                      children: <Widget>[
+                        Text("0",style:TextStyle(fontSize: 80,fontWeight: FontWeight.w900)),
+                        Text("POINTS",style:TextStyle(fontSize: 50,fontWeight: FontWeight.w900)),
+                      ],
+                    )),
+                    
                     ],
                   ),
                 ),
