@@ -53,7 +53,7 @@ class _BloodInfoState extends State<BloodInfo> {
                                   builder: (BuildContext context) => Blood()));
                             },
                             child: Card(
-                              color: Color(0xff98aad7),
+                              color: Colors.red,
                               elevation: 10,
                               child: Center(
                                   child: Row(
@@ -88,7 +88,7 @@ class _BloodInfoState extends State<BloodInfo> {
                                       Bloodfact()));
                             },
                             child: Card(
-                              color: Color(0xff697fbf),
+                              color: Colors.red,
                               elevation: 10,
                               child: Row(
                                 children: <Widget>[
@@ -122,7 +122,7 @@ class _BloodInfoState extends State<BloodInfo> {
                                       Bloodtype()));
                             },
                             child: Card(
-                              color: Color(0xfffbaa19),
+                              color: Colors.red,
                               elevation: 10,
                               child: Center(
                                   child: Row(
@@ -157,7 +157,7 @@ class _BloodInfoState extends State<BloodInfo> {
                                       Blooddonation()));
                             },
                             child: Card(
-                              color: Color(0xffe98324),
+                              color: Colors.red,
                               elevation: 10,
                               child: Center(
                                   child: Row(
@@ -192,7 +192,7 @@ class _BloodInfoState extends State<BloodInfo> {
                                       Bloodsteps()));
                             },
                             child: Card(
-                              color: Color(0xffe98324),
+                             color: Colors.red,
                               elevation: 10,
                               child: Center(
                                   child: Row(
