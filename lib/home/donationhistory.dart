@@ -6,18 +6,58 @@ import 'dart:convert';
 import '../drawer/maindrawer.dart';
 import 'updateprofile.dart';
 
+
+Future<History> fetchHistory() async {
+  final response =
+      await http.get('https://idobloodadmin.000webhostapp.com/dhistory.php');
+
+  if (response.statusCode == 200) {
+    // If the server did return a 200 OK response,
+    // then parse the JSON.
+    return  History.fromJson(json.decode(response.body));
+  } else {
+    // If the server did not return a 200 OK response,
+    // then throw an exception.
+    throw Exception('Failed to load album');
+  }
+}
+
+
+class History {
+  final int userid;
+  final String bloodcode;
+  final String date;
+
+ History({this.userid, this.bloodcode, this.date});
+
+  factory History.fromJson(Map<String, dynamic> json) {
+    return History(
+      userid: json['userid'],
+      bloodcode: json['bloodcode'],
+      date: json['date'],
+    );
+  }
+}
 class DonationHistory extends StatefulWidget {
   @override
   _DonationHistoryState createState() => _DonationHistoryState();
 }
 
 class _DonationHistoryState extends State<DonationHistory> {
+  Future<History> futureHistory;
    
    Future<List> getData()async{
     final response= await http.get("https://idobloodadmin.000webhostapp.com/fetchdata.php");
   return json.decode(response.body);
   
   }
+
+   @override
+  void initState() {
+    super.initState();
+    futureHistory = fetchHistory();
+  }
+
   
   @override
   Widget build(BuildContext context) {
@@ -48,30 +88,43 @@ class _DonationHistoryState extends State<DonationHistory> {
                 decoration: BoxDecoration(
                   color: Colors.white,
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 18.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                child:  FutureBuilder<History>(
+                  future: futureHistory,
+                  builder:(context, snapshot) {
+                    if(snapshot.hasData){
+                      return Center(child: Column(
+                        children: <Widget>[
+                        
+                             Column(
+                             mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      new ListTile(
-                        title: SizedBox(
-                          height: 80.0,
-                          child: Card(
-                            elevation: 10,
-                            // child: Text("You Haven't Donated yet"),
-                            child: ListTile(
-                              title:Text("W1111 07 123456",
+                            children: <Widget>[
+                              new ListTile(
+                                title: SizedBox(
+                                  height:80,
+                                  child:Card(
+                                    elevation: 10,
+                                    child: ListTile(
+                                        title:Text(snapshot.data.bloodcode!=null?snapshot.data.bloodcode:'${snapshot.data.bloodcode}',
                               style:TextStyle(fontWeight:FontWeight.w900 )
                               ),
-                              subtitle: Text("2020-03-13"),
-                            ),
+                              subtitle: Text(snapshot.data.bloodcode!=null?snapshot.data.bloodcode:'${snapshot.data.date}'),
+                                    ),
+                                  )
+                                ),
+                              ),
+                              // Text(snapshot.data.bloodcode!=null?snapshot.data.bloodcode:'${snapshot.data.bloodcode}'),
+                              // Text(snapshot.data.bloodcode!=null?snapshot.data.bloodcode:'${snapshot.data.date}')
+                            ],
                           ),
-                        ),
-                      ),
-                    ],
+                        ],
+                      ));
+                    }else if(snapshot.hasError){
+                      return Text("${snapshot.error}");
+                    }
+                    return CircularProgressIndicator();
+                  },
                   ),
-                ),
               ),
             ),
           ]),
