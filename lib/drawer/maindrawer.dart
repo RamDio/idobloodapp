@@ -14,10 +14,12 @@ import '../home/profile.dart';
 class MainDrawer extends StatelessWidget {
 
    
-
+ var idUser;
+  
+  
 
   
-  MainDrawer({Key key, }) : super(key: key);
+  MainDrawer({Key key,this.idUser }) : super(key: key);
 
   // @override
   // void initState() {
@@ -86,7 +88,7 @@ class MainDrawer extends StatelessWidget {
             onTap: () {
               Navigator.of(context).pop();
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => Profile()));
+                  builder: (BuildContext context) => Profile(idUser: this.idUser)));
             },
           ),
           ListTile(
