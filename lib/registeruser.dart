@@ -75,7 +75,7 @@ Future userRegistration() async{
   String password = passwordController.text;
  
   // SERVER API URL
-  var url = 'https://idobloodadmin.000webhostapp.com/registeruser.php';
+  var url = 'https://idobloodadmin.000webhostapp.com/php/registeruser.php';
  
   // Store all data with Param Name.
   var data = {'firstname': firstname,'lastname':lastname,'gender':gender,'contact':contact,'address':address,'bloodtype':bloodtype, 'username': username, 'password' : password};

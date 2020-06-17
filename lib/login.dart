@@ -41,7 +41,7 @@ class _LoginState extends State<Login> {
     Future<String> getLogin(String pseudo) async {
       var response = await http.get(
           Uri.encodeFull(
-              "https://idobloodadmin.000webhostapp.com/login.php?PSEUDO=${pseudo}"),
+              "https://idobloodadmin.000webhostapp.com/php/login.php?PSEUDO=${pseudo}"),
           headers: {"Accept": "application/json"});
 
       print(response.body);
