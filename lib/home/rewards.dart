@@ -51,7 +51,7 @@ class _RewardsState extends State<Rewards> {
                     children: <Widget>[
                     Center(child: Column(
                       children: <Widget>[
-                        Text("0",style:TextStyle(fontSize: 80,fontWeight: FontWeight.w900)),
+                        Text("0",style:TextStyle(fontSize: 80,fontWeight: FontWeight.w900,color:Colors.white)),
                         Text("POINTS",style:TextStyle(fontSize: 50,fontWeight: FontWeight.w900)),
                       ],
                     )),

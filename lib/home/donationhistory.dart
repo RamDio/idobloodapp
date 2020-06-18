@@ -9,7 +9,7 @@ import 'updateprofile.dart';
 
 Future<History> fetchHistory() async {
   final response =
-      await http.get('https://idobloodadmin.000webhostapp.com/dhistory.php');
+      await http.get('https://idobloodadmin.000webhostapp.com/php/dhistory.php');
 
   if (response.statusCode == 200) {
     // If the server did return a 200 OK response,
