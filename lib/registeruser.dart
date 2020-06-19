@@ -143,7 +143,7 @@ return Scaffold(
             padding: EdgeInsets.all(10.0),
             child: TextFormField(
                         decoration: InputDecoration(
-                          labelText: "First Name  ",
+                          // labelText: "First Name  ",
                           hintText: " First Name ",
                           fillColor: Colors.white,
                           filled:true,
@@ -167,7 +167,7 @@ return Scaffold(
             padding: EdgeInsets.all(10.0),
             child: TextFormField(
                         decoration: InputDecoration(
-                          labelText: "Last Name ",
+                          // labelText: "Last Name ",
                           hintText: " Last Name ",
                           fillColor: Colors.white,
                           filled:true,
@@ -193,7 +193,7 @@ return Scaffold(
             child: TextFormField(
                         controller: genderController,
                         decoration: InputDecoration(
-                          labelText: "Gender ",
+                          hintText: "Gender ",
                           suffixIcon: PopupMenuButton<String>(
                             icon: const Icon(Icons.arrow_drop_down),
                             onSelected: (String value) {
@@ -224,8 +224,8 @@ return Scaffold(
             child:  TextFormField(
                         decoration: InputDecoration(
                       
-                          labelText: "Contact Number ",
-                          hintText: " Contact Number ",
+                          hintText: "Contact Number ",
+                          // hintText: " Contact Number ",
                           fillColor: Colors.white,
                           filled:true,
                           border: new OutlineInputBorder(
@@ -251,7 +251,7 @@ return Scaffold(
             child: TextFormField(
                         decoration: InputDecoration(
                        
-                          labelText: "Address  ",
+                          // labelText: "Address  ",
                           hintText: " Address ",
                           fillColor: Colors.white,
                           filled:true,
@@ -275,7 +275,7 @@ return Scaffold(
             child: TextFormField(
                         controller: bloodtypeController,
                         decoration: InputDecoration(
-                          labelText: "Bloodtype ",
+                          hintText: "Bloodtype ",
                           suffixIcon: PopupMenuButton<String>(
                             icon: const Icon(Icons.arrow_drop_down),
                             onSelected: (String value) {
@@ -307,7 +307,7 @@ return Scaffold(
             child:TextFormField(
                         decoration: InputDecoration(
                       
-                          labelText: "UserName  ",
+                          // labelText: "UserName  ",
                           hintText: " User Name ",
                           fillColor: Colors.white,
                           filled:true,
@@ -332,7 +332,7 @@ return Scaffold(
             child: TextFormField(
                         obscureText: _isSecured,
                         decoration: InputDecoration(
-                          labelText: "Password  ",
+                          // labelText: "Password  ",
                           hintText: "Password ",
                           fillColor: Colors.white,
                           filled:true,

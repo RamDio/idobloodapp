@@ -10,6 +10,7 @@ import 'rewards.dart';
 
 class Home extends StatelessWidget {
   var idUser,
+      data,
       username,
       firstname,
       lastname,
