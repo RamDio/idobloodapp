@@ -15,16 +15,11 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
 
-  getMethod()async{
-    String theUrl = "https://idobloodadmin.000webhostapp.com/php/dhistory.php";
+  Future<List> getData() async{
 
-    var res = await http.get(Uri.encodeFull(theUrl),headers: {"Accept":"application/json"});
+  final response=await http.get("https://idobloodadmin.000webhostapp.com/php/donationhistory.php");
+  return json.decode(response.body);
 
-
-    
-    Map<String,dynamic> responsBody = json.decode(res.body);
-    print(responsBody);
-    return responsBody;
   }
 
   @override
@@ -34,31 +29,44 @@ class _ProfileState extends State<Profile> {
         title: Text("IDoBlood"),
       ),
       body: FutureBuilder(
-        future: getMethod(),
-        builder: (BuildContext context, AsyncSnapshot snapshot){
-          List<dynamic> snap = snapshot.data;
-
-            if(snapshot.connectionState == ConnectionState.waiting){
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-            if(snapshot.hasError){
-              return Center(
-                child: Text("Error fetching Data"),
-              );
-            }
-
-            return ListView.builder(
-              itemBuilder: (context,index){
-                return ListTile(
-                  title: Text("Bloodcode: ${snap[index]['bloodcode']}"),
-                  subtitle: Text("date: ${snap[index]['date']}"),
-                );
-              }
+        future: getData(),
+        builder: (context,snapshot){
+           if(snapshot.hasError)
+            print(snapshot.error);
+          return snapshot.hasData
+              ?new ItemList(list: snapshot.data,)
+              :new Center(
+                child: new CircularProgressIndicator(),
               );
         },
       )
+    );
+  }
+}
+
+class ItemList extends StatelessWidget{
+
+  final List list;
+  ItemList({this.list});
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return new ListView.builder(
+        itemCount: list==null?0:list.length,
+      itemBuilder: (context,i){
+          return new ListTile(
+            title: new Text(list[i]['bloodcode']),
+            subtitle: new Text(list[i]['date']),
+            leading: new Icon(Icons.http),
+            // onTap:()=> Navigator.of(context).push(
+            //   new MaterialPageRoute(
+            //       builder: (BuildContext context)=>new Details(list: list,index: i),
+
+            //   )
+            // ),
+          );
+      },
     );
   }
 }
