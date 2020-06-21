@@ -8,6 +8,7 @@ import 'updateprofile.dart';
 
 
 class DonationHistory extends StatefulWidget {
+  var idUser;
   @override
   _DonationHistoryState createState() => _DonationHistoryState();
 }
@@ -15,9 +16,11 @@ class DonationHistory extends StatefulWidget {
 class _DonationHistoryState extends State<DonationHistory> {
  
 
-   Future<List> getData() async{
+   Future<List> getData(String id) async{
 
-  final response=await http.get("https://idobloodadmin.000webhostapp.com/php/donationhistory.php");
+  final response=await http.get("https://idobloodadmin.000webhostapp.com/php/dhistory.php?ID=" +
+                id +
+                "");
   return json.decode(response.body);
 
   }
@@ -27,10 +30,18 @@ class _DonationHistoryState extends State<DonationHistory> {
   // void initState() {
    
   // }
+@override
+  void initState() {
+    super.initState();
+    setState(() {
+      getData(widget.idUser);
+    });
+  }
 
   
   @override
   Widget build(BuildContext context) {
+    var data = getData(widget.idUser);
     return Scaffold(
       backgroundColor: Color.fromRGBO(244, 13, 48, 1),
       appBar: AppBar(
@@ -59,7 +70,7 @@ class _DonationHistoryState extends State<DonationHistory> {
                   color: Colors.white,
                 ),
                 child:  FutureBuilder(
-                  future: getData(),
+                  future: data,
                   builder:(context, snapshot) {
                    
            if(snapshot.hasError)

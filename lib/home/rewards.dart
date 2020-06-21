@@ -14,6 +14,14 @@ class Rewards extends StatefulWidget {
 }
 
 class _RewardsState extends State<Rewards> {
+
+
+  Future<List> getData() async{
+
+  final response=await http.get("http://192.168.18.16/php/points.php");
+  return json.decode(response.body);
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,25 +51,50 @@ class _RewardsState extends State<Rewards> {
                 decoration: BoxDecoration(
                   color:  Color.fromRGBO(244, 13, 48, 1),
                 ),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 18.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                    Center(child: Column(
-                      children: <Widget>[
-                        Text("0",style:TextStyle(fontSize: 80,fontWeight: FontWeight.w900,color:Colors.white)),
-                        Text("POINTS",style:TextStyle(fontSize: 50,fontWeight: FontWeight.w900)),
-                      ],
-                    )),
-                    
-                    ],
+                child:  FutureBuilder(
+                  future: getData(),
+                  builder:(context, snapshot) {
+                   
+           if(snapshot.hasError)
+            print(snapshot.error);
+          return snapshot.hasData
+              ?new ItemList(list: snapshot.data,)
+              :new Center(
+                child: new CircularProgressIndicator(),
+              );
+                  },
                   ),
-                ),
               ),
             ),
           ]),
+    );
+  }
+}
+class ItemList extends StatelessWidget{
+
+  final List list;
+  ItemList({this.list});
+
+  @override
+  Widget build(BuildContext context) {
+    
+    return new ListView.builder(
+        itemCount: list==null?0:list.length,
+      itemBuilder: (context,i){
+          return ListTile(
+                      title: SizedBox(
+              height: 80,
+                        child: Card(
+                elevation: 10,
+                          child: new ListTile(
+                  title: new Text(list[i]['bloodcode']),
+
+                  leading: new Icon(Icons.history),
+                ),
+              ),
+            ),
+          );
+      },
     );
   }
 }
