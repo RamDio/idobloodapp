@@ -14,15 +14,22 @@ class _UpdateprofileState extends State<Updateprofile> {
   var _isLoading = false;
   var data;
 
-  var _username = "";
+  
   var _lastname = "";
   var _firstname = "";
   var _gender = "";
+  var _contact="";
+  var _address="";
+  var _bloodtype="";
+  var _username = "";
 
   var _genderController = new TextEditingController();
   var _userController = new TextEditingController();
   var _firstnameController = new TextEditingController();
   var _lastnameController = new TextEditingController();
+  var _contactController = new TextEditingController();
+  var _addressController = new TextEditingController();
+  var _bloodtypeController = new TextEditingController();
 
 
   Future<String> _ShowDialog(String msg) async {
@@ -62,6 +69,9 @@ class _UpdateprofileState extends State<Updateprofile> {
       "firstname": _firstnameController.text,
       "lastname": _lastnameController.text,
       "gender": _genderController.text,
+      "contact": _contactController.text,
+      "address": _addressController.text,
+      "bloodtype": _bloodtypeController.text
 
     });
     if (response.statusCode == 200) {
@@ -89,6 +99,9 @@ class _UpdateprofileState extends State<Updateprofile> {
         _lastname = data[0]['last_name'];
         _firstname = data[0]['first_name'];
         _gender = data[0]['gender'];
+        _contact= data[0]['contact'];
+        _address= data[0]['address'];
+        _bloodtype= data[0]['bloodtype'];
         print(data);
       });
     }
@@ -165,29 +178,67 @@ class _UpdateprofileState extends State<Updateprofile> {
                           SizedBox(
                             height: 5.0,
                           ),
-                          new ButtonTheme.bar(
-                            // make buttons use the appropriate styles for cards
-                            child: new ButtonBar(
-                              children: <Widget>[
-                                new RaisedButton(
-                                  child: const Text(
-                                    'Update',
-                                    textScaleFactor: 2.0,
-                                  ),
-                                  onPressed: () {
-                                    _editData();
-                                  },
-                                ),
-                                new RaisedButton.icon(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  icon: Icon(Icons.backup),
-                                  label: Text("Back"),
-                                ),
-                              ],
-                            ),
+                          TextField(
+                            decoration: InputDecoration(
+                                labelText: ("Contact : "),
+                                filled: true,
+                                hintText: _contact),
+                            controller: _contactController,
                           ),
+                          SizedBox(
+                            height: 5.0,
+                          ),
+                          TextField(
+                            decoration: InputDecoration(
+                                labelText: ("Address: "),
+                                filled: true,
+                                hintText: _address),
+                            controller: _addressController,
+                          ),
+                          SizedBox(
+                            height: 5.0,
+                          ),
+                          TextField(
+                            decoration: InputDecoration(
+                                labelText: ("Bloodtype : "),
+                                filled: true,
+                                hintText: _bloodtype),
+                            controller: _bloodtypeController,
+                          ),
+                          SizedBox(
+                            height: 5.0,
+                          ),
+                        
+                            // make buttons use the appropriate styles for cards
+                           
+                            
+                                Row(
+                                  children: <Widget>[
+                                    new RaisedButton(
+                                      child: const Text(
+                                        'Update',
+                                        textScaleFactor: 2.0,
+                                      ),
+                                      onPressed: () {
+                                        _editData();
+                                      },
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: <Widget>[
+                                    new RaisedButton.icon(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      icon: Icon(Icons.backup),
+                                      label: Text("Back"),
+                                    ),
+                                  ],
+                                ),
+                              
+                       
+                      
                         ],
                       ),
                     )

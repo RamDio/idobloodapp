@@ -1,7 +1,10 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:idobloodapp/drawer/maindrawer.dart';
+import 'package:idobloodapp/home/updateprofile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../login.dart';
@@ -167,16 +170,34 @@ Widget _coverimage(Size screenSize) {
 
 Widget _profileimage() {
   return Center(
-    child: Container(
-      width: 140.0,
-      height: 140.0,
-      decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("asset/kitty.jpeg"),
-            fit: BoxFit.cover,
-          ),
-          borderRadius: BorderRadius.circular(80.0),
-          border: Border.all(color: Colors.white, width: 10.0)),
+    child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Center(
+        child: Row(
+          children: <Widget>[
+            Container(
+              width: 140.0,
+              height: 140.0,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("asset/kitty.jpeg"),
+                    fit: BoxFit.cover,
+                  ),
+                  borderRadius: BorderRadius.circular(80.0),
+                  border: Border.all(color: Colors.white, width: 10.0)),
+                  
+            ),
+            FlatButton.icon(
+            icon: Icon(FontAwesomeIcons.edit),
+           label: Text(""),
+            onPressed: () async {
+      
+                             
+            },
+          )
+          ],
+        ),
+      ),
     ),
   );
 }
