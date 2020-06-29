@@ -87,8 +87,11 @@ class MainDrawer extends StatelessWidget {
                 )),
             onTap: () {
               Navigator.of(context).pop();
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => Profile(idUser: this.idUser)));
+              var route = new MaterialPageRoute(
+                    builder: (BuildContext context) =>
+                        new Profile(idUser: this.idUser),
+                  );
+                  Navigator.of(context).push(route);
             },
           ),
           ListTile(
@@ -108,7 +111,7 @@ class MainDrawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(FontAwesomeIcons.trophy, color: Colors.blue),
-            title: Text("Donation Benefits and Blood Info",
+            title: Text("Blood Awareness",
                 style: TextStyle(
                   fontSize: 18,
                 )),

@@ -42,7 +42,7 @@ class Home extends StatelessWidget {
     );
 
     return Text(
-      "$firstname $lastname",
+      "${this.firstname} ${this.lastname}",
       style: _nametextstyle,
     );
   }
@@ -55,7 +55,7 @@ class Home extends StatelessWidget {
         borderRadius: BorderRadius.circular(4.0),
       ),
       child: Text(
-        "$username",
+        "${this.username}",
         style: TextStyle(
             fontFamily: 'Spectral',
             color: Colors.black,
@@ -82,22 +82,22 @@ class Home extends StatelessWidget {
       padding: EdgeInsets.only(top: 18.0),
       child: Column(
         children: <Widget>[
-          Text("$gender",
+          Text("${this.gender}",
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 20.0,
               )),
-          Text("$contact",
+          Text("${this.contact}",
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 20.0,
               )),
-          Text("$address",
+          Text("${this.address}",
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 20.0,
               )),
-          Text("$bloodtype",
+          Text("${this.bloodtype}",
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 20.0,
@@ -191,7 +191,13 @@ Widget _profileimage() {
             icon: Icon(FontAwesomeIcons.edit),
            label: Text(""),
             onPressed: () async {
-      
+               var idUser;
+                              var route = new MaterialPageRoute(
+                                                   builder: (BuildContext context) =>
+                                                       new Updateprofile(
+                                                         idUser: idUser,
+                                        ),
+                                  );
                              
             },
           )
