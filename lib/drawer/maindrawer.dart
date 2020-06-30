@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:idobloodapp/home/bloodinfo.dart';
+import 'package:idobloodapp/home/event.dart';
 import 'package:idobloodapp/home/events.dart';
 import 'package:idobloodapp/home/home.dart';
 import 'package:idobloodapp/home/rewards.dart';
@@ -16,7 +17,7 @@ class MainDrawer extends StatelessWidget {
    
  var idUser;
   
-  
+  var id;
 
   
   MainDrawer({Key key,this.idUser }) : super(key: key);
@@ -87,11 +88,8 @@ class MainDrawer extends StatelessWidget {
                 )),
             onTap: () {
               Navigator.of(context).pop();
-              var route = new MaterialPageRoute(
-                    builder: (BuildContext context) =>
-                        new Profile(idUser: this.idUser),
-                  );
-                  Navigator.of(context).push(route);
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (BuildContext context) => MyApp()));
             },
           ),
           ListTile(
@@ -110,7 +108,7 @@ class MainDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: Icon(FontAwesomeIcons.trophy, color: Colors.blue),
+            leading: Icon(FontAwesomeIcons.tint, color: Colors.red),
             title: Text("Blood Awareness",
                 style: TextStyle(
                   fontSize: 18,

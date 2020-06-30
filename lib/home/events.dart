@@ -29,6 +29,7 @@ class Events extends StatelessWidget {
         drawer:MainDrawer(),
         body: WebView(
           initialUrl: "https://redcross.org.ph/",
+          javascriptMode: JavascriptMode.unrestricted,
           onWebViewCreated:(WebViewController webViewController){
             _controller.complete(webViewController);
           } ,
